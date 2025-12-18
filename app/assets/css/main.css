@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@media (min-width: 1280px) {
+  :root {
+    --ui-container: 94vw;
+  }
+}

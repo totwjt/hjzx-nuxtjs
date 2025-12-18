@@ -1,0 +1,53 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "client: chrome",
+            //"runtimeExecutable":"C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "server: nuxt",
+            "outputCapture": "console",//std or console
+            // "program": "${workspaceFolder}//.nuxt//dist//server//server.mjs",
+            "program": "${workspaceFolder}/node_modules/nuxi/bin/nuxi.mjs",
+            "args": [
+                "dev"
+            ],
+            "sourceMaps": true, // 启用源代码映射，这对于调试编译后的代码（如TypeScript）很有用
+            // "outFiles": [
+            //     "${workspaceFolder}/.nuxt/dist/server/server.js" // 这是Nuxt项目编译后服务器代码的路径，你可能需要根据实际情况修改
+            // ],
+            "skipFiles": [
+                "<node_internals>/**" // 跳过Node.js内部文件的调试
+            ],
+            "env": {
+                "NODE_ENV": "development" // 设置环境变量为开发模式
+            },
+        },
+        //先使用npm run dev运行程序  然后找到bin/nuxt.js的程序进行attach
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "server: nuxt attach",
+            "processId": "${command:PickProcess}",
+            "port": 9229
+        }
+    ],
+    "compounds": [
+        {
+            "name": "fullstack: nuxt",
+            "configurations": [
+                "server: nuxt",
+                "client: chrome"
+            ]
+        }
+    ]
+}
