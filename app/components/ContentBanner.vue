@@ -1,6 +1,6 @@
 <template>
     <div
-        class="content-banner grid grid-cols-4 items-center justify-items-center bg-white h-27 w-[70vw] mx-auto -mt-40 z-10">
+        class="content-banner grid grid-cols-4 items-center justify-items-center h-27 w-[70vw] mx-auto -mt-40 z-10 bg-transparent">
         <div class="cb relative">
             <img src="/banner/icon-banner-menu-1.png" class="w-8 h-8" alt="" srcset="">
             <div>
@@ -44,7 +44,7 @@
 
 <style scoped lang="scss">
 .cb {
-    background-color: #fff;
+    background-color: rgb(255, 255, 255, 0.7);
     font-weight: 600;
     font-size: 16px;
     z-index: 1;

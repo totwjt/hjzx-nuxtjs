@@ -15,25 +15,13 @@ onMounted(() => {
 <template>
   <ClientOnly>
     <!-- Swiper 主体 -->
-    <swiper-container
-      class="swiper-basic"
-      :loop="false"
-      Autoplay
-      :pagination="{
-        clickable: true
-      }"
-      ref="containerRef"
-    >
+    <swiper-container class="swiper-basic" :loop="false" Autoplay :pagination="{
+      clickable: true
+    }" ref="containerRef">
       <!-- Slide 1（首屏 LCP） -->
       <swiper-slide class="swiper-slide">
-        <img
-          class="slide-bg"
-          src="/banner/index-3.png"
-          alt="banner"
-          loading="eager"
-          fetchpriority="high"
-          decoding="async"
-        />
+        <img class="slide-bg" src="/banner/index-3.png" alt="banner" loading="eager" fetchpriority="high"
+          decoding="async" />
         <div class="slide-text-content">
           <div class="title">暖冬首充100送10算力体验金</div>
           <div class="sub-title">算力新势力邀你一键畅享</div>
@@ -45,13 +33,7 @@ onMounted(() => {
 
       <!-- Slide 2 -->
       <swiper-slide class="swiper-slide">
-        <img
-          class="slide-bg"
-          src="/banner/index-4.png"
-          alt="banner"
-          loading="lazy"
-          decoding="async"
-        />
+        <img class="slide-bg" src="/banner/index-4.png" alt="banner" loading="lazy" decoding="async" />
         <div class="slide-text-content">
           <div class="title">彻底突破GPU性能边界</div>
           <div class="sub-title">简单算力秒速调用</div>
@@ -63,13 +45,7 @@ onMounted(() => {
 
       <!-- Slide 3 -->
       <swiper-slide class="swiper-slide">
-        <img
-          class="slide-bg"
-          src="/banner/index-5.png"
-          alt="banner"
-          loading="lazy"
-          decoding="async"
-        />
+        <img class="slide-bg" src="/banner/index-5.png" alt="banner" loading="lazy" decoding="async" />
         <div class="slide-text-content">
           <div class="title">算力过剩？</div>
           <div class="sub-title">极智算纳管，资源高效变现与收益共享！</div>
@@ -85,12 +61,7 @@ onMounted(() => {
     <!-- SSR fallback，避免首屏白屏 -->
     <template #fallback>
       <div class="swiper-basic fallback">
-        <img
-          src="/banner/index-3.png"
-          class="slide-bg"
-          loading="eager"
-          fetchpriority="high"
-        />
+        <img src="/banner/index-3.png" class="slide-bg" loading="eager" fetchpriority="high" />
       </div>
     </template>
   </ClientOnly>
@@ -127,6 +98,16 @@ onMounted(() => {
   width: 700px;
   height: 480px;
   margin: 100px 300px;
+
+
+  button {
+    margin-top: 24px;
+    padding: 10px 24px;
+    background: #1677ff;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
 }
 
 .title {
@@ -139,26 +120,17 @@ onMounted(() => {
   margin: 12px 0;
 }
 
-button {
-  margin-top: 24px;
-  padding: 10px 24px;
-  background: #1677ff;
-  border: none;
-  color: #fff;
-  cursor: pointer;
-}
-
-swiper-container::part(pagination) {
+.swiper-basic::part(pagination) {
   bottom: 200px;
 }
 
-swiper-container::part(bullet) {
+.swiper-basic::part(bullet) {
   width: 60px;
   height: 2px;
   border-radius: 2px;
 }
 
-swiper-container::part(bullet-active) {
+.swiper-basic::part(bullet-active) {
   height: 3px;
   width: 70px;
   border-radius: 2px;
