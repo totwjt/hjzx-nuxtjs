@@ -5,11 +5,6 @@ const route = useRoute()
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
-    label: 'Logo图标',
-    to: '/',
-    active: route.path.startsWith('/')
-  },
-  {
     label: '算力市场',
     to: '/docs/getting-started',
     active: route.path.startsWith('/docs/getting-started')
@@ -58,8 +53,10 @@ const items2 = computed<NavigationMenuItem[]>(() => [
 <template>
   <UHeader class="fixed w-screen backdrop-filter bg-transparent" >
     <template #title>
-      <!-- <Logo class="h-6 w-auto" />Logo -->
-      <UNavigationMenu :items="items" />
+      <div class="flex items-center">
+        <Logo  />
+        <UNavigationMenu :items="items" />
+      </div>
     </template>
 
     <template #right>
@@ -79,4 +76,5 @@ const items2 = computed<NavigationMenuItem[]>(() => [
         </UTooltip> -->
     </template>
   </UHeader>
+  <!-- <div class="min-h-16"></div> -->
 </template>
