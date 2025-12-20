@@ -36,6 +36,13 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    // 路径别名
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"]
+    },
+    "types": ["node"],
     // 其他
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true

@@ -1,6 +1,8 @@
 /**
  * API 请求层封装
  * 基于 Nuxt 的 $fetch，提供统一的请求处理、错误处理和类型支持
+ *
+ * 注意：useRuntimeConfig 和 $fetch 由 Nuxt 自动导入，无需手动导入
  */
 
 // API 响应基础类型
@@ -27,7 +29,7 @@ export interface RequestConfig {
 export class ApiError extends Error {
   constructor(
     public code: number,
-    public message: string,
+    public override message: string,
     public data?: unknown
   ) {
     super(message)
@@ -70,9 +72,9 @@ export async function request<T = unknown>(
     }
 
     // 发送请求
-    const response = await $fetch<ApiResponse<T>>(fullUrl, {
+    const response = await $fetch<ApiResponse<T> | T>(fullUrl, {
       method,
-      body: method !== 'GET' ? body : undefined,
+      body: method !== 'GET' ? (body as any) : undefined,
       params: method === 'GET' ? params : undefined,
       headers: {
         'Content-Type': 'application/json',
@@ -81,12 +83,18 @@ export async function request<T = unknown>(
       timeout
     })
 
-    // 处理业务错误
-    if (response.code !== 200 && response.code !== 0) {
-      throw new ApiError(response.code, response.message || '请求失败', response.data)
+    // 检查响应格式：如果是标准格式 { code, message, data }
+    if (response && typeof response === 'object' && 'code' in response) {
+      const apiResponse = response as ApiResponse<T>
+      // 处理业务错误
+      if (apiResponse.code !== 200 && apiResponse.code !== 0) {
+        throw new ApiError(apiResponse.code, apiResponse.message || '请求失败', apiResponse.data)
+      }
+      return apiResponse.data as T
     }
 
-    return response.data as T
+    // 如果直接返回数据（非标准格式），直接返回
+    return response as T
   } catch (error: unknown) {
     // 处理网络错误
     if (error instanceof ApiError) {

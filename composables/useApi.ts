@@ -1,6 +1,8 @@
 /**
  * API Composables
  * 提供响应式的 API 调用方法，集成错误处理和加载状态
+ *
+ * 注意：ref, readonly 等 Vue 函数由 Nuxt 自动导入，无需手动导入
  */
 
 import type { ApiResponse } from '~/utils/api'

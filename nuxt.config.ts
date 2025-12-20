@@ -1,3 +1,5 @@
+import { fileURLToPath } from 'node:url'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
@@ -42,7 +44,7 @@ export default defineNuxtConfig({
     //   }
     // }
   },
-  css: ['~/assets/css/main.css'],
+  css: ['~/app/assets/css/main.css'],
   ui: {
     fonts: false,
     theme: {
@@ -63,4 +65,8 @@ export default defineNuxtConfig({
     server: true,
     client: true
   },
+  alias: {
+    '@': fileURLToPath(new URL('./', import.meta.url)),
+    '~': fileURLToPath(new URL('./', import.meta.url))
+  }
 })
