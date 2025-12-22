@@ -17,10 +17,13 @@
             <p class="desc text-sm font-light mt-4 hidden lg:inline-block">裸金属形式交付，提供专属算力资源，适配企业级AI服务、深度学习等场景</p>
             <BMSRental />
         </div>
+
+        <!-- ad-banner -->
+         <AdBanner />
+
     </UContainer>
 </template>
 
 
 <style lang="scss">
-.title {}
 </style>
