@@ -22,31 +22,31 @@ onMounted(() => {
       <swiper-slide class="swiper-slide">
         <img class="slide-bg" src="/banner/index-3.png" alt="banner" loading="eager" fetchpriority="high"
           decoding="async" />
-        <div class="slide-text-content">
+        <UContainer class="slide-text-content">
           <div class="title">暖冬首充100送10算力体验金</div>
           <div class="sub-title">算力新势力邀你一键畅享</div>
           <p>企业认证最高可得200元算力额度</p>
           <p>RTX4090免费用5小时</p>
           <button>立即注册</button>
-        </div>
+        </UContainer>
       </swiper-slide>
 
       <!-- Slide 2 -->
       <swiper-slide class="swiper-slide">
         <img class="slide-bg" src="/banner/index-4.png" alt="banner" loading="lazy" decoding="async" />
-        <div class="slide-text-content">
+        <UContainer class="slide-text-content">
           <div class="title">彻底突破GPU性能边界</div>
           <div class="sub-title">简单算力秒速调用</div>
           <p>2秒即开随取随用 覆盖全系算力裸金属集群</p>
           <p>4090时租1.9元不排队</p>
           <button>立即注册</button>
-        </div>
+        </UContainer>
       </swiper-slide>
 
       <!-- Slide 3 -->
       <swiper-slide class="swiper-slide">
         <img class="slide-bg" src="/banner/index-5.png" alt="banner" loading="lazy" decoding="async" />
-        <div class="slide-text-content">
+        <UContainer class="slide-text-content">
           <div class="title">算力过剩？</div>
           <div class="sub-title">极智算纳管，资源高效变现与收益共享！</div>
           <p>一键接入资产盘活</p>
@@ -54,7 +54,7 @@ onMounted(() => {
           <p>智能平台账单一目了然</p>
           <p>弹性透明收益分配模式</p>
           <button>立即注册</button>
-        </div>
+        </UContainer>
       </swiper-slide>
     </swiper-container>
 
@@ -81,6 +81,7 @@ onMounted(() => {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background: #FBFBFB;
 }
 
 .slide-bg {
@@ -95,9 +96,9 @@ onMounted(() => {
 .slide-text-content {
   position: relative;
   z-index: 1;
-  width: 700px;
+  // width: 700px;
   height: 480px;
-  margin: 100px 300px;
+  margin: 100px auto;
 
 
   button {

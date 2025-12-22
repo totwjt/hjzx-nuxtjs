@@ -1,6 +1,6 @@
 <template>
     <div
-        class="content-banner grid grid-cols-4 items-center justify-items-center h-27 w-[70vw] mx-auto -mt-40 z-10 bg-transparent">
+        class="content-banner grid grid-cols-4 items-center justify-items-center h-27 mx-auto -mt-40 z-10 bg-transparent">
         <div class="cb relative">
             <img src="/banner/icon-banner-menu-1.png" class="w-8 h-8" alt="" srcset="">
             <div>
