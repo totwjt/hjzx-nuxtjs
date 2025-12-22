@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+@theme static {
+  --ui-primary: #1e80ff;
+}
+
 .logo-image{
   width: 144px;
   height: 100%;
@@ -8,5 +12,6 @@
 
   :root {
     --ui-bg:#fafafa
+    --ui-primary: #1e80ff
     --ui-container: 80rem
   }

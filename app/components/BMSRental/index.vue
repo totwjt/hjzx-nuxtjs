@@ -1,5 +1,14 @@
 <template>
-    <div class="gpu-rental-container mt-8">
+    <div class="bms-rental-container mt-8">
+
+        <!-- tabs -->
+        <div class="flex justify-between content-center pb-4">
+            <UTabs size="md" :content="false" :items="tabsItems" variant="link" class="" />
+            <div class="text-right"><a href="#" class="text-secondary text-sm font-bold"></a>
+                <ULink raw to="/" active-class="text-secondary text-sm font-bold">todo.icon 查看完整价格列表</ULink>
+            </div>
+        </div>
+
         <!-- 主要内容区域：四个卡片使用 flex 布局 -->
         <div class="main-content flex gap-6 max-w-[90vw] mx-auto">
             <!-- 第一个卡片：左侧边栏（容器环境和卡型丰富） -->
@@ -22,7 +31,7 @@
                     <p class="text-sm text-gray-600 mb-4">支持多种异构显卡按小时租用</p>
                     <div
                         class="diagram-placeholder bg-linear-to-br from-blue-50 to-blue-100 rounded-lg p-6 text-center">
-                        <div class="text-blue-600 font-semibold mb-2">JYGPU</div>
+                        <div class="text-blue-600 font-semibold mb-2">JYbms</div>
                         <div class="text-xs text-blue-500 space-y-1">
                             <div>METAX • Centurion</div>
                             <div>Ascend • Agent</div>
@@ -32,48 +41,48 @@
                 </div>
             </UCard>
 
-            <!-- 后三个GPU卡片使用 for 循环渲染 -->
+            <!-- 后三个bms卡片使用 for 循环渲染 -->
             <UCard :ui="{
                 body: ' h-full flex flex-col'
-            }" v-for="gpu in gpuList" :key="gpu.id" class="gpu-card flex-1 hover:shadow-lg transition-shadow">
+            }" v-for="bms in bmsList" :key="bms.id" class="bms-card flex-1 hover:shadow-lg transition-shadow">
                 <div class="flex flex-col justify-between content-center h-full">
                     <div class="text-left mb-4">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ gpu.name }}</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ bms.name }}</h3>
                         <div class="flex items-center gap-4 text-sm text-gray-600 ">
-                            <span>显存{{ gpu.vram }}</span>
+                            <span>显存{{ bms.vram }}</span>
                             <span>|</span>
-                            <span>AI算力 {{ gpu.computePower }} FLOPS</span>
+                            <span>AI算力 {{ bms.computePower }} FLOPS</span>
                         </div>
                         <div class="border-t border-gray-200 mt-4 pt-2">
                             <div class="text-sm text-gray-400 line-through mb-1">
-                                ¥{{ gpu.originalPrice }}/时
+                                ¥{{ bms.originalPrice }}/时
                             </div>
                             <div class="">
-                                <span class="text-2xl font-bold text-red-600">¥{{ gpu.price }}</span> <span
+                                <span class="text-2xl font-bold text-red-600">¥{{ bms.price }}</span> <span
                                     class="text-sm">/时</span>
                             </div>
                         </div>
                     </div>
 
-                    <UButton :color="gpu.buttonColor" :variant="gpu.buttonVariant" size="lg" block>
-                        <template v-if="gpu.buttonIcon" #leading>
-                            <UIcon :name="gpu.buttonIcon" class="w-5 h-5" />
+                    <UButton :color="bms.buttonColor" :variant="bms.buttonVariant" size="lg" block>
+                        <template v-if="bms.buttonIcon" #leading>
+                            <UIcon :name="bms.buttonIcon" class="w-5 h-5" />
                         </template>
-                        {{ gpu.buttonText }}
+                        {{ bms.buttonText }}
                     </UButton>
 
                     <div class="flex flex-col justify-around gap-4 content-center text-sm">
                         <div class="bg-gray-50 flex justify-between p-2 rounded-sm ">
                             <div class="text-gray-500 mb-1">CPU</div>
-                            <div class="font-semibold">{{ gpu.cpu }}</div>
+                            <div class="font-semibold">{{ bms.cpu }}</div>
                         </div>
                         <div class="bg-gray-50 flex justify-between p-2 rounded-sm ">
                             <div class="text-gray-500 mb-1">内存</div>
-                            <div class="font-semibold">{{ gpu.memory }}</div>
+                            <div class="font-semibold">{{ bms.memory }}</div>
                         </div>
                         <div class="bg-gray-50 flex justify-between p-2 rounded-sm ">
                             <div class="text-gray-500 mb-1">数据盘</div>
-                            <div class="font-semibold">{{ gpu.disk }}</div>
+                            <div class="font-semibold">{{ bms.disk }}</div>
                         </div>
                     </div>
                 </div>
@@ -83,7 +92,21 @@
 </template>
 
 <script setup lang="ts">
-interface GPUItem {
+/*----------------------------------------------------*\
+｜                       tabs
+\*----------------------------------------------------*/
+import type { TabsItem } from '@nuxt/ui'
+
+const tabsItems = ref<TabsItem[]>([
+    {
+        label: 'Account'
+    },
+    {
+        label: 'Password'
+    }
+])
+
+interface bmsItem {
     id: string
     name: string
     vram: string
@@ -101,7 +124,7 @@ interface GPUItem {
 
 const frameworks = ['PyTorch', 'TensorFlow', 'JAX', 'PaddlePaddle']
 
-const gpuList: GPUItem[] = [
+const bmsList: bmsItem[] = [
     {
         id: '4090',
         name: 'NVIDIA 4090',
@@ -150,7 +173,7 @@ const gpuList: GPUItem[] = [
 </script>
 
 <style scoped lang="scss">
-.gpu-rental-container {
+.bms-rental-container {
     width: 100%;
 }
 
@@ -164,7 +187,7 @@ const gpuList: GPUItem[] = [
             width: 100%;
         }
 
-        .gpu-card {
+        .bms-card {
             width: 100%;
             height: 100%;
         }
@@ -176,7 +199,7 @@ const gpuList: GPUItem[] = [
     background: linear-gradient(180deg, #e6f1ff, #eeecfe)
 }
 
-.gpu-card {
+.bms-card {
     transition: all 0.3s ease;
 
     &:hover {
