@@ -1,0 +1,134 @@
+<!-- Footer 组件 -->
+<template>
+
+  <footer class="mt-16 border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+      <!-- 主要内容区：5列网格布局 -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-8">
+
+        <!-- 第1列：品牌介绍 -->
+        <div class="col-span-2 md:col-span-3 lg:col-span-1">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-sm">JG</span>
+            </div>
+            <span class="text-xl font-bold text-gray-800">GPU极智算</span>
+          </div>
+          <p class="text-sm text-gray-600 leading-relaxed mb-4">
+            找算力 就上极智算
+          </p>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            中小企业算力服务专家，普惠算力引擎。异构并行，秒级调度，即取即用
+          </p>
+        </div>
+
+        <!-- 第2列：联系我们 -->
+        <div>
+          <h3 class="font-bold text-gray-800 mb-4">联系我们</h3>
+          <ul class="space-y-3 text-sm text-gray-600">
+            <li>
+              <span class="text-gray-500">合作热线：</span>
+              <a href="tel:028-65773958" class="hover:text-blue-600 transition-colors">028-65773958</a>
+            </li>
+            <li>
+              <span class="text-gray-500">邮箱：</span>
+              <a href="mailto:jizhisuan@cdijyun.com"
+                class="hover:text-blue-600 transition-colors break-all">jizhisuan@cdijyun.com</a>
+            </li>
+            <li class="text-gray-500">
+              <span class="block mb-1">地址：</span>
+              <span class="text-xs leading-relaxed">中国(四川)自由贸易试验区成都高新区天华一路99号3栋4层V02、407号</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 第3列：算力入口 -->
+        <div>
+          <h3 class="font-bold text-gray-800 mb-4">算力入口</h3>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">GPU容器实例</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">GPU裸金属</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">模型部署</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">JStack平台</a></li>
+          </ul>
+        </div>
+
+        <!-- 第4列：关于极智算 -->
+        <div>
+          <h3 class="font-bold text-gray-800 mb-4">关于极智算</h3>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">算力图</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">AI课堂</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">文档中心</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">关于我们</a></li>
+          </ul>
+        </div>
+
+        <!-- 第5列：关注我们（二维码） -->
+        <div>
+          <h3 class="font-bold text-gray-800 mb-4">关注我们</h3>
+          <div class="flex gap-4">
+            <!-- 公众号二维码 -->
+            <div class="text-center">
+              <div class="w-24 h-24 bg-gray-200 rounded-lg mb-2 flex items-center justify-center">
+                <svg class="w-16 h-16 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z" />
+                </svg>
+              </div>
+              <p class="text-xs text-gray-500">关注公众号</p>
+            </div>
+            <!-- 视频号二维码 -->
+            <div class="text-center">
+              <div class="w-24 h-24 bg-gray-200 rounded-lg mb-2 flex items-center justify-center">
+                <svg class="w-16 h-16 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3 3h8v8H3V3zm10 0h8v8h-8V3zM3 13h8v8H3v-8zm10 0h8v8h-8v-8z" />
+                </svg>
+              </div>
+              <p class="text-xs text-gray-500">观看视频号</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 友情链接 -->
+      <div class=" border-gray-200 pt-6 mb-6">
+        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+          <span class="font-medium text-gray-700">友情链接</span>
+          <a href="#" class="hover:text-blue-600 transition-colors">AIDC托管租用</a>
+          <a href="#" class="hover:text-blue-600 transition-colors">成都活动策划</a>
+        </div>
+      </div>
+
+      <!-- 版权信息 -->
+      <div class="border-t border-gray-200 pt-6 space-y-2 text-xs text-gray-500">
+        <div class="flex flex-wrap items-center gap-4">
+          <p>©2025 成都极云天下科技有限公司 版权所有</p>
+          <a href="#" class="hover:text-blue-600 transition-colors">蜀ICP备17027862号-8</a>
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#" class="hover:text-blue-600 transition-colors">《中华人民共和国增值电信业务经营许可证》经营许可证编号 B1-20215350</a>
+        </div>
+        <div class="flex items-center gap-2">
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z'/%3E%3C/svg%3E"
+            alt="备案" class="w-4 h-4">
+          <a href="#" class="hover:text-blue-600 transition-colors">川公网安备51018202000330号</a>
+        </div>
+        <div class="flex items-center gap-2 pt-4">
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='24' viewBox='0 0 100 30'%3E%3Ctext x='10' y='20' fill='%234A5568' font-size='14' font-weight='bold'%3EPowered by JStack%3C/text%3E%3C/svg%3E"
+            alt="Powered by JStack">
+        </div>
+      </div>
+
+    </div>
+  </footer>
+</template>
+
+<script lang="ts" setup>
+
+</script>
+
+<style></style>

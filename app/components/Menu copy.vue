@@ -51,13 +51,17 @@ const items2 = computed<NavigationMenuItem[]>(() => [
 </script>
 
 <template>
-  <UHeader class="custom-header">
+  <UHeader title="123">
+    <!-- <template #title> -->
+      <!-- <div class="flex items-center"> -->
+      <!-- <LogoCustom class="h-6 w-auto" /> -->
+
+       <!-- <Logo class="h-6 w-auto" /> -->
+      <!-- </div> -->
+    <!-- </template> -->
 
     <template #left>
-      <div class="flex items-center">
-        <LogoCustom />
-        <UNavigationMenu :items="items" />
-      </div>
+      <UNavigationMenu :items="items" />
     </template>
 
     <template #right>
@@ -79,9 +83,3 @@ const items2 = computed<NavigationMenuItem[]>(() => [
   </UHeader>
   <!-- <div class="min-h-16"></div> -->
 </template>
-
-<style lang="scss">
-  .custom-header{
-    --ui-container: 100%;
-  }
-</style>

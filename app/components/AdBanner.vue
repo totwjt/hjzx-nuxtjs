@@ -6,7 +6,9 @@
             <div class="text1"><span class="text2">15分钟内</span>即可租用开通</div>
             <div class="text3">8卡 NVIDIA RTX4090 GPU裸金属服务器</div>
         </div>
-        <UButton to="/markets/bms" size="lg" block class="btn ">订阅</UButton>
+        <div class="btn">
+            <UButton to="/markets/bms" block size="lg">订阅</UButton>
+        </div>
     </div>
 </template>
 
@@ -37,7 +39,8 @@
             }
 
         }
-        .text3{
+
+        .text3 {
             font-size: 25px;
             font-weight: 500;
 
@@ -45,7 +48,7 @@
 
     }
 
-    .btn{
+    .btn {
         width: 152px;
         height: 40px;
         // text-align: center;

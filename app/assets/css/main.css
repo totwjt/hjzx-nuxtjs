@@ -3,6 +3,7 @@
 
 @theme static {
   --ui-primary: #1e80ff;
+  --ui-secondary:#4acbff;
 }
 
 .logo-image{
