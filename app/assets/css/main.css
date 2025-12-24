@@ -5,12 +5,6 @@
   --ui-primary: #1e80ff;
   --ui-secondary:#4acbff;
 }
-
-.logo-image{
-  width: 144px;
-  height: 100%;
-}
-
   :root {
     --ui-bg:#fafafa
     --ui-primary: #1e80ff
