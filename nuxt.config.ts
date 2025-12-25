@@ -68,5 +68,8 @@ export default defineNuxtConfig({
   alias: {
     '@': fileURLToPath(new URL('./', import.meta.url)),
     '~': fileURLToPath(new URL('./', import.meta.url))
+  },
+  nitro: {
+    logLevel: 3 // debug
   }
 })

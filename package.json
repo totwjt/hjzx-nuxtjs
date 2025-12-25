@@ -12,6 +12,8 @@
   "dependencies": {
     "@nuxt/eslint": "^1.12.1",
     "@nuxt/ui": "^4.3.0",
+    "@vueuse/core": "^14.1.0",
+    "@vueuse/nuxt": "^14.1.0",
     "eslint": "^9.39.2",
     "nuxt": "^4.2.2",
     "nuxt-swiper": "^2.0.1",
