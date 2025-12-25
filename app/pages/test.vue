@@ -152,8 +152,8 @@
 import { request, get } from '~/utils/api'
 import { useApi } from '~/composables/useApi'
 
-// Mock API 地址
-const MOCK_API_URL = 'http://127.0.0.1:4523/m1/620884-0-default/operationLogList'
+// 测试 API 地址（使用真实路径，Mock 会自动转换）
+const TEST_API_URL = '/test'
 
 // 测试 1: 基础 request 方法
 const loading1 = ref(false)
@@ -166,9 +166,7 @@ const testRequest = async () => {
   result1.value = null
 
   try {
-    // 注意：如果 mock API 返回的不是标准格式 { code, message, data }
-    // 可能需要调整 request 函数或直接使用 $fetch
-    const data = await request(MOCK_API_URL, {
+    const data = await request(TEST_API_URL, {
       method: 'GET',
       showError: false
     })
@@ -192,7 +190,7 @@ const testGet = async () => {
   result2.value = null
 
   try {
-    const data = await get(MOCK_API_URL)
+    const data = await get(TEST_API_URL)
     result2.value = data
   } catch (err) {
     error2.value = err instanceof Error ? err.message : String(err)
@@ -208,7 +206,7 @@ const result3 = ref<unknown>(null)
 
 const testComposable = async () => {
   result3.value = null
-  const data = await apiComposable.execute(MOCK_API_URL)
+  const data = await apiComposable.execute(TEST_API_URL)
   result3.value = data
 }
 
@@ -227,7 +225,7 @@ const testWithParams = async () => {
   result4.value = null
 
   try {
-    const data = await get(MOCK_API_URL, {
+    const data = await get(TEST_API_URL, {
       page: queryParams.value.page,
       pageSize: queryParams.value.pageSize
     })
@@ -251,7 +249,7 @@ const testDirectFetch = async () => {
   result5.value = null
 
   try {
-    const data = await $fetch(MOCK_API_URL)
+    const data = await $fetch(TEST_API_URL)
     result5.value = data
   } catch (err) {
     error5.value = err instanceof Error ? err.message : String(err)

@@ -29,10 +29,13 @@ export default defineNuxtConfig({
     apiSecret: process.env.NUXT_API_SECRET || 'default-secret',
     // public中的键也可以在客户端使用（使用 NUXT_PUBLIC_ 前缀）
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || '/api',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || '',
       appName: process.env.NUXT_PUBLIC_APP_NAME || '租赁算力平台',
       appVersion: process.env.NUXT_PUBLIC_APP_VERSION || '1.0.0',
-      env: process.env.NUXT_PUBLIC_ENV || process.env.NODE_ENV || 'development'
+      env: process.env.NUXT_PUBLIC_ENV || process.env.NODE_ENV || 'development',
+      // Mock 配置
+      useMock: process.env.NUXT_PUBLIC_USE_MOCK === 'true' || process.env.NUXT_PUBLIC_USE_MOCK === '1',
+      mockBase: process.env.NUXT_PUBLIC_MOCK_BASE || 'https://m1.apifoxmock.com/m1/7602696-7341408-default'
     }
   },
   vite: {

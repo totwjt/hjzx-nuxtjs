@@ -5,6 +5,8 @@
  * 注意：useRuntimeConfig 和 $fetch 由 Nuxt 自动导入，无需手动导入
  */
 
+import { getMockUrl } from './mockConfig'
+
 // API 响应基础类型
 export interface ApiResponse<T = unknown> {
   code: number
@@ -59,10 +61,45 @@ export async function request<T = unknown>(
 
   // 获取运行时配置
   const runtimeConfig = useRuntimeConfig()
-  const baseURL = runtimeConfig.public.apiBase || '/api'
+
+  const baseURL = runtimeConfig.public.apiBase || ''
+  const useMock = runtimeConfig.public.useMock || false
 
   // 构建完整 URL
-  const fullUrl = url.startsWith('http') ? url : `${baseURL}${url}`
+  let fullUrl: string
+
+  // 如果已经是完整 URL（http/https），直接使用
+  if (url.startsWith('http')) {
+    fullUrl = url
+  } else {
+    // 确保 url 以 / 开头
+    const normalizedUrl = url.startsWith('/') ? url : `/${url}`
+
+    // 构建真实 API 路径（去掉 /api/ 这一层）
+    const realUrl = baseURL ? `${baseURL}${normalizedUrl}` : normalizedUrl
+
+    console.log('www', baseURL, normalizedUrl, realUrl);
+    // 如果启用了 Mock 模式，尝试获取 Mock 地址
+    if (useMock) {
+      const mockUrl = getMockUrl(realUrl)
+      if (mockUrl) {
+        fullUrl = mockUrl
+        // 开发环境下输出日志，方便调试
+        if (import.meta.dev) {
+          console.log(`[Mock] ${realUrl} -> ${mockUrl}`)
+        }
+      } else {
+        // 如果没有配置 Mock 映射，使用真实地址
+        fullUrl = realUrl
+        if (import.meta.dev) {
+          console.warn(`[Mock] 未找到 ${realUrl} 的 Mock 映射，使用真实地址`)
+        }
+      }
+    } else {
+      // 未启用 Mock，使用真实地址
+      fullUrl = realUrl
+    }
+  }
 
   try {
     // 显示加载提示

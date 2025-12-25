@@ -30,33 +30,33 @@ const providers = <ButtonProps[]>[{
 }]
 
 const schema = z.object({
-    email: z.email('Invalid email'),
-    password: z.string('Password is required').min(8, 'Must be at least 8 characters')
+    phone: z.string().min(11, '手机号不合法'),
+    password: z.string().min(8, '密码至少 8 位')
 })
 
 type Schema = z.output<typeof schema>
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-    console.log('Submitted', payload)
-}
 
-// import { onSubmit } from './hooks'
+
+// const { data, status, error, refresh, clear } = await useHttpFetch('https://m1.apifoxmock.com/m1/7602696-7341408-default/auth/login', {
+//     method: 'POST',
+// })
+import { onSubmit } from './hooks'
 </script>
 
 <template>
     <div class="login">
-        <ClientOnly fallback-tag="span" fallback="Loading comments...">
-            <div class="logo w-screen mt-4 ml-4">
-                <LogoCustom />
-            </div>
-            <div class="h-screen flex flex-col items-center justify-center gap-4 p-4">
-                <UPageCard class="w-full max-w-md">
-                    <UAuthForm :schema="schema" title="Login"
-                        description="Enter your credentials to access your account." icon="i-lucide-user"
-                        :fields="fields" :providers="providers" @submit="onSubmit" />
-                </UPageCard>
-            </div>
-        </ClientOnly>
+        <!-- <ClientOnly fallback-tag="span" fallback="Loading comments..."> -->
+        <div class="logo w-screen mt-4 ml-4">
+            <LogoCustom />
+        </div>
+        <div class="h-screen flex flex-col items-center justify-center gap-4 p-4">
+            <UPageCard class="w-full max-w-md">
+                <UAuthForm :schema="schema" title="欢迎使用" description="" icon="i-lucide-user" :fields="fields"
+                    :providers="providers" @submit="onSubmit" />
+            </UPageCard>
+        </div>
+        <!-- </ClientOnly> -->
     </div>
 </template>
 
