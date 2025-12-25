@@ -1,6 +1,5 @@
 <template>
     <div>
-        <Menu />
         <Swiper />
         <UContainer>
             <ContentBanner />
@@ -51,5 +50,11 @@
     </div>
 </template>
 
+<script setup lang="ts">
+definePageMeta({
+    layout: 'menu-nav'
+})
+
+</script>
 
 <style lang="scss"></style>
