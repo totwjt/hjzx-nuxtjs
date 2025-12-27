@@ -1,18 +1,41 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
+import { useUserStore } from '@/stores/user'
 
-const route = useRoute()
+const userStore = useUserStore()
+const UDropdownMenuOpen = ref(false)
+const dropDownItem = ref([
+  [
+    {
+      label: 'Benjamin',
+      avatar: {
+        src: 'https://github.com/benjamincanac.png'
+      },
+      to: '/console/user'
+    }
+  ],
+  [
+    {
+      slot: 'balance'
+    }
+  ],
+  [
+    {
+      label: '退出登录',
+      icon: 'i-lucide-log-out',
+    }
+  ]
+])
+
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: '算力市场',
     // to: '/docs/getting-started',
-    // active: route.path.startsWith('/docs/getting-started')
   },
   {
     label: '模型部署',
     // to: '/docs/components',
-    // active: route.path.startsWith('/docs/components')
   },
   {
     label: 'JStack',
@@ -38,14 +61,14 @@ const items2 = computed<NavigationMenuItem[]>(() => [
   },
   {
     label: '控制台',
-    // to: '/docs/components',
+    to: '/console/overview',
     // active: route.path.startsWith('/docs/components')
-  },
-  {
-    label: '登录/注册',
-    to: '/login',
-  },
+  }
 ])
+
+const goToBalance = () => {
+  navigateTo('console/remain')
+}
 
 </script>
 
@@ -62,25 +85,39 @@ const items2 = computed<NavigationMenuItem[]>(() => [
     <template #right>
       <UNavigationMenu color="secondary" :items="items2" />
 
-      <!-- <UColorModeButton /> -->
+      <UDropdownMenu arrow v-model:open="UDropdownMenuOpen" :items="dropDownItem" v-if="1">
 
-        <!-- <UTooltip text="Open on GitHub" :kbds="['meta', 'G']">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            to="https://github.com/nuxt/ui"
-            target="_blank"
-            icon="i-simple-icons-github"
-            aria-label="GitHub"
-          />
-        </UTooltip> -->
+        <template #balance>
+
+          <div class="text-left min-w-30 flex justify-between items-center" @click="goToBalance">
+            <div>
+              <div class="text-xs font-extrabold">可用余额</div>
+              <div class="">
+                <div class="text-red-500 text-xs font-extrabold">¥ 1024.00</div>
+              </div>
+            </div>
+            <UIcon name="i-material-symbols:chevron-right" class="text-gray-300 mr-2 size-5 font-black align-middle" />
+          </div>
+        </template>
+
+        <UUser class="cursor-pointer" name="Benjamin Canac" :avatar="{
+          src: '/user/user-avatar.png'
+        }" />
+
+      </UDropdownMenu>
+
+      <UButton color="secondary" variant="ghost" to="/login" v-else>
+        登录/注册
+      </UButton>
+
     </template>
   </UHeader>
   <!-- <div class="min-h-16"></div> -->
 </template>
 
+
 <style lang="scss">
-  .custom-header{
-    --ui-container: 100%;
-  }
+.custom-header {
+  --ui-container: 100%;
+}
 </style>

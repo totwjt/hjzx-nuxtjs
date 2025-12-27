@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', 'nuxt-swiper', '@nuxt/eslint'],
+  modules: ['@nuxt/ui', 'nuxt-swiper', '@nuxt/eslint', '@pinia/nuxt'],
   routeRules: {
     // 为了SEO目的，在构建时生成
     '/': { prerender: true },

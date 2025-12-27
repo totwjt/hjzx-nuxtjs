@@ -40,7 +40,7 @@
 
                     <div class="flex flex-col justify-around gap-4 items-start text-sm mt-4 text-left">
                         <div v-for="spec in bms.specs" :key="spec">
-                            <UIcon name="i-lucide-check" class="text-blue-600 mr-2 size-5 font-black align-middle" />
+                            <UIcon name="i-lucide-check" class="text-primary mr-2 size-5 font-black align-middle" />
                             {{ spec }}
                         </div>
                     </div>

@@ -36,12 +36,21 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
+const { login, loading } = useAuth()
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+    const { data } = payload
 
+    const res = await login(data.phone, data.password)
+    console.log('res', res);
 
-// const { data, status, error, refresh, clear } = await useHttpFetch('https://m1.apifoxmock.com/m1/7602696-7341408-default/auth/login', {
-//     method: 'POST',
-// })
-import { onSubmit } from './hooks'
+    if (res) {
+        toast.add({ title: '登录成功', description: '欢迎使用本系统' })
+        navigateTo('/')
+    } else {
+        toast.add({ title: '登录失败', description: message || '请稍后重试', color: 'error' })
+    }
+
+}
 </script>
 
 <template>
@@ -53,7 +62,7 @@ import { onSubmit } from './hooks'
         <div class="h-screen flex flex-col items-center justify-center gap-4 p-4">
             <UPageCard class="w-full max-w-md">
                 <UAuthForm :schema="schema" title="欢迎使用" description="" icon="i-lucide-user" :fields="fields"
-                    :providers="providers" @submit="onSubmit" />
+                    :providers="providers" :loading="loading" @submit="onSubmit" />
             </UPageCard>
         </div>
         <!-- </ClientOnly> -->
