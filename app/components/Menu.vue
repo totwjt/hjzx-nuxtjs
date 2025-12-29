@@ -41,18 +41,22 @@ const dropDownItem = computed(() => [
 const items = computed<NavigationMenuItem[]>(() => [
   {
     label: '算力市场',
-    // to: '/docs/getting-started',
+    to: '/markets/',
+    active:false
   },
   {
     label: '模型部署',
-    // to: '/docs/components',
+    to: '/markets/square',
+    active:false
   },
   {
     label: 'JStack',
+    active:false
     // to: 'https://go.nuxt.com/figma-ui',
   },
   {
     label: '关于我们',
+    active:false
     // to: 'https://github.com/nuxt/ui/releases',
     // target: '_blank'
   }

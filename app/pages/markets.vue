@@ -1,6 +1,6 @@
 <script setup lang="ts">
 definePageMeta({
-  layout: 'menu-nav'
+  layout: 'markets'
 })
 </script>
 

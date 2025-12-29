@@ -1,0 +1,36 @@
+<template>
+  <div class="sticky bottom-0 bg-white p-4 ring-1 ring-gray-50 rounded-lg h-24">
+    <UContainer class="flex justify-between items-center h-full">
+      <!-- <div>优惠码</div> -->
+      <div></div>
+
+      <div class="flex justify-end items-center gap-6">
+
+        <div>
+          <div class="flex justify-around items-center gap-2">
+            <div>按量计费</div>
+            <div>包天/29天</div>
+            <div>包月/1月</div>
+          </div>
+          <div>到期按天自动续费</div>
+        </div>
+
+        <USeparator orientation="vertical" class="h-16" />
+
+        <div>
+          <div>总费用：¥2.88/小时 明细</div>
+          <div>余额：¥5.00 充值</div>
+        </div>
+
+        <UButton class="py-3 px-12 cursor-pointer">创建</UButton>
+
+      </div>
+
+    </UContainer>
+  </div>
+</template>
+<script lang="ts" setup>
+
+</script>
+
+<style></style>
