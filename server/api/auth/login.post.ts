@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
             })
         }
 
-        const { code, message, data } = await $fetch('https://m1.apifoxmock.com/m1/7602696-7341408-default/auth/login', {
+        const { code, message, data } = await $fetch('https://m1.apifoxmock.com/m1/7602696-7341408-default/client/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

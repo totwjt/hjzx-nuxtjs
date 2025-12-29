@@ -40,16 +40,24 @@ const { login, loading } = useAuth()
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
     const { data } = payload
 
-    const res = await login(data.phone, data.password)
-    console.log('res', res);
+    const res = await login({
+        phone: data.phone,
+        password: data.password
+    })
 
-    if (res) {
-        toast.add({ title: '登录成功', description: '欢迎使用本系统' })
+    if (res.success) {
+        toast.add({
+            title: '登录成功',
+            description: '欢迎使用本系统'
+        })
         navigateTo('/')
     } else {
-        toast.add({ title: '登录失败', description: message || '请稍后重试', color: 'error' })
+        toast.add({
+            title: '登录失败',
+            description: res.message,
+            color: 'error'
+        })
     }
-
 }
 </script>
 
@@ -63,6 +71,9 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
             <UPageCard class="w-full max-w-md">
                 <UAuthForm :schema="schema" title="欢迎使用" description="" icon="i-lucide-user" :fields="fields"
                     :providers="providers" :loading="loading" @submit="onSubmit" />
+                <NuxtLink to="/register">
+                    <div class="text-primary">还没有账户？去注册</div>
+                </NuxtLink>
             </UPageCard>
         </div>
         <!-- </ClientOnly> -->

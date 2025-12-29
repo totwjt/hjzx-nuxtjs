@@ -3,13 +3,18 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
+const isLoggedIn = userStore.isLoggedIn
+const user = userStore.user
+
+const { logout, loading } = useAuth()
+
 const UDropdownMenuOpen = ref(false)
-const dropDownItem = ref([
+const dropDownItem = computed(() => [
   [
     {
-      label: 'Benjamin',
+      label: user?.phone,
       avatar: {
-        src: 'https://github.com/benjamincanac.png'
+        src: '/user/user-avatar.png'
       },
       to: '/console/user'
     }
@@ -21,6 +26,11 @@ const dropDownItem = ref([
   ],
   [
     {
+      onSelect: () => {
+        logout()
+        UDropdownMenuOpen.value = false
+        navigateTo('/login')
+      },
       label: '退出登录',
       icon: 'i-lucide-log-out',
     }
@@ -85,7 +95,7 @@ const goToBalance = () => {
     <template #right>
       <UNavigationMenu color="secondary" :items="items2" />
 
-      <UDropdownMenu arrow v-model:open="UDropdownMenuOpen" :items="dropDownItem" v-if="1">
+      <UDropdownMenu arrow v-model:open="UDropdownMenuOpen" :items="dropDownItem" v-if="isLoggedIn">
 
         <template #balance>
 
@@ -93,14 +103,14 @@ const goToBalance = () => {
             <div>
               <div class="text-xs font-extrabold">可用余额</div>
               <div class="">
-                <div class="text-red-500 text-xs font-extrabold">¥ 1024.00</div>
+                <div class="text-red-500 text-xs font-extrabold">¥ {{user?.balance}}</div>
               </div>
             </div>
             <UIcon name="i-material-symbols:chevron-right" class="text-gray-300 mr-2 size-5 font-black align-middle" />
           </div>
         </template>
 
-        <UUser class="cursor-pointer" name="Benjamin Canac" :avatar="{
+        <UUser class="cursor-pointer" :name="user?.phone" :avatar="{
           src: '/user/user-avatar.png'
         }" />
 

@@ -104,22 +104,14 @@
       <!-- 版权信息 -->
       <div class="border-t border-gray-200 pt-6 space-y-2 text-xs text-gray-500">
         <div class="flex flex-wrap items-center gap-4">
-          <p>©2025 成都极云天下科技有限公司 版权所有</p>
-          <a href="#" class="hover:text-blue-600 transition-colors">蜀ICP备17027862号-8</a>
+          <p>©2025 华璟智璇（北京）科技有限公司 版权所有</p>
+          <a href="#" class="hover:text-blue-600 transition-colors">ICP备案xxxxxxx</a>
         </div>
         <div class="flex flex-wrap items-center gap-4">
-          <a href="#" class="hover:text-blue-600 transition-colors">《中华人民共和国增值电信业务经营许可证》经营许可证编号 B1-20215350</a>
+          <a href="#" class="hover:text-blue-600 transition-colors">《中华人民共和国增值电信业务经营许可证》经营许可证编号 xxxxx</a>
         </div>
         <div class="flex items-center gap-2">
-          <img
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z'/%3E%3C/svg%3E"
-            alt="备案" class="w-4 h-4">
-          <a href="#" class="hover:text-blue-600 transition-colors">川公网安备51018202000330号</a>
-        </div>
-        <div class="flex items-center gap-2 pt-4">
-          <img
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='24' viewBox='0 0 100 30'%3E%3Ctext x='10' y='20' fill='%234A5568' font-size='14' font-weight='bold'%3EPowered by JStack%3C/text%3E%3C/svg%3E"
-            alt="Powered by JStack">
+          <a href="#" class="hover:text-blue-600 transition-colors">公安备案xxxxxxx</a>
         </div>
       </div>
 
