@@ -11,7 +11,7 @@
       <slot></slot>
 
       <div class="footer text-center h-50 leading-50">
-        <div class="">footer</div>
+        <Placeholder>footer</Placeholder>
       </div>
   </div>
 
