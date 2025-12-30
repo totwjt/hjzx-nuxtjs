@@ -105,7 +105,7 @@
       </div>
     </div>
 
-    <div class="flex justify-end" v-if="gpuOptions && gpuOptions?.length > 3">
+    <div class="flex justify-end" v-if="gpuGroupList && gpuGroupList?.length > 3">
       <button v-on:click="toggleExpand"
         class=" flex justify-end items-center gap-2 text-sm font-medium text-blue-500 cursor-pointer transition-colors">
         <span>更多类型GPU</span>
@@ -122,13 +122,13 @@
 import { useMyMarketsStore } from "@/stores/markets";
 const marketsStore = useMyMarketsStore()
 const aa = marketsStore.gpuGroupList
-const gpuOptions = toRef(marketsStore.gpuGroupList)
+const { gpuGroupList } = storeToRefs(marketsStore)
 
 const selectedGPU = ref(null),
   selectedCount = ref(0),
   isExpanded = ref(false)
 
-// const gpuOptions = ref([
+// const gpuGroupList = ref([
 //   {
 //     id: 1,
 //     name: "NVIDIA 4090 24G",
@@ -199,9 +199,9 @@ const selectedGPU = ref(null),
 
 const displayedGPUs = computed(() => {
   if (isExpanded.value) {
-    return gpuOptions.value;
+    return gpuGroupList.value;
   }
-  return gpuOptions.value?.slice(0, 3) || [];
+  return gpuGroupList.value?.slice(0, 3) || [];
 })
 
 /*----------------------------------------------------*\
@@ -223,7 +223,7 @@ const getSelectPrice = (gpuId: string | number) => {
 }
 
 watch(
-  gpuOptions,
+  gpuGroupList,
   (list) => {
     if (!list?.length) return
 

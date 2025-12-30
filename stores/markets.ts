@@ -86,7 +86,7 @@ export interface Item {
 export const useMyMarketsStore = defineStore('myMarketsStore', {
 
   state: () => ({
-    gpuGroupList: null as IGpuGroupList[],
+    gpuGroupList: [] as IGpuGroupList[],
     selectGpu: null as IGpuGroupList,
   }),
   getters: {
