@@ -65,15 +65,15 @@
                     <div class="flex flex-col justify-around gap-4 content-center text-sm">
                         <div class="bg-gray-50 flex justify-between p-2 rounded-sm ">
                             <div class="text-gray-500 mb-1">CPU</div>
-                            <div class="font-semibold">{{ gpu.cpu }}</div>
+                            <div class="text-secondary font-semibold">{{ gpu.cpu }}</div>
                         </div>
                         <div class="bg-gray-50 flex justify-between p-2 rounded-sm ">
                             <div class="text-gray-500 mb-1">内存</div>
-                            <div class="font-semibold">{{ gpu.memory }}</div>
+                            <div class="text-secondary font-semibold">{{ gpu.memory }}</div>
                         </div>
                         <div class="bg-gray-50 flex justify-between p-2 rounded-sm ">
                             <div class="text-gray-500 mb-1">数据盘</div>
-                            <div class="font-semibold">{{ gpu.disk }}</div>
+                            <div class="text-secondary font-semibold">{{ gpu.disk }}</div>
                         </div>
                     </div>
                 </div>
@@ -110,7 +110,7 @@ const gpuList: GPUItem[] = [
         originalPrice: '2.25',
         price: '1.80',
         buttonText: '免费用5小时',
-        buttonColor: 'secondary',
+        buttonColor: 'primary',
         buttonVariant: 'solid',
         buttonIcon: 'heroicons:gift',
         cpu: '15核',
@@ -125,7 +125,7 @@ const gpuList: GPUItem[] = [
         originalPrice: '2.85',
         price: '2.28',
         buttonText: '立即试用',
-        buttonColor: 'secondary',
+        buttonColor: 'primary',
         buttonVariant: 'solid',
         cpu: '15核',
         memory: '96GB',
@@ -139,7 +139,7 @@ const gpuList: GPUItem[] = [
         originalPrice: '7.75',
         price: '6.20',
         buttonText: '企业福利',
-        buttonColor: 'secondary',
+        buttonColor: 'primary',
         buttonVariant: 'solid',
         buttonIcon: 'heroicons:currency-dollar',
         cpu: '24核',

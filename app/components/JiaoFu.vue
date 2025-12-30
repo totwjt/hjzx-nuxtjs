@@ -6,7 +6,7 @@
         <div class="space-y-4">
             <!-- 顶部大卡片 -->
             <div
-                class="bg-linear-to-r from-blue-100 via-blue-200 to-blue-300 rounded-xl p-8 relative overflow-hidden min-h-[160px]">
+                class="bg-linear-to-br from-primary-200 to-secondary-200 rounded-xl p-8 relative overflow-hidden min-h-40">
                 <h2 class="text-2xl font-bold text-gray-800 mb-3">容器化算力租赁</h2>
                 <p class="text-sm text-gray-700 leading-relaxed">
                     基于容器虚拟化技术的轻量级计算资源，通过容器封装实现应用隔离与快速部署。具备弹性伸缩、高资源利用率和跨平台迁移的特性。
@@ -77,7 +77,7 @@
         <div class="space-y-4">
             <!-- 顶部大卡片 -->
             <div
-                class="bg-gradient-to-r from-blue-100 via-indigo-200 to-purple-200 rounded-xl p-8 relative overflow-hidden min-h-[160px]">
+                class="bg-linear-to-bl from-primary-200 to-secondary-200 rounded-xl p-8 relative overflow-hidden min-h-40">
                 <h2 class="text-2xl font-bold text-gray-800 mb-3">裸金属算力租赁</h2>
                 <p class="text-sm text-gray-700 leading-relaxed">
                     直接运行在GPU服务器上的算力资源，具备高计算性能、资源独占、高稳定性和强安全性的特点。适合对性能和安全性要求极高的大模业务场景。
