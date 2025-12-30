@@ -23,7 +23,6 @@ export const useUserStore = defineStore('user', {
     async login(payload: { phone: string; password: string }) {
       const res = await $fetch<{
         user: User
-        token: string
       }>('/api/auth/login', {
         method: 'POST',
         body: payload

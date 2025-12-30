@@ -10,15 +10,10 @@
           <h3 v-bind:class="getGPUTitleClass(gpu.id)">
             {{ gpu.name }}
           </h3>
-          <span class="text-sm  flex items-center gap-1">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            {{ gpu.location }}
-          </span>
+          <div class="text-xs flex items-center gap-1 bg-primary-50 p-1 rounded-sm">
+            <UIcon name="mdi:location" />
+            <div>{{ gpu.location || '北京一区' }}</div>
+          </div>
         </div>
 
         <div class="space-y-3 mb-6">
@@ -29,7 +24,7 @@
                   d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
               </svg>
               <span>vCPU</span>
-              <span class="ml-auto text-gray-700">{{ gpu.vCPU }}</span>
+              <span class="ml-auto text-gray-700">{{ gpu.cpuCores }}核</span>
             </div>
             <div class="flex items-center gap-2 text-sm text-gray-500">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -37,7 +32,7 @@
                   d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
               </svg>
               <span>内存</span>
-              <span class="ml-auto text-gray-700">{{ gpu.memory }}</span>
+              <span class="ml-auto text-gray-700">{{ gpu.dataDiskGb }}G</span>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-4">
@@ -47,7 +42,7 @@
                   d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
               </svg>
               <span>系统盘</span>
-              <span class="ml-auto text-gray-700">{{ gpu.systemDisk }}</span>
+              <span class="ml-auto text-gray-700">{{ gpu.systemDiskGb }}G</span>
             </div>
             <div class="flex items-center gap-2 text-sm text-gray-500">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,29 +50,62 @@
                   d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
               </svg>
               <span>数据盘</span>
-              <span class="ml-auto text-gray-700">{{ gpu.dataDisk }}</span>
+              <span class="ml-auto text-gray-700">{{ gpu.dataDiskGb }}G</span>
             </div>
           </div>
         </div>
 
         <div class="flex items-center justify-between pt-4 border-t border-gray-100">
           <div class="flex items-center gap-2">
-            <svg class="w-4 h-4 " fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
-            </svg>
-            <span class="text-sm text-gray-500">{{ gpu.status }}</span>
+            <span class="text-sm text-secondary font-semibold">
+              <UIcon name="bi:gpu-card" class="align-middle " />
+              {{ gpu.memoryGb }}卡可租
+            </span>
           </div>
-          <div class="flex items-baseline gap-1">
-            <span class="text-xs font-black text-red-600">¥</span>
-            <span class="text-3xl font-black text-red-600">{{ gpu.price }}</span>
-            <span class="text-xs ">/时</span>
-          </div>
+
+          <UPopover mode="hover">
+
+            <div class="flex items-baseline gap-1">
+              <span class="text-xs font-black text-red-600">¥</span>
+              <span class="text-3xl font-black text-red-600">
+                {{ getSelectPrice(gpu.id).price }}
+              </span>
+              <span class="text-xs">
+                / {{ getSelectPrice(gpu.id).unit }}
+              </span>
+            </div>
+
+            <template #content>
+              <div class="text-lg text-center cursor-pointer">
+                <div class="p-2 mx-8" @click="HandleSelectPrice(gpu.id, gpu.items[0].pricePerHour, '时')">
+                  <span class="text-red-500 font-black">
+                    ¥{{ gpu.items[0].pricePerHour }}
+                  </span>
+                  <span class="text-sm">/时</span>
+                </div>
+                <USeparator />
+                <div class="p-3 mx-8" @click="HandleSelectPrice(gpu.id, gpu.items[0].pricePerDay, '天')">
+                  <span class="text-red-500 font-black">
+                    ¥{{ gpu.items[0].pricePerDay }}
+                  </span>
+                  <span class="text-sm">/天</span>
+                </div>
+                <USeparator />
+                <div class="p-2 mx-8" @click="HandleSelectPrice(gpu.id, gpu?.items[0].pricePerMonth, '月')">
+                  <span class="text-red-500 font-black">
+                    ¥{{ gpu.items[0].pricePerMonth }}
+                  </span>
+                  <span class="text-sm">/月</span>
+                </div>
+              </div>
+            </template>
+          </UPopover>
+
         </div>
       </div>
     </div>
 
-    <div class="flex justify-end">
+    <div class="flex justify-end" v-if="gpuOptions && gpuOptions?.length > 3">
       <button v-on:click="toggleExpand"
         class=" flex justify-end items-center gap-2 text-sm font-medium text-blue-500 cursor-pointer transition-colors">
         <span>更多类型GPU</span>
@@ -91,87 +119,141 @@
 </template>
 
 <script lang="ts" setup>
-
+import { useMyMarketsStore } from "@/stores/markets";
+const marketsStore = useMyMarketsStore()
+const aa = marketsStore.gpuGroupList
+const gpuOptions = toRef(marketsStore.gpuGroupList)
 
 const selectedGPU = ref(null),
   selectedCount = ref(0),
   isExpanded = ref(false)
 
-const gpuOptions = ref([
-  {
-    id: 1,
-    name: "NVIDIA 4090 24G",
-    location: "四川三区",
-    vCPU: "15核",
-    memory: "60G",
-    systemDisk: "50G",
-    dataDisk: "100G",
-    price: "1.80",
-    status: "已租完"
-  },
-  {
-    id: 2,
-    name: "NVIDIA 3090 24G",
-    location: "成都一区",
-    vCPU: "16核",
-    memory: "64G",
-    systemDisk: "50G",
-    dataDisk: "50G",
-    price: "1.45",
-    status: "已租完"
-  },
-  {
-    id: 3,
-    name: "NVIDIA H20 96G",
-    location: "成都一区",
-    vCPU: "24核",
-    memory: "128G",
-    systemDisk: "50G",
-    dataDisk: "50G",
-    price: "6.20",
-    status: "已租完"
-  },
-  {
-    id: 4,
-    name: "NVIDIA A100 40G",
-    location: "成都二区",
-    vCPU: "32核",
-    memory: "256G",
-    systemDisk: "100G",
-    dataDisk: "200G",
-    price: "8.50",
-    status: "已租完"
-  },
-  {
-    id: 5,
-    name: "NVIDIA A100 80G",
-    location: "成都二区",
-    vCPU: "48核",
-    memory: "512G",
-    systemDisk: "100G",
-    dataDisk: "200G",
-    price: "12.00",
-    status: "已租完"
-  },
-  {
-    id: 6,
-    name: "NVIDIA V100 32G",
-    location: "四川三区",
-    vCPU: "16核",
-    memory: "64G",
-    systemDisk: "50G",
-    dataDisk: "100G",
-    price: "4.50",
-    status: "已租完"
-  }
-])
+// const gpuOptions = ref([
+//   {
+//     id: 1,
+//     name: "NVIDIA 4090 24G",
+//     location: "四川三区",
+//     vCPU: "15核",
+//     memory: "60G",
+//     systemDisk: "50G",
+//     dataDisk: "100G",
+//     price: "1.80",
+//     status: "已租完"
+//   },
+//   {
+//     id: 2,
+//     name: "NVIDIA 3090 24G",
+//     location: "成都一区",
+//     vCPU: "16核",
+//     memory: "64G",
+//     systemDisk: "50G",
+//     dataDisk: "50G",
+//     price: "1.45",
+//     status: "已租完"
+//   },
+//   {
+//     id: 3,
+//     name: "NVIDIA H20 96G",
+//     location: "成都一区",
+//     vCPU: "24核",
+//     memory: "128G",
+//     systemDisk: "50G",
+//     dataDisk: "50G",
+//     price: "6.20",
+//     status: "已租完"
+//   },
+//   {
+//     id: 4,
+//     name: "NVIDIA A100 40G",
+//     location: "成都二区",
+//     vCPU: "32核",
+//     memory: "256G",
+//     systemDisk: "100G",
+//     dataDisk: "200G",
+//     price: "8.50",
+//     status: "已租完"
+//   },
+//   {
+//     id: 5,
+//     name: "NVIDIA A100 80G",
+//     location: "成都二区",
+//     vCPU: "48核",
+//     memory: "512G",
+//     systemDisk: "100G",
+//     dataDisk: "200G",
+//     price: "12.00",
+//     status: "已租完"
+//   },
+//   {
+//     id: 6,
+//     name: "NVIDIA V100 32G",
+//     location: "四川三区",
+//     vCPU: "16核",
+//     memory: "64G",
+//     systemDisk: "50G",
+//     dataDisk: "100G",
+//     price: "4.50",
+//     status: "已租完"
+//   }
+// ])
 
 const displayedGPUs = computed(() => {
   if (isExpanded.value) {
     return gpuOptions.value;
   }
-  return gpuOptions.value.slice(0, 3);
+  return gpuOptions.value?.slice(0, 3) || [];
 })
+
+/*----------------------------------------------------*\
+｜                       选择价格
+\*----------------------------------------------------*/
+
+type PriceState = {
+  price: number
+  unit: '时' | '天' | '月'
+}
+
+const priceMap = ref<Record<string | number, PriceState>>({})
+
+const getSelectPrice = (gpuId: string | number) => {
+  return priceMap.value[gpuId] ?? {
+    price: 0,
+    unit: '小时'
+  }
+}
+
+watch(
+  gpuOptions,
+  (list) => {
+    if (!list?.length) return
+
+    list.forEach((gpu) => {
+      // 已有用户选择，不覆盖
+      if (priceMap.value[gpu.id]) return
+
+      priceMap.value[gpu.id] = {
+        price: gpu.items?.[0]?.pricePerHour ?? 0,
+        unit: '时'
+      }
+    })
+  },
+  { immediate: true }
+)
+
+const SelectPrice = ref({
+  price: 0,
+  extra: '小时'
+
+})
+
+const HandleSelectPrice = (
+  gpuId: string | number,
+  price: number,
+  unit: '时' | '天' | '月'
+) => {
+  priceMap.value[gpuId] = { price, unit }
+  selectGPU(gpuId)
+}
 
 const countOptions = ref([0, 1, 2, 4, 8]);
 

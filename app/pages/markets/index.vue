@@ -10,6 +10,10 @@
 </template>
 
 <script lang="ts" setup>
+import { useMyMarketsStore } from "@/stores/markets";
+const marketsStore = useMyMarketsStore()
+marketsStore.gpuListAction()
+
 </script>
 
 <style></style>
