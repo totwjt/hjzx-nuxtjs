@@ -7,11 +7,12 @@ node v20.11.1
 npm v10.2.4
 
 # 开发
-搭建mono repo 脚手架
+> 搭建mono repo 脚手架
 NuxtJs
 脚手架搭建
 ==[bug] app.config.ts 全局参数没生效==
 集成 @nuxt/ui @nuxt/icon
+国际化 zh_cn
 
 # todo
 
@@ -23,3 +24,7 @@ NuxtJs
 2. icon 细化
 
 3. 首屏 ssr Hydration水合警告⚠️
+
+4. 参数 crypto 加密
+
+5. server端日志
