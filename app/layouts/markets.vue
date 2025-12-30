@@ -1,18 +1,18 @@
 <template>
-  <div class="bg-gray-50">
+  <div class="bg-gray-50 min-h-screen flex flex-col">
     <Menu />
 
-    <div class="w-full dark:bg-gray-800 bg-white shadow-sm py-2 ">
+    <div class="flexw-full dark:bg-gray-800 bg-white shadow-sm py-2">
       <UContainer>
         <Markets-RouterBanner />
       </UContainer>
     </div>
 
+    <div class="flex-1">
       <slot></slot>
+    </div>
 
-      <div class="footer text-center h-50 leading-50">
-        <Placeholder>footer</Placeholder>
-      </div>
+    <Footer />
   </div>
 
 </template>

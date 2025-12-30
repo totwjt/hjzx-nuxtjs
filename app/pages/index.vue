@@ -41,8 +41,6 @@
                 </p>
 
                 <JiaoFu />
-
-                <Footer />
             </div>
 
 
