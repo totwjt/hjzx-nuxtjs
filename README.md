@@ -15,8 +15,11 @@ NuxtJs
 
 # todo
 
-1. Gpu类型有 现在取第0个配置：
+1. Gpu类型数据是一个数组，现在取第0个配置：
+  ```
   bandwidthMbps: number; // 带宽
   gpuCount: number; // gpu个数
+  ```
+2. icon 细化
 
-2.icon 细化
+3. 首屏 ssr Hydration水合警告⚠️
