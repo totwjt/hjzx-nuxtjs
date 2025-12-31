@@ -5,6 +5,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "build:test": "nuxt build && node script/deploy.js test",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -19,6 +20,7 @@
     "nuxt": "^4.2.2",
     "nuxt-swiper": "^2.0.1",
     "pinia": "^3.0.4",
+    "ssh2-sftp-client": "^9.0.4",
     "vue": "^3.5.25",
     "vue-router": "^4.6.4",
     "zod": "^4.2.1"
