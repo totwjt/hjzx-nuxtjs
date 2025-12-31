@@ -5,7 +5,7 @@
         <div class="flex justify-between items-center pb-4">
             <UTabs size="md" :content="false" :items="tabsItems" variant="link" class="" />
             <div class="text-right"><a href="#" class="text-secondary text-sm font-bold"></a>
-                <ULink raw to="/" active-class="text-secondary text-sm font-bold">todo.icon 查看完整价格列表</ULink>
+                <ULink raw to="/" active-class="text-secondary text-sm font-bold">查看完整价格列表</ULink>
             </div>
         </div>
 
@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <UButton size="lg" block>立即租用</UButton>
+                    <UButton disabled size="lg" block>立即租用</UButton>
 
                     <div class="flex flex-col justify-around gap-4 items-start text-sm mt-4 text-left">
                         <div v-for="spec in bms.specs" :key="spec">
