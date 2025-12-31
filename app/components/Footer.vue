@@ -1,8 +1,7 @@
 <!-- Footer 组件 -->
 <template>
-
-  <footer class="mt-16 border-gray-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <footer class="mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
       <!-- 主要内容区：5列网格布局 -->
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-8">
@@ -10,16 +9,16 @@
         <!-- 第1列：品牌介绍 -->
         <div class="col-span-2 md:col-span-3 lg:col-span-1">
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-              <span class="text-white font-bold text-sm">JG</span>
+            <div class="w-auto px-2 h-8 bg-primary rounded-lg flex items-center justify-center">
+              <span class="text-white font-bold text-sm">{{ footer.brand.logoText }}</span>
             </div>
-            <span class="text-xl font-bold text-gray-800">GPU极智算</span>
+            <span class="text-xl font-bold text-gray-800">{{ footer.brand.name }}</span>
           </div>
           <p class="text-sm text-gray-600 leading-relaxed mb-4">
-            找算力 就上极智算
+            {{ footer.brand.slogan }}
           </p>
           <p class="text-xs text-gray-500 leading-relaxed">
-            中小企业算力服务专家，普惠算力引擎。异构并行，秒级调度，即取即用
+            {{ footer.brand.description }}
           </p>
         </div>
 
@@ -29,16 +28,16 @@
           <ul class="space-y-3 text-sm text-gray-600">
             <li>
               <span class="text-gray-500">合作热线：</span>
-              <a href="tel:028-65773958" class="hover:text-blue-600 transition-colors">028-65773958</a>
+              <a href="tel:028-65773958" class="hover:text-blue-600 transition-colors">{{ footer.contact.phone }}</a>
             </li>
             <li>
               <span class="text-gray-500">邮箱：</span>
               <a href="mailto:jizhisuan@cdijyun.com"
-                class="hover:text-blue-600 transition-colors break-all">jizhisuan@cdijyun.com</a>
+                class="hover:text-blue-600 transition-colors break-all">{{ footer.contact.email }}</a>
             </li>
             <li class="text-gray-500">
               <span class="block mb-1">地址：</span>
-              <span class="text-xs leading-relaxed">中国(四川)自由贸易试验区成都高新区天华一路99号3栋4层V02、407号</span>
+              <span class="text-xs leading-relaxed">{{ footer.contact.address }}</span>
             </li>
           </ul>
         </div>
@@ -120,7 +119,8 @@
 </template>
 
 <script lang="ts" setup>
-
+const appConfig = useAppConfig()
+const { footer } = appConfig
 </script>
 
 <style></style>
