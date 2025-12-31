@@ -5,7 +5,7 @@
         <div class="flex justify-between items-center pb-4">
             <UTabs size="md" :content="false" :items="tabsItems" variant="link" class="" />
             <div class="text-right"><a href="#" class="text-secondary text-sm font-bold"></a>
-                <ULink raw to="/" active-class="text-secondary text-sm font-bold">查看完整价格列表</ULink>
+                <ULink raw to="/markets/bms" disabled class="text-secondary text-sm font-bold">查看完整价格列表</ULink>
             </div>
         </div>
 
