@@ -17,7 +17,6 @@ const { data, status, error, refresh, clear } = await useHttpFetch('https://m1.a
     method: 'POST',
 })
 
-console.log('www', data.value);
 
 </script>
 

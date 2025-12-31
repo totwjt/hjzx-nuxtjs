@@ -14,7 +14,7 @@ import { useUserStore } from '@/stores/user'
 
 // 只在有登录态的前提下恢复
 const userStore = useUserStore()
-console.log('import.meta.client', import.meta.client);
+
 if (import.meta.client) {
   await userStore.restore()
 }

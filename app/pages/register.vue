@@ -38,8 +38,6 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       }
     })
 
-    console.log('data', code);
-
     if (code === 200) {
       toast.add({ title: '注册成功', description: '欢迎使用本系统' })
       navigateTo('/login')
@@ -47,7 +45,6 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
       toast.add({ title: '注册失败', description: message || '请稍后重试', color: 'error' })
     }
   } catch (error) {
-    console.log('aaa', error, error.statusMessage, error?.statusMessage);
     toast.add({ title: '注册失败', description: '请稍后重试', color: 'error' })
   }
 

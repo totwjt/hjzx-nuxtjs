@@ -1,6 +1,6 @@
 <!-- Footer 组件 -->
 <template>
-  <footer class="mt-8">
+  <footer class="mt-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
       <!-- 主要内容区：5列网格布局 -->

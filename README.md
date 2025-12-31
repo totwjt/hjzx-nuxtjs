@@ -28,3 +28,17 @@ NuxtJs
 4. 参数 crypto 加密
 
 5. server端日志
+
+6. middleware鉴权
+
+7. setCookie 在 ip地址访问、非https访问时会拦截传输 ```secure``` ```sameSite```
+```
+setCookie(event, 'auth_token', data?.token, {
+    httpOnly: true,
+    //secure: process.env.NODE_ENV === 'production',
+    secure: false,    // 1
+    sameSite: 'none', // 2
+    maxAge: 60 * 60 * 24 * 7, // 7天
+    path: '/'
+})
+```

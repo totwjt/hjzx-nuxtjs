@@ -1,12 +1,11 @@
 export default defineEventHandler(async (event) => {
   // 1. 从 cookie 读取 token
   const token = getCookie(event, 'auth_token')
-  console.log('123', token);
 
   // 2. 没有 token = 未登录
   if (!token) {
     return {
-      code: 401,
+      code: 4011,
       user: null
     }
   }

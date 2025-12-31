@@ -102,6 +102,8 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
       }>('/api/markets/gpuList')
 
       this.gpuGroupList = rows
+
+      return rows
     }
   }
 })

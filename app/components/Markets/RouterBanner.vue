@@ -18,7 +18,7 @@
 
 // 判断是否当前路由
 const route = useRoute();
-console.log('route', route);
+
 const activeRoute = computed(() => route.path);
 const routerItems = ref([
   {

@@ -78,7 +78,6 @@ export async function request<T = unknown>(
     // 构建真实 API 路径（去掉 /api/ 这一层）
     const realUrl = baseURL ? `${baseURL}${normalizedUrl}` : normalizedUrl
 
-    console.log('www', baseURL, normalizedUrl, realUrl);
     // 如果启用了 Mock 模式，尝试获取 Mock 地址
     if (useMock) {
       const mockUrl = getMockUrl(realUrl)

@@ -65,8 +65,8 @@ export default defineNuxtConfig({
     pageTransition: { name: 'page', mode: 'out-in' }
   },
   sourcemap: {
-    server: true,
-    client: true
+    server: false,
+    client: false
   },
   alias: {
     '@': fileURLToPath(new URL('./', import.meta.url)),
