@@ -26,18 +26,29 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>
 
-const { login, loading } = useAuth()
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
   const { data } = payload
 
-  const res = await login(data.phone, data.password)
-  console.log('res', res);
+  try {
 
-  if (res) {
-    toast.add({ title: '登录成功', description: '欢迎使用本系统' })
-    navigateTo('/')
-  } else {
-    toast.add({ title: '登录失败', description: message || '请稍后重试', color: 'error' })
+    const { code, message } = await $fetch('/api/auth/register', {
+      method: 'post',
+      body: {
+        phone: data.phone, password: data.password
+      }
+    })
+
+    console.log('data', code);
+
+    if (code === 200) {
+      toast.add({ title: '注册成功', description: '欢迎使用本系统' })
+      navigateTo('/login')
+    } else {
+      toast.add({ title: '注册失败', description: message || '请稍后重试', color: 'error' })
+    }
+  } catch (error) {
+    console.log('aaa', error, error.statusMessage, error?.statusMessage);
+    toast.add({ title: '注册失败', description: '请稍后重试', color: 'error' })
   }
 
 }
@@ -45,7 +56,6 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
 <template>
   <div class="login">
-    <!-- <ClientOnly fallback-tag="span" fallback="Loading comments..."> -->
     <div class="logo w-screen mt-4 ml-4">
       <LogoCustom />
     </div>
@@ -55,7 +65,6 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
           @submit="onSubmit" />
       </UPageCard>
     </div>
-    <!-- </ClientOnly> -->
   </div>
 </template>
 

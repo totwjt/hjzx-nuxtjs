@@ -63,7 +63,6 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
 <template>
     <div class="login">
-        <!-- <ClientOnly fallback-tag="span" fallback="Loading comments..."> -->
         <div class="logo w-screen mt-4 ml-4">
             <LogoCustom />
         </div>
@@ -72,11 +71,10 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
                 <UAuthForm :schema="schema" title="欢迎使用" description="" icon="i-lucide-user" :fields="fields"
                     :providers="providers" :loading="loading" @submit="onSubmit" />
                 <NuxtLink to="/register">
-                    <div class="text-primary">还没有账户？去注册</div>
+                    <div class="text-secondary text-sm">还没有账户？去注册</div>
                 </NuxtLink>
             </UPageCard>
         </div>
-        <!-- </ClientOnly> -->
     </div>
 </template>
 
