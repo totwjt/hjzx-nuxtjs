@@ -36,7 +36,7 @@ function selectCount(count) {
 function getCountButtonClass(count) {
   const baseClass = "text-lg text-bold cursor-pointer px-6 py-2 border-1 rounded-lg transition-all ";
   if (selectedCount.value === count) {
-    return baseClass + " bg-blue-50 border-blue-500 text-blue-600";
+    return baseClass + " bg-blue-50 border-blue-500 text-secondary-600";
   }
   return baseClass + " bg-white border-gray-300 text-gray-700 hover:bg-gray-50";
 }

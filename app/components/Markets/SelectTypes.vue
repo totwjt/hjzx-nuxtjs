@@ -107,7 +107,7 @@
 
     <div class="flex justify-end" v-if="gpuGroupList && gpuGroupList?.length > 3">
       <button v-on:click="toggleExpand"
-        class=" flex justify-end items-center gap-2 text-sm font-medium text-blue-500 cursor-pointer transition-colors">
+        class=" flex justify-end items-center gap-2 text-sm font-medium text-secondary-500 cursor-pointer transition-colors">
         <span>更多类型GPU</span>
         <svg v-bind:class="getExpandIconClass()" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -292,7 +292,7 @@ function selectCount(count) {
 function getCountButtonClass(count) {
   const baseClass = "px-6 py-2 border-2 rounded transition-all";
   if (selectedCount.value === count) {
-    return baseClass + " bg-blue-50 border-blue-500 text-blue-600";
+    return baseClass + " bg-blue-50 border-blue-500 text-secondary-600";
   }
   return baseClass + " bg-white border-gray-300 text-gray-700 hover:bg-gray-50";
 }

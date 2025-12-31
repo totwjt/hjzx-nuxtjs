@@ -22,8 +22,8 @@
                     <p class="text-sm text-gray-600 mb-4">支持多种异构显卡按小时租用</p>
                     <div
                         class="diagram-placeholder bg-linear-to-br from-blue-50 to-blue-100 rounded-lg p-6 text-center">
-                        <div class="text-blue-600 font-semibold mb-2">JYGPU</div>
-                        <div class="text-xs text-blue-500 space-y-1">
+                        <div class="text-secondary-600 font-semibold mb-2">JYGPU</div>
+                        <div class="text-xs text-secondary-500 space-y-1">
                             <div>METAX • Centurion</div>
                             <div>Ascend • Agent</div>
                             <div>工作流</div>

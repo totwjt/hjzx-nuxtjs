@@ -28,12 +28,12 @@
           <ul class="space-y-3 text-sm text-gray-600">
             <li>
               <span class="text-gray-500">合作热线：</span>
-              <a href="tel:028-65773958" class="hover:text-blue-600 transition-colors">{{ footer.contact.phone }}</a>
+              <a href="tel:028-65773958" class="hover:text-secondary-600 transition-colors">{{ footer.contact.phone }}</a>
             </li>
             <li>
               <span class="text-gray-500">邮箱：</span>
               <a href="mailto:jizhisuan@cdijyun.com"
-                class="hover:text-blue-600 transition-colors break-all">{{ footer.contact.email }}</a>
+                class="hover:text-secondary-600 transition-colors break-all">{{ footer.contact.email }}</a>
             </li>
             <li class="text-gray-500">
               <span class="block mb-1">地址：</span>
@@ -46,10 +46,10 @@
         <div>
           <h3 class="font-bold text-gray-800 mb-4">算力入口</h3>
           <ul class="space-y-3 text-sm">
-            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">GPU容器实例</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">GPU裸金属</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">模型部署</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">JStack平台</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">GPU容器实例</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">GPU裸金属</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">模型部署</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">JStack平台</a></li>
           </ul>
         </div>
 
@@ -57,10 +57,10 @@
         <div>
           <h3 class="font-bold text-gray-800 mb-4">关于极智算</h3>
           <ul class="space-y-3 text-sm">
-            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">算力图</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">AI课堂</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">文档中心</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors">关于我们</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">算力图</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">AI课堂</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">文档中心</a></li>
+            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">关于我们</a></li>
           </ul>
         </div>
 
@@ -95,8 +95,8 @@
       <div class=" border-gray-200 pt-6 mb-6">
         <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
           <span class="font-medium text-gray-700">友情链接</span>
-          <a href="#" class="hover:text-blue-600 transition-colors">AIDC托管租用</a>
-          <a href="#" class="hover:text-blue-600 transition-colors">成都活动策划</a>
+          <a href="#" class="hover:text-secondary-600 transition-colors">AIDC托管租用</a>
+          <a href="#" class="hover:text-secondary-600 transition-colors">成都活动策划</a>
         </div>
       </div>
 
@@ -104,13 +104,13 @@
       <div class="border-t border-gray-200 pt-6 space-y-2 text-xs text-gray-500">
         <div class="flex flex-wrap items-center gap-4">
           <p>©2025 华璟智璇（北京）科技有限公司 版权所有</p>
-          <a href="#" class="hover:text-blue-600 transition-colors">ICP备案xxxxxxx</a>
+          <a href="#" class="hover:text-secondary-600 transition-colors">ICP备案xxxxxxx</a>
         </div>
         <div class="flex flex-wrap items-center gap-4">
-          <a href="#" class="hover:text-blue-600 transition-colors">《中华人民共和国增值电信业务经营许可证》经营许可证编号 xxxxx</a>
+          <a href="#" class="hover:text-secondary-600 transition-colors">《中华人民共和国增值电信业务经营许可证》经营许可证编号 xxxxx</a>
         </div>
         <div class="flex items-center gap-2">
-          <a href="#" class="hover:text-blue-600 transition-colors">公安备案xxxxxxx</a>
+          <a href="#" class="hover:text-secondary-600 transition-colors">公安备案xxxxxxx</a>
         </div>
       </div>
 
