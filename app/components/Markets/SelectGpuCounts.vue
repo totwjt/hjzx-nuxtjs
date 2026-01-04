@@ -27,7 +27,6 @@ const selectedCount = ref(0)
 
 const countOptions = ref([0, 1, 2, 4, 8]);
 
-
 function selectCount(count) {
   selectedCount.value = count;
 }
@@ -40,6 +39,7 @@ function getCountButtonClass(count) {
   }
   return baseClass + " bg-white border-gray-300 text-gray-700 hover:bg-gray-50";
 }
+
 </script>
 
 <style></style>

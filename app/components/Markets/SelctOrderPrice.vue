@@ -18,19 +18,26 @@
         <USeparator orientation="vertical" class="h-16" />
 
         <div>
-          <div>总费用：¥2.88/小时 明细</div>
+          <div>总费用：
+            <span class="text-red-500 font-bold">
+              <span class="text-sm">¥</span>
+              <span class="text-xl">{{ price }}</span>
+            </span>
+            <span class="text-sm">{{ unit ? `/${unit}` : '' }} </span>
+            <UBadge class="ml-4" color="secondary">明细</UBadge>
+          </div>
           <div>余额：¥5.00 充值</div>
         </div>
 
-        <UButton class="py-3 px-12 cursor-pointer">创建</UButton>
-
+        <UButton class="py-3 px-12 cursor-pointer" :loading="loading" :disabled="price <= 0">创建</UButton>
       </div>
 
     </UContainer>
   </div>
 </template>
 <script lang="ts" setup>
-
+import { useMyMarketsStore } from "@/stores/markets/index";
+const { price, unit, loading } = storeToRefs(useMyMarketsStore())
 </script>
 
 <style></style>

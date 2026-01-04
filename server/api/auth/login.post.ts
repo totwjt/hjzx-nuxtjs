@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
             })
         }
 
-        const { code, message, data } = await $fetch('https://m1.apifoxmock.com/m1/7602696-7341408-default/client/login', {
+        const { code, message, data } = await $fetch('http://127.0.0.1:4523/m1/7602696-7341408-default/client/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
             httpOnly: true,
             //secure: process.env.NODE_ENV === 'production',
             secure: false,    // 1
-            sameSite: 'none',  // 2
+            // sameSite: 'none',  // 2
             maxAge: 60 * 60 * 24 * 7, // 7天
             path: '/'
         })

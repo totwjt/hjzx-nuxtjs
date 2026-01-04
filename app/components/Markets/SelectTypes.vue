@@ -4,7 +4,7 @@
     <div class="text-sm font-bold text-gray-800 mb-4">选择GPU类型</div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-      <div v-for="gpu in displayedGPUs" v-bind:key="gpu.id" v-on:click="selectGPU(gpu.id)"
+      <div v-for="gpu in displayedGPUs" v-bind:key="gpu.id" v-on:click="marketsStore.selectGPU(gpu)"
         v-bind:class="getGPUCardClass(gpu.id)" :disabled=true>
         <div class="flex items-start justify-between mb-6">
           <h3 v-bind:class="getGPUTitleClass(gpu.id)">
@@ -32,7 +32,7 @@
                   d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
               </svg>
               <span>内存</span>
-              <span class="ml-auto text-gray-700">{{ gpu.dataDiskGb }}G</span>
+              <span class="ml-auto text-gray-700">{{ gpu.memoryGb }}G</span>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-4">
@@ -59,7 +59,7 @@
           <div class="flex items-center gap-2">
             <span class="text-sm text-secondary font-semibold">
               <UIcon name="bi:gpu-card" class="align-middle " />
-              {{ gpu.memoryGb }}卡可租
+              {{ gpu.idleGpuCount }}卡可租
             </span>
           </div>
 
@@ -119,14 +119,12 @@
 </template>
 
 <script lang="ts" setup>
-import { useMyMarketsStore } from "@/stores/markets";
+import { useMyMarketsStore } from "@/stores/markets/index";
 const marketsStore = useMyMarketsStore()
-const aa = marketsStore.gpuGroupList
-const { gpuGroupList } = storeToRefs(marketsStore)
+const { gpuGroupList, selectedGPU } = storeToRefs(marketsStore)
 
-const selectedGPU = ref(null),
-  selectedCount = ref(0),
-  isExpanded = ref(false)
+const selectedCount = ref(0)
+const isExpanded = ref(false)
 
 // const gpuGroupList = ref([
 //   {
@@ -252,7 +250,7 @@ const HandleSelectPrice = (
   unit: '时' | '天' | '月'
 ) => {
   priceMap.value[gpuId] = { price, unit }
-  selectGPU(gpuId)
+  marketsStore.selectGPU({ id: gpuId, price, unit })
 }
 
 const countOptions = ref([0, 1, 2, 4, 8]);
@@ -281,10 +279,6 @@ function getExpandIconClass() {
   return baseClass;
 }
 
-function selectGPU(id) {
-  selectedGPU.value = id;
-}
-
 function selectCount(count) {
   selectedCount.value = count;
 }
@@ -300,6 +294,10 @@ function getCountButtonClass(count) {
 function toggleExpand() {
   isExpanded.value = !isExpanded.value;
 }
+
+onMounted(() => {
+  marketsStore.initWatch()
+})
 
 
 </script>
