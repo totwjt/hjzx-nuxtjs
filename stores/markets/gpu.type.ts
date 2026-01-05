@@ -34,7 +34,7 @@ export interface IGpuGroupList {
      * gpu闲置数量
      */
     idleGpuCount: number;
-    items: Item[];
+    items: IGpuItem[];
     /**
      * 内存大小
      */

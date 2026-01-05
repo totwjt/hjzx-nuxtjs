@@ -1,13 +1,24 @@
 <template>
   <div class="p-4 ring-1 ring-gray-50 bg-white rounded-lg mb-4">
-
     <div class="text-sm font-bold text-gray-800 mb-4">选择GPU类型</div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-      <div v-for="gpu in displayedGPUs" v-bind:key="gpu.id" v-on:click="marketsStore.selectGPU(gpu)"
-        v-bind:class="getGPUCardClass(gpu.id)" :disabled=true>
+    <!-- skeleton -->
+    <div class="grid gap-2" v-if="displayedGPUs.length <= 0">
+      <USkeleton class="h-4 w-162.5" />
+      <USkeleton class="h-4 w-162.5" />
+      <USkeleton class="h-4 w-62.5" />
+      <USkeleton class="h-4 w-62.5" />
+      <USkeleton class="h-4 w-212.5" />
+      <USkeleton class="h-4 w-212.5" />
+    </div>
+
+    <!-- gpu cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6" v-else>
+      <div v-for="gpu in displayedGPUs" :key="gpu.id" :class="getGPUCardClass(gpu.id)"
+        @click="HandleClickSelectGpuCard(gpu.id)">
+        <!-- header -->
         <div class="flex items-start justify-between mb-6">
-          <h3 v-bind:class="getGPUTitleClass(gpu.id)">
+          <h3 :class="getGPUTitleClass(gpu.id)">
             {{ gpu.name }}
           </h3>
           <div class="text-xs flex items-center gap-1 bg-primary-50 p-1 rounded-sm">
@@ -16,6 +27,7 @@
           </div>
         </div>
 
+        <!-- specs -->
         <div class="space-y-3 mb-6">
           <div class="grid grid-cols-2 gap-4">
             <div class="flex items-center gap-2 text-sm text-gray-500">
@@ -55,17 +67,16 @@
           </div>
         </div>
 
+        <!-- footer -->
         <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-          <div class="flex items-center gap-2">
-            <span class="text-sm text-secondary font-semibold">
-              <UIcon name="bi:gpu-card" class="align-middle " />
-              {{ gpu.idleGpuCount }}卡可租
-            </span>
-          </div>
+          <span class="text-sm text-secondary font-semibold flex items-center gap-2">
+            <UIcon name="bi:gpu-card" />
+            {{ gpu.idleGpuCount }}卡可租
+          </span>
 
+          <!-- price popover -->
           <UPopover mode="hover">
-
-            <div class="flex items-baseline gap-1">
+            <div class="flex items-baseline gap-1 cursor-pointer">
               <span class="text-xs font-black text-red-600">¥</span>
               <span class="text-3xl font-black text-red-600">
                 {{ getSelectPrice(gpu.id).price }}
@@ -76,22 +87,26 @@
             </div>
 
             <template #content>
-              <div class="text-lg text-center cursor-pointer">
-                <div class="p-2 mx-8" @click="HandleSelectPrice(gpu.id, gpu.items[0].pricePerHour, '时')">
+              <div class="text-lg text-center">
+                <div class="p-2 mx-8 cursor-pointer" @click="onSelectPrice(gpu, 1)">
                   <span class="text-red-500 font-black">
                     ¥{{ gpu.items[0].pricePerHour }}
                   </span>
                   <span class="text-sm">/时</span>
                 </div>
+
                 <USeparator />
-                <div class="p-3 mx-8" @click="HandleSelectPrice(gpu.id, gpu.items[0].pricePerDay, '天')">
+
+                <div class="p-2 mx-8 cursor-pointer" @click="onSelectPrice(gpu, 2)">
                   <span class="text-red-500 font-black">
                     ¥{{ gpu.items[0].pricePerDay }}
                   </span>
                   <span class="text-sm">/天</span>
                 </div>
+
                 <USeparator />
-                <div class="p-2 mx-8" @click="HandleSelectPrice(gpu.id, gpu?.items[0].pricePerMonth, '月')">
+
+                <div class="p-2 mx-8 cursor-pointer" @click="onSelectPrice(gpu, 3)">
                   <span class="text-red-500 font-black">
                     ¥{{ gpu.items[0].pricePerMonth }}
                   </span>
@@ -100,137 +115,83 @@
               </div>
             </template>
           </UPopover>
-
         </div>
       </div>
     </div>
 
-    <div class="flex justify-end" v-if="gpuGroupList && gpuGroupList?.length > 3">
-      <button v-on:click="toggleExpand"
-        class=" flex justify-end items-center gap-2 text-sm font-medium text-secondary-500 cursor-pointer transition-colors">
+    <!-- expand -->
+    <div class="flex justify-end" v-if="gpuGroupList.length > 3">
+      <button @click="toggleExpand" class="flex items-center gap-2 text-sm font-medium text-secondary-500">
         <span>更多类型GPU</span>
-        <svg v-bind:class="getExpandIconClass()" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg :class="getExpandIconClass()" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
         </svg>
       </button>
     </div>
-
   </div>
 </template>
 
-<script lang="ts" setup>
-import { useMyMarketsStore } from "@/stores/markets/index";
-const marketsStore = useMyMarketsStore()
-const { gpuGroupList, selectedGPU } = storeToRefs(marketsStore)
+<script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useMyMarketsStore } from '@/stores/markets/index'
+import type { IGpuGroupList } from '@/stores/markets/gpu.type'
 
-const selectedCount = ref(0)
+/* ---------------- store ---------------- */
+
+const marketsStore = useMyMarketsStore()
+const { gpuGroupList } = storeToRefs(marketsStore)
+
+/* ---------------- composable ---------------- */
+
+const {
+  gpuId,
+  unit,
+  pricePerUnit,
+  clickSelectGpuCard,
+  selectGpu,
+  initByGpuList
+} = useGpuSelection()
+
+const HandleClickSelectGpuCard = (gid) => {
+  const { price, unit } = getSelectPrice(gid)
+  clickSelectGpuCard(gid, price, unit)
+}
+
+/* ---------------- UI state ---------------- */
+
 const isExpanded = ref(false)
 
-// const gpuGroupList = ref([
-//   {
-//     id: 1,
-//     name: "NVIDIA 4090 24G",
-//     location: "四川三区",
-//     vCPU: "15核",
-//     memory: "60G",
-//     systemDisk: "50G",
-//     dataDisk: "100G",
-//     price: "1.80",
-//     status: "已租完"
-//   },
-//   {
-//     id: 2,
-//     name: "NVIDIA 3090 24G",
-//     location: "成都一区",
-//     vCPU: "16核",
-//     memory: "64G",
-//     systemDisk: "50G",
-//     dataDisk: "50G",
-//     price: "1.45",
-//     status: "已租完"
-//   },
-//   {
-//     id: 3,
-//     name: "NVIDIA H20 96G",
-//     location: "成都一区",
-//     vCPU: "24核",
-//     memory: "128G",
-//     systemDisk: "50G",
-//     dataDisk: "50G",
-//     price: "6.20",
-//     status: "已租完"
-//   },
-//   {
-//     id: 4,
-//     name: "NVIDIA A100 40G",
-//     location: "成都二区",
-//     vCPU: "32核",
-//     memory: "256G",
-//     systemDisk: "100G",
-//     dataDisk: "200G",
-//     price: "8.50",
-//     status: "已租完"
-//   },
-//   {
-//     id: 5,
-//     name: "NVIDIA A100 80G",
-//     location: "成都二区",
-//     vCPU: "48核",
-//     memory: "512G",
-//     systemDisk: "100G",
-//     dataDisk: "200G",
-//     price: "12.00",
-//     status: "已租完"
-//   },
-//   {
-//     id: 6,
-//     name: "NVIDIA V100 32G",
-//     location: "四川三区",
-//     vCPU: "16核",
-//     memory: "64G",
-//     systemDisk: "50G",
-//     dataDisk: "100G",
-//     price: "4.50",
-//     status: "已租完"
-//   }
-// ])
-
 const displayedGPUs = computed(() => {
-  if (isExpanded.value) {
-    return gpuGroupList.value;
-  }
-  return gpuGroupList.value?.slice(0, 3) || [];
+  return isExpanded.value ? gpuGroupList.value : gpuGroupList.value.slice(0, 3)
 })
 
-/*----------------------------------------------------*\
-｜                       选择价格
-\*----------------------------------------------------*/
+/* ---------------- 卡片价格状态（关键） ---------------- */
 
 type PriceState = {
   price: number
   unit: '时' | '天' | '月'
 }
 
-const priceMap = ref<Record<string | number, PriceState>>({})
+const priceMap = ref<Record<number, PriceState>>({})
 
-const getSelectPrice = (gpuId: string | number) => {
-  return priceMap.value[gpuId] ?? {
-    price: 0,
-    unit: '小时'
-  }
+function getSelectPrice(gpuId: number): PriceState {
+  return (
+    priceMap.value[gpuId] ?? {
+      price: 0,
+      unit: '时'
+    }
+  )
 }
 
+/* 初始化每个卡片的默认价格 */
 watch(
   gpuGroupList,
   (list) => {
     if (!list?.length) return
-
     list.forEach((gpu) => {
-      // 已有用户选择，不覆盖
       if (priceMap.value[gpu.id]) return
-
       priceMap.value[gpu.id] = {
-        price: gpu.items?.[0]?.pricePerHour ?? 0,
+        price: Number(gpu.items?.[0]?.pricePerHour ?? 0),
         unit: '时'
       }
     })
@@ -238,68 +199,58 @@ watch(
   { immediate: true }
 )
 
-const SelectPrice = ref({
-  price: 0,
-  extra: '小时'
+/* ---------------- handlers ---------------- */
 
-})
+function onSelectPrice(gpu: IGpuGroupList, type: 1 | 2 | 3) {
+  const item = gpu.items[0]
 
-const HandleSelectPrice = (
-  gpuId: string | number,
-  price: number,
-  unit: '时' | '天' | '月'
-) => {
-  priceMap.value[gpuId] = { price, unit }
-  marketsStore.selectGPU({ id: gpuId, price, unit })
-}
+  const map = {
+    1: { price: Number(item.pricePerHour), unit: '时' },
+    2: { price: Number(item.pricePerDay), unit: '天' },
+    3: { price: Number(item.pricePerMonth), unit: '月' }
+  } as const
 
-const countOptions = ref([0, 1, 2, 4, 8]);
+  // 1️⃣ 只更新当前卡片显示
+  priceMap.value[gpu.id] = map[type]
 
-function getGPUCardClass(id: string | number) {
-  const baseClass = "bg-white rounded-lg border-2 p-6 cursor-pointer transition-all";
-  if (selectedGPU.value === id) {
-    return baseClass + " border-primary/80 shadow-lg border-2";
-  }
-  return baseClass + " border-gray-200 hover:shadow-md";
-}
-
-function getGPUTitleClass(id) {
-  const baseClass = "text-xl font-bold";
-  if (selectedGPU.value === id) {
-    return baseClass + " text-primary";
-  }
-  return baseClass
-}
-
-function getExpandIconClass() {
-  const baseClass = "w-4 h-4 transition-transform";
-  if (isExpanded.value) {
-    return baseClass + " rotate-180";
-  }
-  return baseClass;
-}
-
-function selectCount(count) {
-  selectedCount.value = count;
-}
-
-function getCountButtonClass(count) {
-  const baseClass = "px-6 py-2 border-2 rounded transition-all";
-  if (selectedCount.value === count) {
-    return baseClass + " bg-blue-50 border-blue-500 text-secondary-600";
-  }
-  return baseClass + " bg-white border-gray-300 text-gray-700 hover:bg-gray-50";
+  // 2️⃣ 如果这是当前选中 GPU，同步到业务状态
+  selectGpu({
+    gpuGroupId: gpu.id,
+    item,
+    type
+  })
 }
 
 function toggleExpand() {
-  isExpanded.value = !isExpanded.value;
+  isExpanded.value = !isExpanded.value
 }
 
-onMounted(() => {
-  marketsStore.initWatch()
+/* ---------------- class helpers ---------------- */
+
+function getGPUCardClass(id: number) {
+  const base =
+    'bg-white rounded-lg border-2 p-6 cursor-pointer transition-all'
+  return gpuId.value === id
+    ? `${base} border-primary shadow-lg`
+    : `${base} border-gray-200 hover:shadow-md`
+}
+
+function getGPUTitleClass(id: number) {
+  return gpuId.value === id
+    ? 'text-xl font-bold text-primary'
+    : 'text-xl font-bold'
+}
+
+function getExpandIconClass() {
+  return isExpanded.value
+    ? 'w-4 h-4 transition-transform rotate-180'
+    : 'w-4 h-4 transition-transform'
+}
+
+/* ---------------- lifecycle ---------------- */
+
+onMounted(async () => {
+  const list = await marketsStore.fetchGpuList()
+  initByGpuList(list)
 })
-
-
 </script>
-
-<style></style>

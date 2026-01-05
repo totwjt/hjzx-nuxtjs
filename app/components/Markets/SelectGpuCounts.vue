@@ -2,7 +2,7 @@
   <div class="p-4 ring-1 ring-gray-50 bg-white rounded-lg mb-4">
     <div class="text-sm font-bold text-gray-800 mb-4">单机GPU数量</div>
     <div class="inline-flex items-center gap-3">
-      <div v-for="count in countOptions" v-bind:key="count" v-on:click="selectCount(count)"
+      <div v-for="count in countOptions" v-bind:key="count" @click="() => selected.quantity = count"
         v-bind:class="getCountButtonClass(count)">
         <div class="flex items-center gap-2 my-2">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -20,26 +20,24 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 
-const selectedCount = ref(0)
+import { useMyMarketsStore } from "@/stores/markets/index";
 
+const { selected } = storeToRefs(useMyMarketsStore())
 
-const countOptions = ref([0, 1, 2, 4, 8]);
+const countOptions = [1, 2, 3, 4, 5, 6, 7]
 
-function selectCount(count) {
-  selectedCount.value = count;
+watch(() => selected.value.quantity, () => {
+  useMyMarketsStore().calculatePrice()
+})
+
+function getCountButtonClass(count: number) {
+  const base = 'cursor-pointer px-6 py-2 border rounded-lg'
+  return selected.value.quantity === count
+    ? `${base} bg-blue-50 border-blue-500`
+    : `${base} border-gray-300`
 }
-
-
-function getCountButtonClass(count) {
-  const baseClass = "text-lg text-bold cursor-pointer px-6 py-2 border-1 rounded-lg transition-all ";
-  if (selectedCount.value === count) {
-    return baseClass + " bg-blue-50 border-blue-500 text-secondary-600";
-  }
-  return baseClass + " bg-white border-gray-300 text-gray-700 hover:bg-gray-50";
-}
-
 </script>
 
 <style></style>
