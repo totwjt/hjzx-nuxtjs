@@ -1,3 +1,4 @@
+# 演示地址[[url](http://192.168.66.251:30000/)]
 
 # 技术栈
 nuxtjs
@@ -41,4 +42,34 @@ setCookie(event, 'auth_token', data?.token, {
     maxAge: 60 * 60 * 24 * 7, // 7天
     path: '/'
 })
+```
+
+# 部署初始化 环境
+一、官方 NodeSource
+```
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
+
+node -v
+```
+
+二、 安装 nvm（可选）
+```
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+source ~/.bashrc
+
+nvm use 20.11.1
+nvm alias default 20.11.1
+```
+
+三、 安装 PM2（全局）
+
+```
+npm install -g pm2
+```
+
+四、启动pm2
+
+```
+pm2 start /mnt/ssh-data/webApp/ecosystem.config.js
 ```
