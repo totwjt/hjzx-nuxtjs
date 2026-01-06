@@ -38,7 +38,7 @@ export default defineAppConfig({
         ]
       },
       {
-        title: '关于极智算',
+        title: '关于xxx',
         links: [
           { label: '算力图', href: '#' },
           { label: 'AI课堂', href: '#' },

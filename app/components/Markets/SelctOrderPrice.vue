@@ -1,5 +1,5 @@
 <template>
-  <div class="sticky bottom-0 bg-white p-4 ring-1 ring-gray-50 rounded-lg h-24">
+  <div class="sticky bottom-0 bg-white p-4 ring-1 ring-gray-50 rounded-lg h-24 shadow">
     <UContainer class="flex justify-between items-center h-full">
       <!-- <div>优惠码</div> -->
       <div></div>
@@ -29,7 +29,7 @@
           <div>余额：¥5.00 充值</div>
         </div>
 
-        <UButton class="py-3 px-12 cursor-pointer" :loading="loading" :disabled="price <= 0">创建</UButton>
+        <UButton @click="useMyMarketsStore().submit" class="py-3 px-12 cursor-pointer" :loading="loading" :disabled="price <= 0">提交</UButton>
       </div>
 
     </UContainer>

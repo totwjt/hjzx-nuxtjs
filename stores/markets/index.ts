@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia'
 import type { IGpuGroupList } from "./gpu.type";
 
+import { MarketsSubmitConfirm } from "#components";
+const overlay = useOverlay()
+const modal = overlay.create(MarketsSubmitConfirm)
+
 export const useMyMarketsStore = defineStore('myMarketsStore', {
   state: () => ({
     /*----------------------------------------------------*\
@@ -69,6 +73,21 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
       } finally {
         this.loading = false
       }
+    },
+
+    async submit() {
+      const res = await $fetch('/api/markets/orderSubmit', {
+        method: 'POST',
+        body: {}
+      })
+
+      const instance = modal.open({
+
+      })
+
+      const shouldIncrement = await instance.result
+
+      // await navigateTo('/console/order')
     }
   }
 })

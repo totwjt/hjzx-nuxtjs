@@ -40,7 +40,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
 
     if (code === 200) {
       toast.add({ title: '注册成功', description: '欢迎使用本系统' })
-      navigateTo('/login')
+      await navigateTo('/login')
     } else {
       toast.add({ title: '注册失败', description: message || '请稍后重试', color: 'error' })
     }

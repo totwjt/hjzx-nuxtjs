@@ -26,10 +26,10 @@ const dropDownItem = computed(() => [
   ],
   [
     {
-      onSelect: () => {
-        logout()
+      onSelect: async () => {
+        await logout()
         UDropdownMenuOpen.value = false
-        navigateTo('/login')
+        await navigateTo('/login')
       },
       label: '退出登录',
       icon: 'i-lucide-log-out',
@@ -42,21 +42,21 @@ const items = computed<NavigationMenuItem[]>(() => [
   {
     label: '算力市场',
     to: '/markets/',
-    active:false
+    active: false
   },
   {
     label: '模型部署',
     to: '/markets/square',
-    active:false
+    active: false
   },
   {
     label: 'JStack',
-    active:false
+    active: false
     // to: 'https://go.nuxt.com/figma-ui',
   },
   {
     label: '关于我们',
-    active:false
+    active: false
     // to: 'https://github.com/nuxt/ui/releases',
     // target: '_blank'
   }
@@ -80,8 +80,8 @@ const items2 = computed<NavigationMenuItem[]>(() => [
   }
 ])
 
-const goToBalance = () => {
-  navigateTo('console/remain')
+const goToBalance = async() => {
+  await navigateTo('console/remain')
 }
 
 </script>
@@ -107,7 +107,7 @@ const goToBalance = () => {
             <div>
               <div class="text-xs font-extrabold">可用余额</div>
               <div class="">
-                <div class="text-red-500 text-xs font-extrabold">¥ {{user?.balance}}</div>
+                <div class="text-red-500 text-xs font-extrabold">¥ {{ user?.balance }}</div>
               </div>
             </div>
             <UIcon name="i-material-symbols:chevron-right" class="text-gray-300 mr-2 size-5 font-black align-middle" />

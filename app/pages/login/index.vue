@@ -50,7 +50,7 @@ async function onSubmit(payload: FormSubmitEvent<Schema>) {
             title: '登录成功',
             description: '欢迎使用本系统'
         })
-        navigateTo('/')
+        await navigateTo('/')
     } else {
         toast.add({
             title: '登录失败',

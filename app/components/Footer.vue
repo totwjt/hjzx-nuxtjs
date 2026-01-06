@@ -53,9 +53,9 @@
           </ul>
         </div>
 
-        <!-- 第4列：关于极智算 -->
+        <!-- 第4列：关于 -->
         <div>
-          <h3 class="font-bold text-gray-800 mb-4">关于极智算</h3>
+          <h3 class="font-bold text-gray-800 mb-4">关于xxx</h3>
           <ul class="space-y-3 text-sm">
             <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">算力图</a></li>
             <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">AI课堂</a></li>
