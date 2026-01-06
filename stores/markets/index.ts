@@ -41,7 +41,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
 
   actions: {
     async fetchGpuList() {
-      const { rows } = await $fetch<{ rows: IGpuGroupList[] }>(
+      const rows = await $fetch<{ rows: IGpuGroupList[] }>(
         '/api/markets/gpuList'
       )
       this.gpuGroupList = rows
@@ -55,7 +55,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
 
       this.loading = true
       try {
-        const res = await $fetch<{ price: number }>(
+        this.price = await $fetch<number>(
           '/api/markets/calculatePrice',
           {
             params: {
@@ -65,7 +65,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
             }
           }
         )
-        this.price = res.price
+
       } finally {
         this.loading = false
       }

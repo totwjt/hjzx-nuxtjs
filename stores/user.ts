@@ -34,8 +34,7 @@ export const useUserStore = defineStore('user', {
 
     // 恢复登录态
     async restore() {
-      const res = await $fetch<{ user: User }>('/api/auth/me')
-      this.user = res.user
+      this.user = await $fetch<User>('/api/auth/me')
     },
 
     async logout() {

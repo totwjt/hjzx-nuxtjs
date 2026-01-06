@@ -7,25 +7,25 @@
         <div class="text-sm font-bold text-gray-800">选择镜像</div>
 
         <!-- select image pop -->
-        <UPopover v-model:open="open" :content="{
-          side:'right'
-        }">
-          <div class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm"
-            v-if="!!selectedImage">
-            <div>
-              <UIcon :name="selectedImage.icon" size="30" class="align-middle pr-4" />
+        <UPopover v-model:open="open">
+          <div>
+            <div class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm"
+              v-if="!!selectedImage">
+              <div>
+                <UIcon :name="selectedImage.icon" size="30" class="align-middle pr-4" />
+              </div>
+              <div>
+                <div class="font-bold">{{ selectedImage?.name }}</div>
+                <div class="text-xs text-gray-400">{{ selectedImage?.desc }} </div>
+              </div>
             </div>
-            <div>
-              <div class="font-bold">{{ selectedImage?.name }}</div>
-              <div class="text-xs text-gray-400">{{ selectedImage?.desc }} </div>
+            <div v-else class="text-sm text-gray-400 bg-gray-50 py-6 w-120 text-center cursor-pointer rounded-sm">
+              <UIcon name="tabler:plus" class="align-middle pr-4" /><span class="text-xs"> 选择镜像</span>
             </div>
-          </div>
-          <div v-else class="text-sm text-gray-400 bg-gray-50 py-6 w-120 text-center cursor-pointer rounded-sm">
-            <UIcon name="tabler:plus" class="align-middle pr-4" /><span class="text-xs"> 选择镜像</span>
           </div>
 
           <template #content>
-            <div class="w-150 h-100 flex">
+            <div class="w-160 h-80 flex">
 
               <!-- 左侧标签栏 -->
               <div class="w-32 border-r border-gray-200 py-4">
@@ -51,12 +51,6 @@
                     ]">
                       <!-- 图标 -->
                       <UIcon :name="image.icon"></UIcon>
-                      <!-- <div :class="[
-                      'flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center',
-                      getIconClass(image.icon)
-                    ]">
-                      <span class="text-white text-xs font-bold">{{ getIconText(image.icon) }}</span>
-                    </div> -->
 
                       <!-- 镜像名称 -->
                       <div class="flex-1 text-sm">
@@ -97,9 +91,10 @@
 
 const {
   images,
+  tabs,
   getList
 } = useGpuImage();
-console.log('images', images);
+
 /*----------------------------------------------------*\
 ｜                       选择镜像
 \*----------------------------------------------------*/
@@ -109,15 +104,9 @@ const activeTab = ref('base');
 const selectedImage = ref(null);
 const open = ref(false)
 
-const tabs = [
-  { id: 'base', label: '基础镜像' },
-  { id: 'ai', label: 'AI镜像' },
-  { id: 'my', label: '我的镜像' }
-];
-
 const selectImage = (image) => {
-  // selectedImage.value = image;
-  // open.value = !open.value
+  selectedImage.value = image;
+  open.value = !open.value
 };
 
 const HandleSetPort = () => {
