@@ -7,9 +7,11 @@
         <div class="text-sm font-bold text-gray-800">选择镜像</div>
 
         <!-- select image pop -->
-        <UPopover :open="open">
+        <UPopover v-model:open="open" :content="{
+          side:'right'
+        }">
           <div class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm"
-            @click="() => open = !open" v-if="!!selectedImage">
+            v-if="!!selectedImage">
             <div>
               <UIcon :name="selectedImage.icon" size="30" class="align-middle pr-4" />
             </div>
@@ -18,8 +20,7 @@
               <div class="text-xs text-gray-400">{{ selectedImage?.desc }} </div>
             </div>
           </div>
-          <div v-else class="text-sm text-gray-400 bg-gray-50 py-6 w-120 text-center cursor-pointer rounded-sm"
-            @click="() => open = !open">
+          <div v-else class="text-sm text-gray-400 bg-gray-50 py-6 w-120 text-center cursor-pointer rounded-sm">
             <UIcon name="tabler:plus" class="align-middle pr-4" /><span class="text-xs"> 选择镜像</span>
           </div>
 
@@ -83,7 +84,7 @@
         </div>
       </div>
 
-      <UAlert variant="soft" color="error" class="mt-4 text-xs" title="注意!" icon="i-lucide-terminal"
+      <UAlert variant="soft" color="warning" class="mt-4 text-xs" icon="i-lucide-terminal"
         description="实例配置完成后，无法修改镜像和端口转发，请谨慎操作。" />
 
 
@@ -93,8 +94,12 @@
 </template>
 
 <script lang="ts" setup>
-import { error } from 'node:console';
 
+const {
+  images,
+  getList
+} = useGpuImage();
+console.log('images', images);
 /*----------------------------------------------------*\
 ｜                       选择镜像
 \*----------------------------------------------------*/
@@ -110,114 +115,14 @@ const tabs = [
   { id: 'my', label: '我的镜像' }
 ];
 
-const images = ref([
-  {
-    id: 1,
-    name: 'Python3.10.12-ubuntu22.04-cuda12.4.1-jupyter',
-    icon: 'logos:ubuntu',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 2,
-    name: 'PyTorch2.3.0-CUDA12.4.1-py3.10-Ubuntu22.04',
-    icon: 'logos:python',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 3,
-    name: 'TensorFlow2.15.0-CUDA11.8.0-cudnn8-py3.10-Ubuntu...',
-    icon: 'logos:tensorflow',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 4,
-    name: 'Ollama0.6.8-PyTorch2.4.0-cuda12.4-py3.10',
-    icon: 'devicon:ollama',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 5,
-    name: 'Cuda12.2.2-cudnn8-devel-ubuntu22.04',
-    icon: 'material-icon-theme:cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-  {
-    id: 6,
-    name: 'Cuda11.8.0-cudnn8-devel-ubuntu22.04',
-    icon: 'cuda',
-    desc: '更新时间：2025-09-11 11:46 版本：12.2.2-cudnn8-devel-ubuntu22.04-jupyter'
-  },
-]);
-
 const selectImage = (image) => {
-  selectedImage.value = image;
-  open.value = !open.value
+  // selectedImage.value = image;
+  // open.value = !open.value
 };
 
 const HandleSetPort = () => {
   if (!selectedImage.value) {
-    toast.add({ color: 'error', icon:'fluent-color:error-circle-48', title: '提示', description: '请先选择镜像再配置端口号' })
+    toast.add({ color: 'error', icon: 'fluent-color:error-circle-48', title: '提示', description: '请先选择镜像再配置端口号' })
   }
 }
 

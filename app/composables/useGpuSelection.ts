@@ -33,12 +33,9 @@ export function useGpuSelection() {
     if (!list?.length) return
 
     const firstGpu = list[0]
-    const firstItem = firstGpu.items?.[0]
-    if (!firstItem) return
 
     selectGpu({
       gpuGroupId: firstGpu.id,
-      item: firstItem,
       type: 1
     })
   }
@@ -47,27 +44,28 @@ export function useGpuSelection() {
 
   function selectGpu(payload: {
     gpuGroupId: number
-    item: IGpuItem
     type: BillingType
+    pricePerHour: number
+    pricePerDay: number
+    pricePerMonth: number
   }) {
 
     gpuId.value = payload.gpuGroupId
-    itemId.value = payload.item.id
     type.value = payload.type
     quantity.value = 1
 
     switch (payload.type) {
       case 1:
         unit.value = '时'
-        pricePerUnit.value = Number(payload.item.pricePerHour)
+        pricePerUnit.value = payload.pricePerHour
         break
       case 2:
         unit.value = '天'
-        pricePerUnit.value = Number(payload.item.pricePerDay)
+        pricePerUnit.value = payload.pricePerDay
         break
       case 3:
         unit.value = '月'
-        pricePerUnit.value = Number(payload.item.pricePerMonth)
+        pricePerUnit.value = payload.pricePerMonth
         break
     }
 
@@ -118,6 +116,7 @@ export function useGpuSelection() {
     unit,
     quantity,
     pricePerUnit,
+    selected: marketsStore.selected,
 
     // getters
     totalPriceText,

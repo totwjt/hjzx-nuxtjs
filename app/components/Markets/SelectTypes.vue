@@ -3,7 +3,7 @@
     <div class="text-sm font-bold text-gray-800 mb-4">选择GPU类型</div>
 
     <!-- skeleton -->
-    <div class="grid gap-2" v-if="displayedGPUs.length <= 0">
+    <div class="grid gap-2" v-if="displayedGPUs?.length <= 0">
       <USkeleton class="h-4 w-162.5" />
       <USkeleton class="h-4 w-162.5" />
       <USkeleton class="h-4 w-62.5" />
@@ -36,7 +36,7 @@
                   d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
               </svg>
               <span>vCPU</span>
-              <span class="ml-auto text-gray-700">{{ gpu.cpuCores }}核</span>
+              <span class="ml-auto text-gray-700">{{ gpu.cpuCores * selected.quantity }}核</span>
             </div>
             <div class="flex items-center gap-2 text-sm text-gray-500">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,7 +44,7 @@
                   d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
               </svg>
               <span>内存</span>
-              <span class="ml-auto text-gray-700">{{ gpu.memoryGb }}G</span>
+              <span class="ml-auto text-gray-700">{{ gpu.memoryGb * selected.quantity }}G</span>
             </div>
           </div>
           <div class="grid grid-cols-2 gap-4">
@@ -79,7 +79,7 @@
             <div class="flex items-baseline gap-1 cursor-pointer">
               <span class="text-xs font-black text-red-600">¥</span>
               <span class="text-3xl font-black text-red-600">
-                {{ getSelectPrice(gpu.id).price }}
+                {{ getSelectPrice(gpu.id).price * selected.quantity }}
               </span>
               <span class="text-xs">
                 / {{ getSelectPrice(gpu.id).unit }}
@@ -90,7 +90,7 @@
               <div class="text-lg text-center">
                 <div class="p-2 mx-8 cursor-pointer" @click="onSelectPrice(gpu, 1)">
                   <span class="text-red-500 font-black">
-                    ¥{{ gpu.items[0].pricePerHour }}
+                    ¥{{ gpu.pricePerHour * selected.quantity }}
                   </span>
                   <span class="text-sm">/时</span>
                 </div>
@@ -99,7 +99,7 @@
 
                 <div class="p-2 mx-8 cursor-pointer" @click="onSelectPrice(gpu, 2)">
                   <span class="text-red-500 font-black">
-                    ¥{{ gpu.items[0].pricePerDay }}
+                    ¥{{ gpu.pricePerDay * selected.quantity }}
                   </span>
                   <span class="text-sm">/天</span>
                 </div>
@@ -108,7 +108,7 @@
 
                 <div class="p-2 mx-8 cursor-pointer" @click="onSelectPrice(gpu, 3)">
                   <span class="text-red-500 font-black">
-                    ¥{{ gpu.items[0].pricePerMonth }}
+                    ¥{{ gpu.pricePerMonth * selected.quantity }}
                   </span>
                   <span class="text-sm">/月</span>
                 </div>
@@ -120,7 +120,7 @@
     </div>
 
     <!-- expand -->
-    <div class="flex justify-end" v-if="gpuGroupList.length > 3">
+    <div class="flex justify-end" v-if="gpuGroupList?.length > 3">
       <button @click="toggleExpand" class="flex items-center gap-2 text-sm font-medium text-secondary-500">
         <span>更多类型GPU</span>
         <svg :class="getExpandIconClass()" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,6 +145,8 @@ const { gpuGroupList } = storeToRefs(marketsStore)
 
 const {
   gpuId,
+  quantity,
+  selected,
   unit,
   pricePerUnit,
   clickSelectGpuCard,
@@ -162,7 +164,10 @@ const HandleClickSelectGpuCard = (gid) => {
 const isExpanded = ref(false)
 
 const displayedGPUs = computed(() => {
-  return isExpanded.value ? gpuGroupList.value : gpuGroupList.value.slice(0, 3)
+  if (!Array.isArray(gpuGroupList.value)) return []
+  return isExpanded.value
+    ? gpuGroupList.value
+    : gpuGroupList.value.slice(0, 3)
 })
 
 /* ---------------- 卡片价格状态（关键） ---------------- */
@@ -191,7 +196,7 @@ watch(
     list.forEach((gpu) => {
       if (priceMap.value[gpu.id]) return
       priceMap.value[gpu.id] = {
-        price: Number(gpu.items?.[0]?.pricePerHour ?? 0),
+        price: Number(gpu?.pricePerHour ?? 0),
         unit: '时'
       }
     })
@@ -202,12 +207,11 @@ watch(
 /* ---------------- handlers ---------------- */
 
 function onSelectPrice(gpu: IGpuGroupList, type: 1 | 2 | 3) {
-  const item = gpu.items[0]
 
   const map = {
-    1: { price: Number(item.pricePerHour), unit: '时' },
-    2: { price: Number(item.pricePerDay), unit: '天' },
-    3: { price: Number(item.pricePerMonth), unit: '月' }
+    1: { price: Number(gpu.pricePerHour), unit: '时' },
+    2: { price: Number(gpu.pricePerDay), unit: '天' },
+    3: { price: Number(gpu.pricePerMonth), unit: '月' }
   } as const
 
   // 1️⃣ 只更新当前卡片显示
@@ -216,7 +220,9 @@ function onSelectPrice(gpu: IGpuGroupList, type: 1 | 2 | 3) {
   // 2️⃣ 如果这是当前选中 GPU，同步到业务状态
   selectGpu({
     gpuGroupId: gpu.id,
-    item,
+    pricePerHour: gpu.pricePerHour,
+    pricePerDay: gpu.pricePerDay,
+    pricePerMonth: gpu.pricePerMonth,
     type
   })
 }

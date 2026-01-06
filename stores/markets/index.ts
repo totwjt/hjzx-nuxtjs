@@ -3,6 +3,9 @@ import type { IGpuGroupList } from "./gpu.type";
 
 export const useMyMarketsStore = defineStore('myMarketsStore', {
   state: () => ({
+    /*----------------------------------------------------*\
+    ｜                       选择配置
+    \*----------------------------------------------------*/
     gpuGroupList: [] as IGpuGroupList[],
     loading: false,
 
@@ -13,8 +16,28 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
       unit: '时' as '时' | '天' | '月'
     },
 
-    price: 0
+    rentalDurationHours: 1,  // 租赁时常
+    price: 0,
+
+    /*----------------------------------------------------*\
+    ｜                       配置镜像
+    \*----------------------------------------------------*/
   }),
+
+  getters: {
+    selectItem: (state) => {
+      return state.gpuGroupList.find(item => item.id === state?.selected?.gpuId)
+    },
+    idleGpuCount() {
+      return this.selectItem?.idleGpuCount ?? 0
+    },
+    f16Tflops() {
+      return this.selectItem?.f16Tflops ?? 0
+    },
+    gpuMemory() {
+      return this.selectItem?.gpuMemory ?? 0
+    }
+  },
 
   actions: {
     async fetchGpuList() {
@@ -27,7 +50,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
 
     async calculatePrice() {
       const { gpuId, type, quantity } = this.selected
-      console.log('www', gpuId, type, quantity);
+
       if (!gpuId || !quantity) return
 
       this.loading = true
@@ -36,9 +59,9 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
           '/api/markets/calculatePrice',
           {
             params: {
-              itemId: gpuId,
-              type,
-              quantity
+              templateId: gpuId,
+              gpuCount: quantity,
+              rentalDurationHours: this.rentalDurationHours // 租赁时长(1:  一小时;    24: 1天;    720: 1个月)
             }
           }
         )
