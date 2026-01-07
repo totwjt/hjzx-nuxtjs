@@ -3,7 +3,7 @@ import { useUserStore } from '@/stores/user'
 
 export default defineNuxtRouteMiddleware(async (to) => {
 
-  if (['/', '/index', '/register'].includes(to.path)) return
+  if (['/', '/index', '/register', '/markets/'].includes(to.path)) return
 
   if ('/login' === to.path) {
     await useUserStore().ensureUser()
