@@ -29,15 +29,30 @@
           <div>余额：¥5.00 充值</div>
         </div>
 
-        <UButton @click="useMyMarketsStore().submit" class="py-3 px-12 cursor-pointer" :loading="loading" :disabled="price <= 0">提交</UButton>
+        <UButton @click="handleCreated" class="py-3 px-12 cursor-pointer" :loading="loading" :disabled="price <= 0">创建
+        </UButton>
       </div>
 
     </UContainer>
+
+
+    <MarketsSubmitConfirm ref="MarketsSubmitConfirmRef" @confirm="handleConfirm" />
   </div>
 </template>
 <script lang="ts" setup>
 import { useMyMarketsStore } from "@/stores/markets/index";
 const { price, unit, loading } = storeToRefs(useMyMarketsStore())
+
+const MarketsSubmitConfirmRef = ref(null)
+
+const handleCreated = () => {
+  MarketsSubmitConfirmRef.value.handleOpen(true)
+}
+
+const handleConfirm = () =>{
+  console.log('handleConfirm');
+}
+
 </script>
 
 <style></style>

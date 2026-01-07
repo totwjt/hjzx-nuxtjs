@@ -1,44 +1,101 @@
 <template>
-  <UModal :dismissible="false" title="确认订单" :ui="{
-    content: 'w-200!'
-  }">
-    <UButton label="Open" color="neutral" variant="subtle" />
-
+  <UModal v-model:open="open" :dismissible="false" title="确认订单" :ui="{ content: 'max-w-3xl' }">
     <template #body>
-      <div>
-
-        <Descriptions title="" :bordered="true" :column="3" :items="userInfo">
-
-          <!-- 自定义某个字段的内容 -->
-          <template #content-status="{ item }">
-            <UBadge :color="item.value === '在线' ? 'green' : 'gray'">
-              {{ item.value }}
-            </UBadge>
-          </template>
-        </Descriptions>
-
-      </div>
+      <ResourceSpec :rows="specRows" />
     </template>
 
-    <template #footer="{ close }">
-      <UButton label="取消" color="neutral" variant="outline" @click="close" />
-      <UButton label="确认" color="primary" />
+    <template #footer>
+      <div class="flex-1 flex justify-around">
+        <UButton class="w-50 text-center" block size="xl" variant="outline" @click="handleCancel">
+          取消
+        </UButton>
+        <UButton class="w-50 text-center" block size="xl" @click="handleSubmit">
+          确认
+        </UButton>
+      </div>
     </template>
   </UModal>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
+import { useMyMarketsStore } from '@/stores/markets'
 
-const emit = defineEmits<{ close: [boolean] }>()
+/* ---------------- props / emits ---------------- */
 
-const userInfo = [
-  { key: 'name', label: 'GPU', value: 'NVIDIA 4090 * 1' },
-  { key: 'phone', label: 'vCPU', value: '12核' },
-  { key: 'status', label: '内存', value: '64G' },
-  { key: 'address', label: '地址', value: '浙江省杭州市西湖区', span: 2 },
-  { key: 'remark', label: '备注', value: '这是一段很长的备注信息...', span: 3 },
+// const props = defineProps<{
+//   open: boolean
+// }>()
+
+const open = ref(false)
+
+const emit = defineEmits<{
+  (e: 'update:open', value: boolean): void
+  (e: 'confirm', value: boolean): void
+}>()
+
+const handleOpen = (bool: boolean) => {
+  open.value = bool
+};
+defineExpose({ handleOpen });
+
+/* ---------------- handlers ---------------- */
+
+const handleCancel = () => {
+  emit('update:open', false)
+  emit('confirm', false)
+
+  handleOpen(false)
+}
+
+const handleSubmit = async () => {
+  emit('update:open', false)
+  emit('confirm', true)
+
+  await useMyMarketsStore().submit()
+  handleOpen(false)
+  await navigateTo('/console/container')
+
+}
+
+/* ---------------- static data ---------------- */
+
+const specRows = [
+  {
+    type: 'grid6',
+    items: [
+      { label: 'GPU', value: 'NVIDIA 4090 × 1' },
+      { label: 'vCPU', value: '12核' },
+      { label: '内存', value: '64GB' }
+    ]
+  },
+  {
+    type: 'grid2',
+    items: [
+      { label: '存储', value: '系统盘：50GB　数据盘：50GB' }
+    ]
+  },
+  {
+    type: 'grid2',
+    items: [
+      {
+        label: '镜像',
+        value: 'Python3.10.12 + Ubuntu22.04 + CUDA12.4.1 + Jupyter'
+      }
+    ]
+  },
+  {
+    type: 'grid6',
+    items: [
+      { label: '计费', value: '按时计费' },
+      { label: '计费周期', value: '1时' },
+      { label: '续期', value: '不自动续期' }
+    ]
+  },
+  {
+    type: 'grid2',
+    items: [
+      { label: '应付', value: '¥ 1.90', highlight: true }
+    ]
+  }
 ]
-
 </script>
-
-<style></style>
