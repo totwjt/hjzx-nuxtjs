@@ -3,8 +3,7 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 import { useUserStore } from '@/stores/user'
 
 const userStore = useUserStore()
-const isLoggedIn = userStore.isLoggedIn
-const user = userStore.user
+const { user, isLoggedIn } = storeToRefs(userStore)
 
 const { logout, loading } = useAuth()
 
@@ -12,7 +11,7 @@ const UDropdownMenuOpen = ref(false)
 const dropDownItem = computed(() => [
   [
     {
-      label: user?.phone,
+      label: user.value?.phone || '用户',
       avatar: {
         src: '/user/user-avatar.png'
       },
@@ -80,7 +79,7 @@ const items2 = computed<NavigationMenuItem[]>(() => [
   }
 ])
 
-const goToBalance = async() => {
+const goToBalance = async () => {
   await navigateTo('console/remain')
 }
 

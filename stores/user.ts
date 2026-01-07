@@ -11,7 +11,8 @@ export interface User {
 
 export const useUserStore = defineStore('user', {
   state: () => ({
-    user: null as User | null
+    user: null as User | null,
+    inited: false
   }),
 
   getters: {
@@ -35,6 +36,20 @@ export const useUserStore = defineStore('user', {
     // 恢复登录态
     async restore() {
       this.user = await $fetch<User>('/api/auth/me')
+    },
+
+    async ensureUser() {
+      if (this.inited) return
+      this.inited = true
+
+      const token = useCookie('auth_token')
+      if (!token.value && import.meta.client) {
+
+      }
+
+      const { data } = await useFetch<User>('/api/auth/me')
+
+      this.user = data.value
     },
 
     async logout() {
