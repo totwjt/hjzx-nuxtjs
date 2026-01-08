@@ -1,7 +1,21 @@
 <template>
-  <UModal v-model:open="open" :dismissible="false" title="确认订单" :ui="{ content: 'max-w-3xl' }">
+  <UModal v-model:open="open" :dismissible="false" title="确认订单" :ui="{ content: 'max-w-4xl' }">
     <template #body>
-      <ResourceSpec :rows="specRows" />
+      <ResourceSpec :column="3" bordered>
+
+        <ResourceSpecItem label="GPU">NVIDIA 4090 × 1</ResourceSpecItem>
+        <ResourceSpecItem label="vCPU">12核</ResourceSpecItem>
+        <ResourceSpecItem label="内存">64GB</ResourceSpecItem>
+        <ResourceSpecItem label="存储" :span="3">系统盘：50GB　数据盘：50GB</ResourceSpecItem>
+        <ResourceSpecItem label="镜像" :span="3">64GB</ResourceSpecItem>
+        <ResourceSpecItem label="计费">按时计费</ResourceSpecItem>
+        <ResourceSpecItem label="计费周期">1时</ResourceSpecItem>
+        <ResourceSpecItem label="续期">不自动续期</ResourceSpecItem>
+        <ResourceSpecItem label="应付" :span="3">
+          <span class="text-red-500 font-semibold">¥ 1.90</span>
+        </ResourceSpecItem>
+
+      </ResourceSpec>
     </template>
 
     <template #footer>
