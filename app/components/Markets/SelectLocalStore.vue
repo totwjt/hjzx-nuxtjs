@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <UAlert variant="soft" color="success" class="mt-4 text-xs" icon="i-lucide-terminal"
+    <UAlert variant="soft" color="error" class="mt-4 text-xs" icon="i-lucide-terminal"
       description="推荐您将重要数据保存到文件存储卷，文件存储卷不会随实例释放而删除" />
   </div>
 </template>

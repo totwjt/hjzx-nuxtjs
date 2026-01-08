@@ -86,7 +86,7 @@
           </div>
         </div>
 
-        <UAlert variant="soft" color="success" class="mt-4 text-xs" icon="i-lucide-terminal"
+        <UAlert variant="soft" color="error" class="mt-4 text-xs" icon="i-lucide-terminal"
           description="实例配置完成后，无法修改镜像和端口转发，请谨慎操作。" />
 
       </div>
