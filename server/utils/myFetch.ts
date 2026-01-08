@@ -1,3 +1,5 @@
+import { mapJavaError } from './errorMap'
+
 interface JavaResponse<T> {
   code: number
   msg: string
@@ -17,11 +19,8 @@ export async function myFetch<T>(
   })
 
   if (res.code !== 200) {
-    throw createError({
-      statusCode: 400,
-      message: res.msg || '请求失败'
-    })
+    throw mapJavaError(res.code, res.msg)
   }
 
-  return res.data
+  return res?.data || res?.rows
 }

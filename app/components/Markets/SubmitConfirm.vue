@@ -48,13 +48,36 @@ const handleCancel = () => {
 }
 
 const handleSubmit = async () => {
-  emit('update:open', false)
-  emit('confirm', true)
+  const toast = useToast()
+  const route = useRoute()
 
-  await useMyMarketsStore().submit()
-  handleOpen(false)
-  await navigateTo('/console/container')
+  try {
+    await useMyMarketsStore().submit()
 
+    handleOpen(false)
+    await navigateTo('/console/container')
+  } catch (error: any) {
+    // 401：未登录
+    if (error?.statusCode === 401) {
+      toast.add({
+        title: '需要登录',
+        description: '请登录后再继续操作',
+        color: 'error'
+      })
+
+      await navigateTo({
+        path: '/login',
+        query: {
+          redirect: route.fullPath
+        }
+      })
+
+      return
+    }
+
+    // 其它错误，直接抛给全局 errorHandler / error.vue
+    throw error
+  }
 }
 
 /* ---------------- static data ---------------- */

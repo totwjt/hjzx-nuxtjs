@@ -72,10 +72,12 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
     },
 
     async submit() {
+
       return await $fetch('/api/markets/orderSubmit', {
         method: 'POST',
         body: {}
       })
     }
+
   }
 })

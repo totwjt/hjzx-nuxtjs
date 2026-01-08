@@ -14,6 +14,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
   // 非白名单：先确保 user 已初始化（必要时才请求 /me）
   await useUserStore().ensureUser()
   if (!useUserStore().user) {
+    console.log('middleware');
     return navigateTo(`/login?redirect=${encodeURIComponent(to.fullPath)}`)
   }
 

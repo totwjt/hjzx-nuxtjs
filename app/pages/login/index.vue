@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+const route = useRoute();
 import * as z from 'zod'
 import type { FormSubmitEvent, AuthFormField, ButtonProps } from '@nuxt/ui'
 
@@ -38,26 +39,43 @@ type Schema = z.output<typeof schema>
 
 const { login, loading } = useAuth()
 async function onSubmit(payload: FormSubmitEvent<Schema>) {
-    const { data } = payload
+  const { data } = payload
 
+  try {
     const res = await login({
-        phone: data.phone,
-        password: data.password
+      phone: data.phone,
+      password: data.password
     })
 
-    if (res.success) {
-        toast.add({
-            title: '登录成功',
-            description: '欢迎使用本系统'
-        })
-        await navigateTo('/')
-    } else {
-        toast.add({
-            title: '登录失败',
-            description: res.message,
-            color: 'error'
-        })
+
+    if (!res.success) {
+      toast.add({
+        title: '登录失败',
+        description: res.message,
+        color: 'error'
+      })
+      return
     }
+
+    toast.add({
+      title: '登录成功',
+      description: '欢迎使用本系统'
+    })
+
+    // ⭐ redirect 优先
+    const redirect =
+      typeof route.query.redirect === 'string'
+        ? route.query.redirect
+        : '/'
+
+    await navigateTo(redirect)
+  } catch (err) {
+    toast.add({
+      title: '登录异常',
+      description: '请稍后再试',
+      color: 'error'
+    })
+  }
 }
 </script>
 

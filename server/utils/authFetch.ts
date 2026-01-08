@@ -17,10 +17,7 @@ export async function authFetch<T>(
   const token = getCookie(event, 'auth_token')
 
   if (!token) {
-    throw createError({
-      statusCode: 401,
-      message: '未登录'
-    })
+    throw mapJavaError(401, '')
   }
 
   const res = await $fetch<JavaResponse<T>>(url, {
