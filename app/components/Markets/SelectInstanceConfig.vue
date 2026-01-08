@@ -8,16 +8,16 @@
           <div class="text-sm font-bold text-gray-800">选择镜像</div>
 
           <!-- select image pop -->
-          <UPopover v-model:open="open">
+          <UPopover v-model:open="openImagePopover">
             <div>
               <div class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm"
-                v-if="!!selectedImage">
+                v-if="!!marketsStore.selectedImage">
                 <div>
-                  <UIcon :name="selectedImage.icon" size="30" class="align-middle pr-4" />
+                  <UIcon :name="marketsStore.selectedImage.icon" size="30" class="align-middle pr-4" />
                 </div>
                 <div>
-                  <div class="font-bold">{{ selectedImage?.name }}</div>
-                  <div class="text-xs text-gray-400">{{ selectedImage?.desc }} </div>
+                  <div class="font-bold">{{ marketsStore.selectedImage?.name }}</div>
+                  <div class="text-xs text-gray-400">{{ marketsStore.selectedImage?.desc }} </div>
                 </div>
               </div>
               <div v-else class="text-sm text-gray-400 bg-gray-50 py-6 w-120 text-center cursor-pointer rounded-sm">
@@ -46,7 +46,7 @@
                     <template v-for="image in images" :key="image.id">
                       <div @click="selectImage(image)" :class="[
                         'flex items-center gap-3 px-4 py-3 rounded cursor-pointer transition-colors',
-                        selectedImage?.id === image.id
+                        marketsStore.selectedImage?.id === image.id
                           ? 'bg-primary-50'
                           : 'hover:bg-gray-50'
                       ]">
@@ -55,7 +55,8 @@
 
                         <!-- 镜像名称 -->
                         <div class="flex-1 text-sm">
-                          <span :class="selectedImage?.id === image.id ? 'text-primary-600' : 'text-gray-700'">
+                          <span
+                            :class="marketsStore.selectedImage?.id === image.id ? 'text-primary-600' : 'text-gray-700'">
                             {{ image.name }}
                           </span>
                         </div>
@@ -73,33 +74,42 @@
 
         <div class="flex justify-start gap-8 items-center mt-4">
           <div class="text-sm font-bold text-gray-800">端口转发</div>
-          <div class="text-sm text-gray-400 bg-gray-50 py-3 w-120 text-center cursor-pointer rounded-sm"
-            @click="HandleSetPort">
-            <UIcon name="tabler:filter-edit" class="align-middle pr-4" /><span class="text-xs"> 配置端口</span>
+          <div
+            class="text-sm bg-gray-50 py-3 w-120 text-center cursor-pointer rounded-sm hover:bg-gray-100 transition-colors"
+            :class="marketsStore.customPorts.length > 0 ? 'font-semibold text-secondary' : 'text-gray-400'" @click="HandleSetPort">
+            <UIcon name="tabler:filter-edit" class="align-middle pr-6" />
+            <span class="text-xs">
+              {{ marketsStore.customPorts.length > 0
+                ? `已配置 ${marketsStore.customPorts.length} 个端口`
+                : '配置端口' }}
+            </span>
           </div>
         </div>
 
         <UAlert variant="soft" color="success" class="mt-4 text-xs" icon="i-lucide-terminal"
           description="实例配置完成后，无法修改镜像和端口转发，请谨慎操作。" />
 
-
       </div>
-
-
-      <MarketsSelectLocalStore />
 
     </div>
 
+    <MarketsSelectLocalStore />
+
+    <MarketsPortForwardConfigModal v-model:open="openPortModal" :ports="marketsStore.customPorts"
+      @confirm="handlePortConfirm" />
   </div>
 </template>
 
 <script lang="ts" setup>
 
+import { useMyMarketsStore } from '@/stores/markets'
+const marketsStore = useMyMarketsStore()
+
 const {
   images,
   tabs,
-  getList
 } = useGpuImage();
+
 
 /*----------------------------------------------------*\
 ｜                       选择镜像
@@ -107,18 +117,35 @@ const {
 const toast = useToast()
 
 const activeTab = ref('base');
-const selectedImage = ref(null);
-const open = ref(false)
+const openImagePopover = ref(false)     // 镜像选择 popover
+const openPortModal = ref(false)       // 新增：端口配置弹框
+const bool = ref(false)
 
-const selectImage = (image) => {
-  selectedImage.value = image;
-  open.value = !open.value
-};
+const boolSet = () => {
+  bool.value = !bool.value
+}
+
+const selectImage = (image: any) => {
+  marketsStore.setSelectedImage(image)
+  openImagePopover.value = false
+}
 
 const HandleSetPort = () => {
-  if (!selectedImage.value) {
-    toast.add({ color: 'error', icon: 'fluent-color:error-circle-48', title: '提示', description: '请先选择镜像再配置端口号' })
+  if (!marketsStore.selectedImage) {
+    toast.add({
+      color: 'error',
+      icon: 'fluent-color:error-circle-48',
+      title: '提示',
+      description: '请先选择镜像再配置端口号'
+    })
+    return
   }
+
+  openPortModal.value = true
+}
+
+const handlePortConfirm = (ports: number[]) => {
+  marketsStore.setCustomPorts(ports)
 }
 
 </script>

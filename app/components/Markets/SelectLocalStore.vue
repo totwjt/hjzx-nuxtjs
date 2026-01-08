@@ -1,5 +1,6 @@
 <template>
-  <div class="border border-gray-200 rounded-sm p-6 mt-6">
+  <div class="p-4 ring-1 ring-gray-50 bg-white rounded-lg mt-6">
+  <!-- <div class="border border-gray-200 rounded-sm p-6 mt-6"> -->
     <div class="flex justify-start gap-8 items-start">
       <div class="text-sm font-bold text-gray-800 pt-2">本机存储</div>
 

@@ -1,21 +1,49 @@
 <template>
   <UModal v-model:open="open" :dismissible="false" title="确认订单" :ui="{ content: 'max-w-4xl' }">
     <template #body>
-      <ResourceSpec :column="3" bordered>
 
-        <ResourceSpecItem label="GPU">NVIDIA 4090 × 1</ResourceSpecItem>
-        <ResourceSpecItem label="vCPU">12核</ResourceSpecItem>
-        <ResourceSpecItem label="内存">64GB</ResourceSpecItem>
-        <ResourceSpecItem label="存储" :span="3">系统盘：50GB　数据盘：50GB</ResourceSpecItem>
-        <ResourceSpecItem label="镜像" :span="3">64GB</ResourceSpecItem>
-        <ResourceSpecItem label="计费">按时计费</ResourceSpecItem>
-        <ResourceSpecItem label="计费周期">1时</ResourceSpecItem>
-        <ResourceSpecItem label="续期">不自动续期</ResourceSpecItem>
-        <ResourceSpecItem label="应付" :span="3">
-          <span class="text-red-500 font-semibold">¥ 1.90</span>
+      <ResourceSpec :column="3" bordered>
+        <ResourceSpecItem label="GPU">
+          {{ marketsStore.selectItem?.name || '-' }} × {{ marketsStore.selected.quantity }}
         </ResourceSpecItem>
 
+        <!-- vCPU 和内存使用 getters 中的 total 值 -->
+        <ResourceSpecItem label="vCPU">
+          {{ marketsStore.totalCpuCores }}核
+        </ResourceSpecItem>
+        <ResourceSpecItem label="内存">
+          {{ marketsStore.totalMemoryGb }}GB
+        </ResourceSpecItem>
+        <ResourceSpecItem label="存储" :span="3">
+          系统盘：{{ marketsStore.selectItem?.systemDiskGb }}GB　数据盘：{{ marketsStore.selectItem?.dataDiskGb }}GB
+        </ResourceSpecItem>
+
+        <!-- 镜像 -->
+        <ResourceSpecItem label="镜像" :span="3">
+          <div class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm"
+            v-if="!!marketsStore.selectedImage">
+            <div>
+              <UIcon :name="marketsStore.selectedImage.icon" size="30" class="align-middle pr-4" />
+            </div>
+            <div>
+              <div class="font-bold">{{ marketsStore.selectedImage?.name }}</div>
+              <div class="text-xs text-gray-400">{{ marketsStore.selectedImage?.desc }} </div>
+            </div>
+          </div>
+        </ResourceSpecItem>
+
+        <ResourceSpecItem label="计费">
+          <!-- {{ billingLabel || '-' }} -->
+            按时计费
+        </ResourceSpecItem>
+        <ResourceSpecItem label="计费周期">{{ marketsStore.rentalDurationHours }}{{ marketsStore.selected.unit }}
+        </ResourceSpecItem>
+        <ResourceSpecItem label="续期">不自动续期</ResourceSpecItem>
+        <ResourceSpecItem label="应付" :span="3">
+          <span class="text-red-500 font-semibold">¥ {{ marketsStore.price }}</span>
+        </ResourceSpecItem>
       </ResourceSpec>
+
     </template>
 
     <template #footer>
@@ -34,12 +62,7 @@
 <script setup lang="ts">
 import { useMyMarketsStore } from '@/stores/markets'
 
-/* ---------------- props / emits ---------------- */
-
-// const props = defineProps<{
-//   open: boolean
-// }>()
-
+const marketsStore = useMyMarketsStore()
 const open = ref(false)
 
 const emit = defineEmits<{

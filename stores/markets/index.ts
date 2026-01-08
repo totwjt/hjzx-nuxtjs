@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import type { IGpuGroupList } from "./gpu.type";
+import type { IImage } from '~/types/markets/index'
 
 export const useMyMarketsStore = defineStore('myMarketsStore', {
   state: () => ({
@@ -20,8 +21,12 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
     price: 0,
 
     /*----------------------------------------------------*\
-    ｜                       配置镜像
+    ｜                       选择镜像 & 端口
     \*----------------------------------------------------*/
+
+    selectedImage: null as IImage | null,
+    customPorts: [] as number[]
+
   }),
 
   getters: {
@@ -36,10 +41,25 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
     },
     gpuMemory() {
       return this.selectItem?.gpuMemory ?? 0
-    }
+    },
+    // 镜像名称快捷获取
+    selectedImageName(): string {
+      return this.selectedImage?.name || '未选择镜像'
+    },
+    // 新增：计算后的 vCPU 和内存（乘以 quantity）
+    totalCpuCores(): number {
+      return (this.selectItem?.cpuCores ?? 0) * this.selected.quantity
+    },
+    totalMemoryGb(): number {
+      return (this.selectItem?.memoryGb ?? 0) * this.selected.quantity
+    },
   },
 
   actions: {
+
+    /*----------------------------------------------------*\
+    ｜                       gpu
+    \*----------------------------------------------------*/
     async fetchGpuList() {
       const rows = await $fetch<{ rows: IGpuGroupList[] }>(
         '/api/markets/gpuList'
@@ -47,6 +67,22 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
       this.gpuGroupList = rows
       return rows
     },
+
+    /*----------------------------------------------------*\
+    ｜                       选择镜像 & 端口
+    \*----------------------------------------------------*/
+
+    setSelectedImage(image: IImage | null) {
+      this.selectedImage = image
+    },
+
+    setCustomPorts(ports: typeof this.customPorts) {
+      this.customPorts = ports
+    },
+
+    /*----------------------------------------------------*\
+    ｜                       动态价格
+    \*----------------------------------------------------*/
 
     async calculatePrice() {
       const { gpuId, type, quantity } = this.selected
