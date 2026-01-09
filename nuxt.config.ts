@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     apiSecret: process.env.NUXT_API_SECRET || 'default-secret',
     // public中的键也可以在客户端使用（使用 NUXT_PUBLIC_ 前缀）
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || '',
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://192.168.66.135:8080',
       appName: process.env.NUXT_PUBLIC_APP_NAME || '租赁算力平台',
       appVersion: process.env.NUXT_PUBLIC_APP_VERSION || '1.0.0',
       env: process.env.NUXT_PUBLIC_ENV || process.env.NODE_ENV || 'development',

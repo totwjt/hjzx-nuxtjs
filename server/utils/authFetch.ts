@@ -30,7 +30,6 @@ export async function authFetch<T>(
     ...options
   })
 
-  console.log('www', url, res);
   if (res.code !== 200) {
     throw mapJavaError(res.code, res.msg)
   }

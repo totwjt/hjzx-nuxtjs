@@ -45,6 +45,7 @@ export const useUserStore = defineStore('user', {
       const token = useCookie('auth_token')
       if (!token.value && import.meta.client) {
 
+        return
       }
 
       const { data } = await useFetch<User>('/api/auth/me')
