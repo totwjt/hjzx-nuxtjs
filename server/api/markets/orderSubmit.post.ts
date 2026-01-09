@@ -1,4 +1,3 @@
-import { METHODS } from "node:http"
 
 export default defineEventHandler(async (event) => {
 

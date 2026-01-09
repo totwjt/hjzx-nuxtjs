@@ -34,7 +34,7 @@ const links = ref([
         <img src="/index/advantage-1.png" width="320" height="364" alt="Illustration" class="w-full rounded-lg" />
         <template #description>
             <div class="text-sm">
-                <div>提供按 <span class="text-primary"> 小时、按天、按月</span>按等多种灵活的算力租赁方式，用户可以根据实际需求选择合适的计费模式，避免算力资源浪费，降低使用成本。
+                <div>提供按 <span class="text-secondary font-semibold"> 小时、按天、按月</span>按等多种灵活的算力租赁方式，用户可以根据实际需求选择合适的计费模式，避免算力资源浪费，降低使用成本。
                 </div>
                 <div class="mt-4">支持根据项目需求弹性扩展或收缩算力资源，能够灵活应对不同阶段的算力需求波动，确保资源的高效利用。为用户提供定制化的算力解决方案，满足不同行业和应用场景的特定需求。
                 </div>

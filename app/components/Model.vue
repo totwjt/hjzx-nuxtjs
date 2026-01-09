@@ -3,7 +3,8 @@
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-10">
 
         <!-- 左侧：大卡片 -->
-        <div class="box1 rounded-3xl p-8 h-100 border border-gray-100">
+        <div
+            class="box1 bg-linear-to-bl from-primary-200 to-secondary-200 rounded-3xl p-8 h-100 border border-gray-100">
             <div class="text-xl font-bold">满足企业级AI应用</div>
             <div class="text-xl font-bold">平台支持异构混合部署，突破大模型算力瓶颈</div>
             <div class="mt-4 text-sm text-gray-500">
@@ -16,8 +17,8 @@
                 <div class="relative z-10">
                     <h3 class="text-xl font-bold mb-2">DeepSeek-R1</h3>
                     <div class="flex gap-2 mb-3">
-                        <UBadge color="secondary" class="font-bold rounded-full">对话</UBadge>
-                        <UBadge color="secondary" class="font-bold rounded-full">知识库</UBadge>
+                        <UBadge color="secondary" variant="soft" class="font-bold rounded-full">对话</UBadge>
+                        <UBadge color="secondary" variant="soft" class="font-bold rounded-full">知识库</UBadge>
                     </div>
                     <p class="text-sm opacity-90">
                         开源且基于MIT协议，推理能力强，模块化支持中文理解、支持复杂任务
@@ -32,8 +33,8 @@
                 <div class="relative z-10">
                     <h3 class="text-xl font-bold mb-2">GLM-Z1</h3>
                     <div class="flex gap-2 mb-3">
-                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-xs">多语言对话</span>
-                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-xs">智能客服</span>
+                        <UBadge color="secondary" variant="soft" class="font-bold rounded-full">多语言对话</UBadge>
+                        <UBadge color="secondary" variant="soft" class="font-bold rounded-full">智能客服</UBadge>
                     </div>
                     <p class="text-sm opacity-90">
                         推理速度快，性价比高，出能胜任DeepSeek-R1
@@ -46,9 +47,10 @@
             <div class="border border-gray-100 rounded-3xl p-6 min-h-40">
                 <div class="relative z-10">
                     <h3 class="text-xl font-bold mb-2">Llama 4 Maverick</h3>
+
                     <div class="flex gap-2 mb-3">
-                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-xs">通用复写作</span>
-                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-xs">图像识别</span>
+                        <UBadge color="secondary" variant="soft" class="font-bold rounded-full">通用复写作</UBadge>
+                        <UBadge color="secondary" variant="soft" class="font-bold rounded-full">图像识别</UBadge>
                     </div>
                     <p class="text-sm opacity-90">
                         混合专家架构，图像理解能力强，适合创意写作和通用助手
@@ -62,8 +64,8 @@
                 <div class="relative z-10">
                     <h3 class="text-xl font-bold mb-2">Qwen 2.5-VL</h3>
                     <div class="flex gap-2 mb-3">
-                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-xs">辅助设计</span>
-                        <span class="px-3 py-1 bg-blue-500/20 rounded-full text-xs">智能编辑</span>
+                        <UBadge color="secondary" variant="soft" class="font-bold rounded-full">辅助设计</UBadge>
+                        <UBadge color="secondary" variant="soft" class="font-bold rounded-full">智能编辑</UBadge>
                     </div>
                     <p class="text-sm opacity-90">
                         支持文本、视觉、音频等多种输入，能够生成高质量的图文内容
@@ -83,7 +85,7 @@
 
 <style scoped lang="scss">
 .box1 {
-    background: linear-gradient(180deg, #c0dbff, #d3e9ff 27%, #f5fdff);
+    // background: linear-gradient(180deg, #c0dbff, #d3e9ff 27%, #f5fdff);
     box-shadow: 0 0 1rem .06rem #e3e3e329;
     flex-shrink: 0;
     overflow: hidden;

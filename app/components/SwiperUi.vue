@@ -11,7 +11,7 @@
         <p v-for="(desc, index) in item.descs" :key="index" class="mt-4 text-lg">
           {{ desc }}
         </p>
-        <UButton class="mt-6 px-8 py-3">
+        <UButton class="mt-6 px-8 py-3" to="/markets/">
           立即注册
         </UButton>
       </UContainer>

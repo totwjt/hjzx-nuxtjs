@@ -116,46 +116,4 @@ const handleSubmit = async () => {
     throw error
   }
 }
-
-/* ---------------- static data ---------------- */
-
-const specRows = [
-  {
-    type: 'grid6',
-    items: [
-      { label: 'GPU', value: 'NVIDIA 4090 × 1' },
-      { label: 'vCPU', value: '12核' },
-      { label: '内存', value: '64GB' }
-    ]
-  },
-  {
-    type: 'grid2',
-    items: [
-      { label: '存储', value: '系统盘：50GB　数据盘：50GB' }
-    ]
-  },
-  {
-    type: 'grid2',
-    items: [
-      {
-        label: '镜像',
-        value: 'Python3.10.12 + Ubuntu22.04 + CUDA12.4.1 + Jupyter'
-      }
-    ]
-  },
-  {
-    type: 'grid6',
-    items: [
-      { label: '计费', value: '按时计费' },
-      { label: '计费周期', value: '1时' },
-      { label: '续期', value: '不自动续期' }
-    ]
-  },
-  {
-    type: 'grid2',
-    items: [
-      { label: '应付', value: '¥ 1.90', highlight: true }
-    ]
-  }
-]
 </script>

@@ -2,7 +2,7 @@
   <div
     class="router-banner flex justify-between items-center gap-2 py-4 bg-white ">
 
-    <UButton v-for="(item, index) in routerItems" :key="index" :to="item.to"  variant="soft"
+    <UButton v-for="(item, index) in routerItems" :key="index" :to="item.to" color="neutral"  variant="soft"
       active-color="primary" active-variant="solid"
       size="lg"
       :active="activeRoute === item.to" :icon="item.icon" block

@@ -27,7 +27,9 @@ onMounted(() => {
           <div class="sub-title">算力新势力邀你一键畅享</div>
           <p>企业认证最高可得200元算力额度</p>
           <p>RTX4090免费用5小时</p>
-          <button>立即注册</button>
+          <NuxtLink to="/markets/">
+            <button>立即注册</button>
+          </NuxtLink>
         </UContainer>
       </swiper-slide>
 
@@ -39,7 +41,9 @@ onMounted(() => {
           <div class="sub-title">简单算力秒速调用</div>
           <p>2秒即开随取随用 覆盖全系算力裸金属集群</p>
           <p>4090时租1.9元不排队</p>
-          <button>立即注册</button>
+          <NuxtLink to="/markets/">
+            <button>立即注册</button>
+          </NuxtLink>
         </UContainer>
       </swiper-slide>
 
@@ -53,7 +57,9 @@ onMounted(() => {
           <p>企业级算力资产化管理</p>
           <p>智能平台账单一目了然</p>
           <p>弹性透明收益分配模式</p>
-          <button>立即注册</button>
+          <NuxtLink to="/markets/">
+            <button>立即注册</button>
+          </NuxtLink>
         </UContainer>
       </swiper-slide>
     </swiper-container>

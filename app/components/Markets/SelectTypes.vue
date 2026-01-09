@@ -116,6 +116,10 @@
             </template>
           </UPopover>
         </div>
+
+        <div class="absolute top-0 left-0 bg-primary" v-if="gpuId === gpu.id">
+          <UIcon class="text-white text-xl align-middle" name="material-symbols:bookmark-check" />
+        </div>
       </div>
     </div>
 
@@ -235,10 +239,10 @@ function toggleExpand() {
 
 function getGPUCardClass(id: number) {
   const base =
-    'bg-white rounded-lg border-2 p-6 cursor-pointer transition-all'
+    'bg-white border p-6 cursor-pointer transition-all relative'
   return gpuId.value === id
-    ? `${base} border-primary shadow-lg`
-    : `${base} border-gray-200 hover:shadow-md`
+    ? `${base} border-primary shadow-md`
+    : `${base} border-gray-200 hover:shadow-lg`
 }
 
 function getGPUTitleClass(id: number) {
