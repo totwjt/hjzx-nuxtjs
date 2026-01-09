@@ -1,7 +1,8 @@
 export default defineEventHandler(async (event) => {
 
+  const base = resolveApiBase()
   return await authFetch(event,
-    'https://m1.apifoxmock.com/m1/7602696-7341408-default/client/auth/me'
+    `${base}/client/auth/me`
   )
 
 })

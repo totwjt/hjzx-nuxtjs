@@ -36,7 +36,7 @@ watch(() => selected.value.quantity, () => {
 })
 
 function getCountButtonClass(count: number) {
-  const base = 'cursor-pointer px-6 py-2 border rounded-lg'
+  const base = 'cursor-pointer px-6 py-2 border'
   return selected.value.quantity === count
     ? `${base} bg-primary-50 border-primary-500`
     : `${base} border-gray-300`

@@ -13,6 +13,14 @@ NuxtJs
 国际化 zh_cn
 
 ---
+MVP - DOLIST
+1. 动态切换url地址
+
+2. 登录加密
+
+3. 验证码
+
+---
 
 # todo
 
