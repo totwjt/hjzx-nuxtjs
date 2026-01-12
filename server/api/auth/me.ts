@@ -8,15 +8,15 @@ export default defineEventHandler(async (event) => {
   // 注意：这会拦截并替换掉原本对 Java 接口的请求
   const token = getCookie(event, 'auth_token')
 
-  // if (!token) {
-  //   throw mapJavaError(401, '')
-  // }
-  // return {
-  //   "phone": phone || "未知号码", // 如果 cookie 里没找到 phone，给个默认值
-  //   "balance": 100
-  // }
+  if (!token) {
+    throw mapJavaError(401, '')
+  }
+  return {
+    "phone": phone || "未知号码", // 如果 cookie 里没找到 phone，给个默认值
+    "balance": 100
+  }
 
-  //  原本的代码逻辑（暂时被上面的 return 屏蔽）：
+  /* 原本的代码逻辑（暂时被上面的 return 屏蔽）：
   return await authFetch(event, `/client/auth/me`)
-
+  */
 })

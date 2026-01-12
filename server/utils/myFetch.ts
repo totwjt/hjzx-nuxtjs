@@ -39,6 +39,7 @@ export async function myFetch<T>(
     // 3. 响应拦截 (处理业务逻辑错误)
     onResponse({ response }) {
       const res = response._data
+      console.log(`🍎 [Response Data]`, res);
 
       // 这里的逻辑对应你原有的 res.code !== 200
       if (res && res.code !== 200) {

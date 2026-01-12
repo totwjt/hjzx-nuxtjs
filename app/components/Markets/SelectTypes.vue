@@ -21,10 +21,7 @@
           <h3 :class="getGPUTitleClass(gpu.id)">
             {{ gpu.name }}
           </h3>
-          <div class="text-xs flex items-center gap-1 bg-primary-50 p-1 rounded-sm">
-            <UIcon name="mdi:location" />
-            <div>{{ gpu.location || '北京一区' }}</div>
-          </div>
+          <UBadge variant="soft" size="md" icon="mdi:location" class="mt-1 ml-2 min-w-[90px]">{{ gpu.location || '北京一区' }}</UBadge>
         </div>
 
         <!-- specs -->

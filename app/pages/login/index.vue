@@ -25,7 +25,7 @@ const loadCaptcha = async () => {
   }
 }
 
-// onMounted(loadCaptcha)
+onMounted(loadCaptcha)
 
 /* ================= 表单模型 ================= */
 

@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
         })
     }
 
-    return await myFetch('/client/login', {
+    const data = await myFetch('/client/login', {
         method: 'POST',
         body: {
             username: phone,
@@ -23,22 +23,25 @@ export default defineEventHandler(async (event) => {
 
 
     // 设置 cookie
-    setCookie(event, 'auth_token', data?.token, {
+    setCookie(event, 'auth_token', data?.access_token, {
         httpOnly: true,
         //secure: process.env.NODE_ENV === 'production',
         secure: false,    // 1
         // sameSite: 'none',  // 2
-        maxAge: 60 * 60 * 24 * 7, // 7天
+        // maxAge: 60 * 60 * 24 * 7, // 7天
+        maxAge: data?.expire_in, // 7天
         path: '/'
     })
 
     // 设置 cookie
-    setCookie(event, 'phone', data?.token, {
+    setCookie(event, 'phone', phone, {
         httpOnly: true,
         //secure: process.env.NODE_ENV === 'production',
         secure: false,    // 1
         // sameSite: 'none',  // 2
-        maxAge: 60 * 60 * 24 * 7, // 7天
+        maxAge: data?.expire_in, // 7天
         path: '/'
     })
+
+    return data
 })

@@ -88,21 +88,12 @@ async function onSubmit(e: FormSubmitEvent<Schema>) {
       }
     })
 
-    if (res?.code === 200) {
-      toast.add({ title: '注册成功', description: '欢迎使用本系统' })
-      await navigateTo('/login')
-      return
-    }
+    console.log('register', res);
 
-    toast.add({
-      title: '注册失败',
-      description: res?.message || '请稍后重试',
-      color: 'error'
-    })
+    toast.add({ title: '注册成功', description: '欢迎使用本系统' })
+    await navigateTo('/login')
+    return
 
-    if (captchaEnabled.value) {
-      loadCaptcha()
-    }
   } catch (err) {
     toast.add({ title: '注册失败', description: '请稍后重试', color: 'error' })
     if (captchaEnabled.value) {

@@ -29,7 +29,7 @@ export const useUserStore = defineStore('user', {
         body: payload
       })
 
-      this.user = res.user
+      // this.user = res.user
       return res
     },
 
