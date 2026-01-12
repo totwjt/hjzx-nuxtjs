@@ -74,7 +74,7 @@ const items2 = computed<NavigationMenuItem[]>(() => [
   },
   {
     label: '控制台',
-    to: '/console/overview',
+    to: '/console/container',
     // active: route.path.startsWith('/docs/components')
   }
 ])

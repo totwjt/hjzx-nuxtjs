@@ -10,10 +10,12 @@
           <!-- select image pop -->
           <UPopover v-model:open="openImagePopover">
             <div>
-              <div class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm"
+              <div
+                class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm min-w-120 text-center"
                 v-if="!!marketsStore.selectedImage">
                 <div>
-                  <UIcon :name="marketsStore.selectedImage.icon" size="30" class="align-middle pr-4" />
+                  <UIcon :name="marketsStore.selectedImage.icon ?? 'logos:docker-icon'" size="20"
+                    class="align-middle pr-4" />
                 </div>
                 <div>
                   <div class="font-bold">{{ marketsStore.selectedImage?.name }}</div>
@@ -75,14 +77,44 @@
         <div class="flex justify-start gap-8 items-center mt-4">
           <div class="text-sm font-bold text-gray-800">端口转发</div>
           <div
-            class="text-sm bg-gray-50 py-3 w-120 text-center cursor-pointer rounded-sm hover:bg-gray-100 transition-colors"
-            :class="marketsStore.customPorts.length > 0 ? 'font-semibold text-secondary' : 'text-gray-400'" @click="HandleSetPort">
-            <UIcon name="tabler:filter-edit" class="align-middle pr-6" />
-            <span class="text-xs">
-              {{ marketsStore.customPorts.length > 0
-                ? `已配置 ${marketsStore.customPorts.length} 个端口`
-                : '配置端口' }}
-            </span>
+            class="text-sm bg-gray-50 p-3 w-120 text-center cursor-pointer rounded-sm hover:bg-gray-100 transition-colors"
+            :class="marketsStore.customPorts.length > 0 ? 'font-semibold text-primary-500' : 'text-gray-400'"
+            @click="HandleSetPort">
+
+            <!-- <template v-if="marketsStore?.customPorts && marketsStore?.customPorts.length">
+              <span class="text-sm">{{ `已配置 ${marketsStore.customPorts.length} 个端口` }}</span>
+            </template> -->
+
+            {{ defaultPorts }}
+            <template v-if="!!marketsStore.selectedImage">
+              <div class=" font-black text-gray-500 space-y-2">
+                <div class="flex justify-start items-center gap-3">
+                  <div>
+                    <!-- <UIcon name="tabler:progress-bolt" class="align-middle" /> -->
+                    默认端口
+                  </div>
+                  <UBadge v-for="defaultPort in marketsStore?.selectedImage?.defaultPorts || []" color="secondary" class="ml-4"
+                    variant="soft">{{defaultPort?.name}} {{defaultPort?.port}}</UBadge>
+                  <UBadge color="secondary" variant="soft">JupyterLab(8888)</UBadge>
+                </div>
+                <div class="flex justify-start items-center">
+                  <div>
+                    <!-- <UIcon name="tabler:progress-bolt" class="align-middle" /> -->
+                    自定义端口
+                  </div>
+                  <UBadge v-for="port in marketsStore.customPorts" color="secondary" class="ml-2" variant="soft">{{ port
+                    }}</UBadge>
+                  <div class="text-primary ml-4">去配置</div>
+
+                </div>
+              </div>
+            </template>
+
+            <template v-else>
+              <UIcon name="tabler:filter-edit" class="align-middle pr-6" />
+              <span class="text-xs">配置端口</span>
+            </template>
+
           </div>
         </div>
 
@@ -104,12 +136,12 @@
 
 import { useMyMarketsStore } from '@/stores/markets'
 const marketsStore = useMyMarketsStore()
+const { defaultPorts } = storeToRefs(useMyMarketsStore())
 
 const {
   images,
   tabs,
 } = useGpuImage();
-
 
 /*----------------------------------------------------*\
 ｜                       选择镜像

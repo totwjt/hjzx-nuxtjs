@@ -25,6 +25,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
     \*----------------------------------------------------*/
 
     selectedImage: null as IImage | null,
+    defaultPorts: [],
     customPorts: [] as number[]
 
   }),
@@ -74,6 +75,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
 
     setSelectedImage(image: IImage | null) {
       this.selectedImage = image
+      this.defaultPorts = image?.defaultPorts || []
     },
 
     setCustomPorts(ports: typeof this.customPorts) {
