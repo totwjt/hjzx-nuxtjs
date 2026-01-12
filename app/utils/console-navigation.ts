@@ -33,6 +33,15 @@ export const consoleNavigationItems: ConsoleNavItem[][] = [
       key: 'container'
     },
     {
+      label: 'CPU容器实例',
+      to: '/console/cpu',
+      icon: 'tabler:cpu-2',
+      title: 'CPU容器实例',
+      description: '管理您的 CPU 容器实例，支持一键部署、监控和扩缩容',
+      group: '算力资源',
+      key: 'cpu'
+    },
+    {
       label: '裸金属资源',
       to: '/console/bms',
       icon: 'tabler:server',
