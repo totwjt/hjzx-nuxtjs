@@ -8,6 +8,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
   if ('/login' === to.path) {
     await useUserStore().ensureUser()
     console.log('useUserStore().user', useUserStore().user);
+    if(useUserStore().user) console.log('useUserStore().user true?', useUserStore().user);
     if (useUserStore().user) return navigateTo('/')
     return
   }

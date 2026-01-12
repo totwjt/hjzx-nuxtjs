@@ -95,7 +95,7 @@ async function onSubmit(e: FormSubmitEvent<Schema>) {
     return
 
   } catch (err) {
-    toast.add({ title: '注册失败', description: '请稍后重试', color: 'error' })
+    toast.add({ title: '注册失败', description: err?.data?.message || '请稍后重试', color: 'error' })
     if (captchaEnabled.value) {
       loadCaptcha()
     }

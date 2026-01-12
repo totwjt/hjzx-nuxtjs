@@ -91,7 +91,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
 
       this.loading = true
       try {
-        this.price = await $fetch<number>(
+        const { finalPrice } = await $fetch<number>(
           '/api/markets/calculatePrice',
           {
             params: {
@@ -102,17 +102,40 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
           }
         )
 
+        this.price = finalPrice
+
       } finally {
         this.loading = false
       }
     },
 
     async submit() {
-
       return await $fetch('/api/markets/orderSubmit', {
         method: 'POST',
-        body: {}
+        body: this._buildSubmitParams()
       })
+    },
+
+    _buildSubmitParams() {
+      // post params:
+      //       {
+      //     "rentalDurationHours": 1,
+      //     "packageTemplateItemId": 1,
+      //     "gpuCount": 7,
+      //     "resourceTemplateId": 1,
+      //     "customPorts": "22,8888"
+      // }
+      if (!this.selectedImage?.id) {
+        throw new Error('未选择镜像')
+      }
+
+      return {
+        rentalDurationHours: this.rentalDurationHours,
+        packageTemplateItemId: this.selected.gpuId,
+        gpuCount: this.selected.quantity,
+        resourceTemplateId: this.selectedImage.id,
+        customPorts: this.customPorts.join(',')
+      }
     }
 
   }

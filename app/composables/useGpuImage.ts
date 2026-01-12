@@ -38,7 +38,6 @@ export const useGpuImage = () => {
 
   const getList = async () => {
     const { data, pending, error, refresh } = await useFetch('/api/markets/image/list')
-    console.log('vv', data.value);
 
     images.value = data.value
   }

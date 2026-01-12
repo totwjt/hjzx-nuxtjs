@@ -4,8 +4,7 @@ export default defineEventHandler(async (event) => {
   // 1. 获取 cookie 中的 phone 字段
   const phone = getCookie(event, 'phone')
 
-  // 2. 如果你需要这个临时功能生效，直接 return 目标 JSON
-  // 注意：这会拦截并替换掉原本对 Java 接口的请求
+  // 2. 这个临时功能生效，直接 return 目标 JSON
   const token = getCookie(event, 'auth_token')
 
   if (!token) {

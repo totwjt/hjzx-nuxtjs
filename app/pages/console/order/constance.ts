@@ -34,13 +34,13 @@ export const columns = [
     }
 ];
 
-// 状态配置
-export const getStatusConfig = (status: string) => {
-    const configs: Record<string, { color: string; text: string; icon: string }> = {
-        paid: { color: 'green', text: '已支付', icon: 'i-heroicons-check-circle' },
-        unpaid: { color: 'yellow', text: '待支付', icon: 'i-heroicons-clock' },
-        cancelled: { color: 'gray', text: '已取消', icon: 'i-heroicons-x-circle' },
-        refunded: { color: 'red', text: '已退款', icon: 'i-heroicons-arrow-path' }
-    };
-    return configs[status] || configs.unpaid;
+// 状态配置 0-待支付, 1-已支付, 2-已取消, 3-已退款
+export const getStatusConfig = (status: string | number) => {
+    const configs = [
+        { color: 'error', text: '待支付', icon: 'i-heroicons-clock' },
+        { color: 'success', text: '已支付', icon: 'i-heroicons-check-circle' },
+        { color: 'warning', text: '已取消', icon: 'i-heroicons-x-circle' },
+        { color: 'info', text: '已退款', icon: 'i-heroicons-arrow-path' }
+    ];
+    return configs[status];
 };

@@ -9,7 +9,7 @@ interface AuthResult {
 
 export function useAuth() {
   const userStore = useUserStore()
-  const router = useRouter()
+  const route = useRoute()
   const loading = ref(false)
 
   const login = async (
@@ -36,10 +36,15 @@ export function useAuth() {
     // clear()
 
     // 2. 清 Pinia 状态
-    userStore.logout()
+    await userStore.logout()
 
     // 3. 跳转
-    router.push('/login')
+    await navigateTo({
+      path: '/login',
+      query: {
+        redirect: route.fullPath
+      }
+    })
   }
 
   return {

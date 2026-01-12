@@ -54,11 +54,17 @@ export const useUserStore = defineStore('user', {
     },
 
     async logout() {
-      await $fetch('/api/auth/logout', {
-        method: 'POST'
-      })
+      try {
 
-      this.user = null
+        await $fetch('/api/auth/logout', {
+          method: 'POST'
+        })
+
+        this.user = null
+        return
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 })

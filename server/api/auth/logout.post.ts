@@ -5,6 +5,12 @@ export default defineEventHandler(async (event) => {
     maxAge: 0
   })
 
+  setCookie(event, 'phone', '', {
+    httpOnly: true,
+    path: '/',
+    maxAge: 0
+  })
+
   return {
     success: true
   }

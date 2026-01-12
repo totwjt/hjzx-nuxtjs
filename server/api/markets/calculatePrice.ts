@@ -1,13 +1,15 @@
 export default defineEventHandler(async (event) => {
+  const { templateId, gpuCount, rentalDurationHours } = getQuery(event)
 
-  const { itemId, type, quantity } = getQuery(event)
+  const payload = {
+    templateId,
+    gpuCount,
+    rentalDurationHours
+  }
 
-  return await myFetch('/client/package/templateItems/calculatePrice', {
-    params: {
-      itemId,
-      type,
-      quantity
-    }
+  return await myFetch('/client/package/templates/calculatePrice', {
+
+    params: payload
   })
 
 })
