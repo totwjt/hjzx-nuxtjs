@@ -165,7 +165,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
       return {
         rentalDurationHours: this.rentalDurationHours,
         packageTemplateItemId: this.selected.gpuId,
-        gpuCount: this.selected.quantity,
+        gpuCount: this.templateType === 0 ? null : this.selected.quantity,
         resourceTemplateId: this.selectedImage.id,
         customPorts: this.customPorts.join(',')
       }
@@ -196,7 +196,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
       this.selected = {
         gpuId: 0,
         type: 1 as 1 | 2 | 3,
-        quantity: this.templateType == 1 ? 1 : 0,
+        quantity: 1,
         unit: '时' as '时' | '天' | '月'
       }
 

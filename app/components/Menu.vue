@@ -123,6 +123,8 @@ const goToBalance = async () => {
         登录/注册
       </UButton>
 
+      <UColorModeButton></UColorModeButton>
+
     </template>
   </UHeader>
   <!-- <div class="min-h-16"></div> -->

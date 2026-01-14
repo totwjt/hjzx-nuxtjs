@@ -53,7 +53,7 @@ export function useGpuSelection() {
 
     gpuId.value = payload.gpuGroupId
     type.value = payload.type
-    quantity.value = templateType.value == 1 ? 1 : 0
+    quantity.value = 1
 
     switch (payload.type) {
       case 1:

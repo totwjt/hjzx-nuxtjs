@@ -2,7 +2,7 @@ export default defineAppConfig({
   ui: {
     colors: {
       // primary: 'blue',
-      // secondary: 'sky',
+      secondary: 'blue',
       // neutral: 'slate'
     }
   },
@@ -14,7 +14,7 @@ export default defineAppConfig({
   footer: {
     brand: {
       logoText: 'HJ',
-      name: 'GPU华璟智璇',
+      name: '华璟智璇',
       slogan: '找算力 就上极智算',
       description:
         '中小企业算力服务专家，普惠算力引擎。异构并行，秒级调度，即取即用'

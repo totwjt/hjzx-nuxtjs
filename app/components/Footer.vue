@@ -9,7 +9,7 @@
         <!-- 第1列：品牌介绍 -->
         <div class="col-span-2 md:col-span-3 lg:col-span-1">
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-auto px-2 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <div class="w-auto px-2 h-8 bg-secondary rounded-lg flex items-center justify-center">
               <span class="text-white font-bold text-sm">{{ footer.brand.logoText }}</span>
             </div>
             <span class="text-xl font-bold text-gray-800">{{ footer.brand.name }}</span>
