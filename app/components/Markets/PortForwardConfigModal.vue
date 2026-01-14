@@ -12,8 +12,8 @@
         <div class="flex items-center">
           <div class="font-semibold mr-10">默认端口</div>
           <div class="flex items-center gap-6">
-            <UCheckbox disabled :model-value="true" label="SSH(22)" />
-            <UCheckbox disabled :model-value="true" label="JupyterLab(8888)" />
+            <UCheckbox disabled :model-value="true" :label="`${defaultPort?.name}(${defaultPort?.port})`"
+              v-for="defaultPort in marketsStore.defaultPorts" />
           </div>
         </div>
 
@@ -21,7 +21,7 @@
         <div class="space-y-3">
           <div v-for="(port, index) in localPorts" :key="index"
             class="flex items-center gap-3 p-3 border border-gray-200 rounded-lg">
-            <UInput v-model.number="localPorts[index]" type="number" placeholder="容器端口" :min="1" :max="65535"
+            <UInput v-model.number="localPorts[index]" type="number" placeholder="容器端口" :min="32767" :max="65535"
               class="w-full" size="md" />
             <UButton icon="tabler:trash" variant="ghost" color="secondary" size="sm" @click="removePort(index)" />
           </div>
@@ -45,6 +45,8 @@
 </template>
 
 <script setup lang="ts">
+import { useMyMarketsStore } from '@/stores/markets'
+const marketsStore = useMyMarketsStore()
 
 const props = defineProps<{
   open: boolean
@@ -69,7 +71,7 @@ const DEFAULT_PORTS = [22, 8888] // 固定开启，不出现在自定义列表
 
 const addPort = () => {
   if (localPorts.value.length < 5) {
-    localPorts.value.push(6006) // 默认建议一个常见端口，可改成空也行
+    localPorts.value.push(32767) // 默认建议一个常见端口，可改成空也行
   }
 }
 
@@ -89,7 +91,7 @@ const handleConfirm = () => {
   const validPorts = localPorts.value
     .map(p => Number(p))
     .filter(p => {
-      if (isNaN(p) || p < 1 || p > 65535) return false
+      if (isNaN(p) || p < 32767 || p > 65535) return false
       if (FORBIDDEN_PORTS.includes(p)) return false
       if (DEFAULT_PORTS.includes(p)) return false // 默认端口已固定开启，无需重复添加
       return true

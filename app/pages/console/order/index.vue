@@ -52,7 +52,7 @@ const handlePageChange = (newPage: number) => {
 
       <!-- 计费方式列 -->
       <template #billingMethod-cell="{ row }">
-        <span class="text-sm text-gray-600">{{ row.original.billingMethod }}</span>
+        <UBadge color="secondary" variant="outline">按小时计费</UBadge>
       </template>
 
       <!-- 订单类型列 -->
@@ -70,7 +70,9 @@ const handlePageChange = (newPage: number) => {
 
       <!-- 订单金额列 -->
       <template #amount-cell="{ row }">
-        <span class="text-red-500 font-medium" v-if="row.original?.actualAmount">¥ {{ row.original.actualAmount }}</span>
+        <span class="text-red-500 font-semibold" v-if="row.original?.orderAmount">
+          ¥ {{ row.original.orderAmount }}
+        </span>
       </template>
 
       <!-- 操作列 -->

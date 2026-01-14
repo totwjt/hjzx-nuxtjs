@@ -93,7 +93,11 @@ const toast = useToast()
 
 const { data, pending } = useFetch<
     ContainerInstance[]
->('/api/console/container/list');
+>('/api/console/container/list', {
+    query: {
+        instanceType: 1
+    }
+});
 
 const columnPinning = ref({
     left: ['name'],

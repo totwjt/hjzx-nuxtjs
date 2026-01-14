@@ -28,6 +28,12 @@ const routerItems = ref([
     disabled: false
   },
   {
+    icon: 'tabler:cpu-2',
+    label: 'CPU容器实例',
+    to: '/markets/cpu',
+    disabled: false
+  },
+  {
     icon: 'tabler:server',
     label: 'GPU裸金属',
     to: '/markets/bms',

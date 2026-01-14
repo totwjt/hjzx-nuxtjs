@@ -89,8 +89,13 @@ import {
 const toast = useToast()
 
 // 获取数据
-
-const { data, pending } = useFetch('/api/console/container/list');
+const { data, pending } = useFetch<
+    ContainerInstance[]
+>('/api/console/container/list', {
+    query: {
+        instanceType: 0
+    }
+});
 
 const columnPinning = ref({
     left: ['name'],

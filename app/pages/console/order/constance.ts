@@ -6,7 +6,7 @@ export const columns = [
     },
     {
         accessorKey: 'createdAt',
-        header: '订单创建时间',
+        header: '创建时间',
     },
     {
         accessorKey: 'productName',

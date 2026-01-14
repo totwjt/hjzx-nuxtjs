@@ -1,8 +1,7 @@
 <template>
   <div>
     <UContainer class="py-8">
-      <markets-select-types :type="1" />
-      <markets-select-gpu-counts />
+      <markets-select-types :type="0" />
       <markets-select-instance-config />
     </UContainer>
     <markets-selct-order-price />
@@ -14,7 +13,7 @@ import { useMyMarketsStore } from "@/stores/markets/index";
 const marketsStore = useMyMarketsStore()
 
 // await useAsyncData(
-//   'gpu-list',
+//   'cpu-list',
 //   () => marketsStore.gpuListAction()
 // )
 // marketsStore.gpuListAction()

@@ -14,7 +14,7 @@
                 class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm min-w-120 text-center"
                 v-if="!!marketsStore.selectedImage">
                 <div>
-                  <UIcon :name="marketsStore.selectedImage.icon ?? 'logos:docker-icon'" size="20"
+                  <UIcon :name="marketsStore.selectedImage.iconClass ?? 'logos:docker-icon'" size="20"
                     class="align-middle pr-4" />
                 </div>
                 <div>
@@ -53,7 +53,7 @@
                           : 'hover:bg-gray-50'
                       ]">
                         <!-- 图标 -->
-                        <UIcon :name="image.icon"></UIcon>
+                        <UIcon :name="image.iconClass"></UIcon>
 
                         <!-- 镜像名称 -->
                         <div class="flex-1 text-sm">
@@ -77,35 +77,30 @@
         <div class="flex justify-start gap-8 items-center mt-4">
           <div class="text-sm font-bold text-gray-800">端口转发</div>
           <div
-            class="text-sm bg-gray-50 p-3 w-120 text-center cursor-pointer rounded-sm hover:bg-gray-100 transition-colors"
+            class="text-sm bg-gray-50 p-3 min-w-120 text-center cursor-pointer rounded-sm hover:bg-gray-100 transition-colors"
             :class="marketsStore.customPorts.length > 0 ? 'font-semibold text-primary-500' : 'text-gray-400'"
             @click="HandleSetPort">
-
-            <!-- <template v-if="marketsStore?.customPorts && marketsStore?.customPorts.length">
-              <span class="text-sm">{{ `已配置 ${marketsStore.customPorts.length} 个端口` }}</span>
-            </template> -->
-
-            {{ defaultPorts }}
             <template v-if="!!marketsStore.selectedImage">
-              <div class=" font-black text-gray-500 space-y-2">
+              <div class=" font-black text-gray-500 space-y-2 text-left">
                 <div class="flex justify-start items-center gap-3">
-                  <div>
+                  <div class="w-20">
                     <!-- <UIcon name="tabler:progress-bolt" class="align-middle" /> -->
                     默认端口
                   </div>
-                  <UBadge v-for="defaultPort in marketsStore?.selectedImage?.defaultPorts || []" color="secondary" class="ml-4"
+                  <UBadge v-for="defaultPort in marketsStore.defaultPorts" :key="defaultPort" color="neutral"
                     variant="soft">{{defaultPort?.name}} {{defaultPort?.port}}</UBadge>
-                  <UBadge color="secondary" variant="soft">JupyterLab(8888)</UBadge>
                 </div>
-                <div class="flex justify-start items-center">
-                  <div>
+                <div class="flex justify-start items-center gap-3">
+                  <div class="w-20">
                     <!-- <UIcon name="tabler:progress-bolt" class="align-middle" /> -->
                     自定义端口
                   </div>
-                  <UBadge v-for="port in marketsStore.customPorts" color="secondary" class="ml-2" variant="soft">{{ port
+                  <UBadge v-for="port in marketsStore.customPorts" color="secondary" variant="soft">{{ port
                     }}</UBadge>
-                  <div class="text-primary ml-4">去配置</div>
-
+                  <div class="text-primary">
+                    去配置
+                    <UIcon name="tabler:arrow-right" class="align-middle"></UIcon>
+                  </div>
                 </div>
               </div>
             </template>

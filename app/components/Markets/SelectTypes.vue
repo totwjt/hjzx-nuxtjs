@@ -21,7 +21,8 @@
           <h3 :class="getGPUTitleClass(gpu.id)">
             {{ gpu.name }}
           </h3>
-          <UBadge variant="soft" size="md" icon="mdi:location" class="mt-1 ml-2 min-w-[90px]">{{ gpu.location || '北京一区' }}</UBadge>
+          <UBadge variant="soft" size="md" icon="mdi:location" class="mt-1 ml-2 min-w-[90px]">{{ gpu.location || '北京一区'
+          }}</UBadge>
         </div>
 
         <!-- specs -->
@@ -66,10 +67,11 @@
 
         <!-- footer -->
         <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-          <span class="text-sm text-secondary font-semibold flex items-center gap-2">
+          <span class="text-sm text-secondary font-semibold flex items-center gap-2" v-if="gpu.idleGpuCount">
             <UIcon name="bi:gpu-card" />
             {{ gpu.idleGpuCount }}卡可租
           </span>
+          <div v-else></div>
 
           <!-- price popover -->
           <UPopover mode="hover">
@@ -137,13 +139,16 @@ import { storeToRefs } from 'pinia'
 import { useMyMarketsStore } from '@/stores/markets/index'
 import type { IGpuGroupList } from '@/stores/markets/gpu.type'
 
+const props = defineProps<{
+  type: 0 | 1 | 2
+}>()
+
 /* ---------------- store ---------------- */
 
 const marketsStore = useMyMarketsStore()
 const { gpuGroupList } = storeToRefs(marketsStore)
 
 /* ---------------- composable ---------------- */
-
 const {
   gpuId,
   quantity,
@@ -257,6 +262,8 @@ function getExpandIconClass() {
 /* ---------------- lifecycle ---------------- */
 
 onMounted(async () => {
+  marketsStore.setTemplateType(props.type)
+  marketsStore.resetByTemplateType()
   const list = await marketsStore.fetchGpuList()
   initByGpuList(list)
 })

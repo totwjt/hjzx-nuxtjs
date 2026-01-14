@@ -1,7 +1,13 @@
 export default defineEventHandler(async (event) => {
+  const query = getQuery(event)
+
   const res = await authFetch(event,
-    // '/client/container/list'
-    'https://m1.apifoxmock.com/m1/7602696-7341408-default/client/container/list'
+    '/client/container/list',
+    {
+      params: {
+        instanceType: query.instanceType
+      }
+    }
   )
   return res
 })

@@ -23,7 +23,7 @@
           <div class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm"
             v-if="!!marketsStore.selectedImage">
             <div>
-              <UIcon :name="marketsStore.selectedImage.icon" size="30" class="align-middle pr-4" />
+              <UIcon :name="marketsStore.selectedImage.iconClass?? 'logos:docker-icon'" class=" text-xl align-middle pr-4" />
             </div>
             <div>
               <div class="font-bold">{{ marketsStore.selectedImage?.name }}</div>
