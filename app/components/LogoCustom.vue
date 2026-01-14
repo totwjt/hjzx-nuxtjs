@@ -1,13 +1,20 @@
 <!-- components/Logo.vue -->
 <template>
   <NuxtLink to="/">
-    <img src="/logo1.png" alt="Logo" class="logo-image" />
+    <div class="logo-lay py-2">
+      <img src="/logo3.png" alt="Logo" class="logo-image" />
+    </div>
   </NuxtLink>
 </template>
 
 <style lang="scss" scoped>
-.logo-image {
-  width: 144px;
-  height: 100%;
+.logo-lay {
+  height: 63px;
+
+  .logo-image {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 </style>
