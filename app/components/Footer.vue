@@ -28,12 +28,13 @@
           <ul class="space-y-3 text-sm text-gray-600">
             <li>
               <span class="text-gray-500">合作热线：</span>
-              <a href="tel:028-65773958" class="hover:text-secondary-600 transition-colors">{{ footer.contact.phone }}</a>
+              <a href="tel:028-65773958" class="hover:text-secondary-600 transition-colors">{{ footer.contact.phone
+                }}</a>
             </li>
             <li>
               <span class="text-gray-500">邮箱：</span>
-              <a href="mailto:jizhisuan@cdijyun.com"
-                class="hover:text-secondary-600 transition-colors break-all">{{ footer.contact.email }}</a>
+              <a href="mailto:jizhisuan@cdijyun.com" class="hover:text-secondary-600 transition-colors break-all">{{
+                footer.contact.email }}</a>
             </li>
             <li class="text-gray-500">
               <span class="block mb-1">地址：</span>
@@ -92,12 +93,13 @@
       </div>
 
       <!-- 友情链接 -->
-      <div class=" border-gray-200 pt-6 mb-6">
+      <div class=" border-gray-200 flex justify-between items-co">
         <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
           <span class="font-medium text-gray-700">友情链接</span>
           <a href="#" class="hover:text-secondary-600 transition-colors">AIDC托管租用</a>
           <a href="#" class="hover:text-secondary-600 transition-colors">成都活动策划</a>
         </div>
+        <img src="/logo2.png" class="h-40 w-auto" alt="">
       </div>
 
       <!-- 版权信息 -->

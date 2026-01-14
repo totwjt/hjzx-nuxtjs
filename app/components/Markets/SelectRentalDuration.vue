@@ -8,43 +8,21 @@
     </span>
 
     <!-- 按小时 -->
-    <USelectMenu
-      v-model="selectedHour"
-      @change="active = 0"
-      :highlight="activeColor(0)"
-      class="w-30"
-      :searchInput="false"
-      :items="durationOptionsH"
-      placeholder="选择小时"
-    />
+    <USelectMenu v-model="selectedHour" @change="active = 0" :highlight="activeColor(0)" class="w-30"
+      :searchInput="false" :items="durationOptionsH" placeholder="选择小时" />
 
     <!-- 按天 -->
-    <USelectMenu
-      v-model="selectedDay"
-      @change="active = 1"
-      :highlight="activeColor(1)"
-      class="w-30"
-      :searchInput="false"
-      :items="durationOptionsD"
-      placeholder="选择天数"
-    />
+    <USelectMenu v-model="selectedDay" @change="active = 1" :highlight="activeColor(1)" class="w-30"
+      :searchInput="false" :items="durationOptionsD" placeholder="选择天数" />
 
     <!-- 按月 -->
-    <USelectMenu
-      v-model="selectedMonth"
-      @change="active = 2"
-      :highlight="activeColor(2)"
-      class="w-30"
-      :searchInput="false"
-      :items="durationOptionsM"
-      placeholder="选择月数"
-    />
+    <USelectMenu v-model="selectedMonth" @change="active = 2" :highlight="activeColor(2)" class="w-30"
+      :searchInput="false" :items="durationOptionsM" placeholder="选择月数" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMyMarketsStore } from '@/stores/markets'
-import { storeToRefs } from 'pinia'
 
 /**
  * store
@@ -110,6 +88,7 @@ watch(selectedHour, (val) => {
   selectedDay.value = null
   selectedMonth.value = null
   rentalDurationHours.value = toHours(val.value.type, val.value.count)
+  useMyMarketsStore().calculatePrice()
 })
 
 /**
@@ -121,6 +100,7 @@ watch(selectedDay, (val) => {
   selectedHour.value = null
   selectedMonth.value = null
   rentalDurationHours.value = toHours(val.value.type, val.value.count)
+  useMyMarketsStore().calculatePrice()
 })
 
 /**
@@ -132,6 +112,7 @@ watch(selectedMonth, (val) => {
   selectedHour.value = null
   selectedDay.value = null
   rentalDurationHours.value = toHours(val.value.type, val.value.count)
+  useMyMarketsStore().calculatePrice()
 })
 
 /**

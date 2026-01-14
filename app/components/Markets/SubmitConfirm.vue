@@ -23,7 +23,8 @@
           <div class="flex gap-4 justify-start items-center bg-gray-50 p-4 cursor-pointer rounded-sm"
             v-if="!!marketsStore.selectedImage">
             <div>
-              <UIcon :name="marketsStore.selectedImage.iconClass?? 'logos:docker-icon'" class=" text-xl align-middle pr-4" />
+              <UIcon :name="marketsStore.selectedImage.iconClass ?? 'logos:docker-icon'"
+                class=" text-xl align-middle pr-4" />
             </div>
             <div>
               <div class="font-bold">{{ marketsStore.selectedImage?.name }}</div>
@@ -34,7 +35,7 @@
 
         <ResourceSpecItem label="计费">
           <!-- {{ billingLabel || '-' }} -->
-            按时计费
+          按时计费
         </ResourceSpecItem>
         <ResourceSpecItem label="计费周期">{{ marketsStore.rentalDurationHours }}{{ marketsStore.selected.unit }}
         </ResourceSpecItem>
@@ -61,6 +62,7 @@
 
 <script setup lang="ts">
 import { useMyMarketsStore } from '@/stores/markets'
+const { templateType } = storeToRefs(useMyMarketsStore())
 
 const marketsStore = useMyMarketsStore()
 const open = ref(false)
@@ -92,7 +94,13 @@ const handleSubmit = async () => {
     await useMyMarketsStore().submit()
 
     handleOpen(false)
-    await navigateTo('/console/container')
+
+    // templateType: 0 | 1 | 2,
+    const routerTmp = [
+      '/console/cpu',
+      '/console/container',
+    ]
+    await navigateTo(routerTmp[templateType.value])
   } catch (error: any) {
     // 401：未登录
     if (error?.statusCode === 401) {

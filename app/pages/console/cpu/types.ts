@@ -2,7 +2,7 @@
 export interface ContainerInstance {
     id: string;
     name: string;
-    status: 'running' | 'stopped' | 'pending';
+    status: 0 | 1 | 2 | 3;
     config: {
         gpu: string;
         cpu: string;

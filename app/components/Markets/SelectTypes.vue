@@ -1,6 +1,6 @@
 <template>
   <div class="p-4 ring-1 ring-gray-50 bg-white rounded-lg mb-4">
-    <div class="text-sm font-bold text-gray-800 mb-4">选择GPU类型</div>
+    <div class="text-sm font-bold text-gray-800 mb-4">选择GPU类型 </div>
 
     <!-- skeleton -->
     <div class="grid gap-2" v-if="displayedGPUs?.length <= 0">
@@ -22,7 +22,7 @@
             {{ gpu.name }}
           </h3>
           <UBadge variant="soft" size="md" icon="mdi:location" class="mt-1 ml-2 min-w-[90px]">{{ gpu.location || '北京一区'
-          }}</UBadge>
+            }}</UBadge>
         </div>
 
         <!-- specs -->
@@ -146,12 +146,13 @@ const props = defineProps<{
 /* ---------------- store ---------------- */
 
 const marketsStore = useMyMarketsStore()
-const { gpuGroupList } = storeToRefs(marketsStore)
+const { gpuGroupList, selected: ss } = storeToRefs(marketsStore)
 
 /* ---------------- composable ---------------- */
 const {
   gpuId,
   quantity,
+  templateType,
   selected,
   unit,
   pricePerUnit,

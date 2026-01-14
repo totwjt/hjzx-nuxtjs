@@ -6,6 +6,7 @@ export type BillingUnit = '时' | '天' | '月'
 
 export function useGpuSelection() {
   const marketsStore = useMyMarketsStore()
+  const { templateType } = storeToRefs(marketsStore)
 
   /** ---------------- 基础选择状态 ---------------- */
 
@@ -52,7 +53,7 @@ export function useGpuSelection() {
 
     gpuId.value = payload.gpuGroupId
     type.value = payload.type
-    quantity.value = 1
+    quantity.value = templateType.value == 1 ? 1 : 0
 
     switch (payload.type) {
       case 1:
@@ -116,7 +117,8 @@ export function useGpuSelection() {
     unit,
     quantity,
     pricePerUnit,
-    selected: marketsStore.selected,
+    selected: storeToRefs(marketsStore).selected,
+    templateType: storeToRefs(marketsStore).templateType,
 
     // getters
     totalPriceText,

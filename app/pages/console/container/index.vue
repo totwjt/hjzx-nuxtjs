@@ -43,20 +43,20 @@
             <!-- 创建时间列 -->
             <template #createdAt-cell="{ row }">
                 <div class="text-sm">
-                    {{ row.original?.rentalStartTime }}
+                    {{ row.original?.rentalStartTime || '-' }}
                 </div>
             </template>
 
             <!-- 到期时间列 -->
             <template #expiredAt-cell="{ row }">
                 <div class="text-sm">
-                    {{ row.original?.rentalEndTime }}
+                    {{ row.original?.rentalEndTime || '-' }}
                 </div>
             </template>
 
             <!-- SSH列 -->
             <template #ssh-cell="{ row }">
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2" v-if="row.original?.status === 1">
                     <div class="flex items-center gap-2 text-sm">
                         <span class="text-secondary-600">
                             ssh -p {{ row.original?.sshPort }} {{ row.original?.sshUserName
@@ -72,6 +72,7 @@
                             @click="copyPassword(row.original?.sshPassword)" />
                     </div>
                 </div>
+                <div v-else>-</div>
             </template>
         </UTable>
     </UCard>

@@ -4,7 +4,7 @@
         <Menu class="shrink-0" />
 
         <!-- 主体区域 -->
-        <div class="flex flex-1 min-h-0" style="min-height:calc(100vh - 63px)">
+        <div class="flex flex-1 min-h-0" style="min-height:calc(100vh - 65px)">
             <!-- 左侧导航 -->
             <aside class="w-56 border-r border-b border-gray-300 bg-white overflow-y-auto">
                 <SideNav />

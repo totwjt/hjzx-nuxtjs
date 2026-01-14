@@ -196,7 +196,7 @@ export const useMyMarketsStore = defineStore('myMarketsStore', {
       this.selected = {
         gpuId: 0,
         type: 1 as 1 | 2 | 3,
-        quantity: 1,
+        quantity: this.templateType == 1 ? 1 : 0,
         unit: '时' as '时' | '天' | '月'
       }
 
