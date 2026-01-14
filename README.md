@@ -66,6 +66,7 @@ curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bas
 source ~/.bashrc
 
 nvm use 20.11.1
+nvm install 20.11.1
 nvm alias default 20.11.1
 ```
 
