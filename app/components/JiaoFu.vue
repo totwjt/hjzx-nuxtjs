@@ -18,7 +18,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- 卡片1 -->
                 <div
-                    class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -32,7 +32,7 @@
 
                 <!-- 卡片2 -->
                 <div
-                    class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -46,7 +46,7 @@
 
                 <!-- 卡片3 -->
                 <div
-                    class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -59,7 +59,7 @@
 
                 <!-- 卡片4 -->
                 <div
-                    class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -91,7 +91,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <!-- 卡片1 -->
                 <div
-                    class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -104,7 +104,7 @@
 
                 <!-- 卡片2 -->
                 <div
-                    class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -118,7 +118,7 @@
 
                 <!-- 卡片3 -->
                 <div
-                    class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -132,7 +132,7 @@
 
                 <!-- 卡片4 -->
                 <div
-                    class="bg-white rounded-xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    class="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
                     <div class="w-12 h-12 bg-indigo-500/10 rounded-xl flex items-center justify-center mb-4">
                         <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
