@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <SwiperUi />
+    <div class="relative">
+        <SwiperUi class="relative z-0" />
+        <ContentBanner class="relative z-10" />
         <UContainer>
-            <ContentBanner />
 
             <!-- GPU服务器容器实例租用 gpu server container instance rental -->
             <div>
