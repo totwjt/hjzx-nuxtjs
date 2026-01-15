@@ -1,6 +1,6 @@
 <!-- Footer 组件 -->
 <template>
-  <footer class="mt-16 bg-neutral-50">
+  <footer class="mt-16 bg-muted">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
       <!-- 主要内容区：5列网格布局 -->
@@ -12,31 +12,31 @@
             <div class="w-auto px-2 h-8 bg-secondary rounded-lg flex items-center justify-center">
               <span class="text-white font-bold text-sm">{{ footer.brand.logoText }}</span>
             </div>
-            <span class="text-xl font-bold text-gray-800">{{ footer.brand.name }}</span>
+            <span class="text-xl font-bold text-highlighted">{{ footer.brand.name }}</span>
           </div>
-          <p class="text-sm text-gray-600 leading-relaxed mb-4">
+          <p class="text-sm text-toned leading-relaxed mb-4">
             {{ footer.brand.slogan }}
           </p>
-          <p class="text-xs text-gray-500 leading-relaxed">
+          <p class="text-xs text leading-relaxed">
             {{ footer.brand.description }}
           </p>
         </div>
 
         <!-- 第2列：联系我们 -->
         <div>
-          <h3 class="font-bold text-gray-800 mb-4">联系我们</h3>
-          <ul class="space-y-3 text-sm text-gray-600">
+          <h3 class="font-bold text-highlighted mb-4">联系我们</h3>
+          <ul class="space-y-3 text-sm text-toned">
             <li>
-              <span class="text-gray-500">合作热线：</span>
+              <span class="text-highlighted">合作热线：</span>
               <a href="tel:028-65773958" class="hover:text-secondary-600 transition-colors">{{ footer.contact.phone
               }}</a>
             </li>
             <li>
-              <span class="text-gray-500">邮箱：</span>
+              <span class="text-highlighted">邮箱：</span>
               <a href="mailto:jizhisuan@cdijyun.com" class="hover:text-secondary-600 transition-colors break-all">{{
                 footer.contact.email }}</a>
             </li>
-            <li class="text-gray-500">
+            <li class="text-highlighted">
               <span>地址：</span>
               <span class="text-xs leading-relaxed">{{ footer.contact.address }}</span>
             </li>
@@ -45,29 +45,29 @@
 
         <!-- 第3列：算力入口 -->
         <div>
-          <h3 class="font-bold text-gray-800 mb-4">算力入口</h3>
+          <h3 class="font-bold text-highlighted mb-4">算力入口</h3>
           <ul class="space-y-3 text-sm">
-            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">GPU容器实例</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">GPU裸金属</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">模型部署</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">JStack平台</a></li>
+            <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">GPU容器实例</a></li>
+            <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">GPU裸金属</a></li>
+            <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">模型部署</a></li>
+            <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">JStack平台</a></li>
           </ul>
         </div>
 
         <!-- 第4列：关于 -->
         <div>
-          <h3 class="font-bold text-gray-800 mb-4">关于xxx</h3>
+          <h3 class="font-bold text-highlighted mb-4">关于xxx</h3>
           <ul class="space-y-3 text-sm">
-            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">算力图</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">AI课堂</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">文档中心</a></li>
-            <li><a href="#" class="text-gray-600 hover:text-secondary-600 transition-colors">关于我们</a></li>
+            <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">算力图</a></li>
+            <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">AI课堂</a></li>
+            <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">文档中心</a></li>
+            <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">关于我们</a></li>
           </ul>
         </div>
 
         <!-- 第5列：关注我们（二维码） -->
         <div>
-          <h3 class="font-bold text-gray-800 mb-4">关注我们</h3>
+          <h3 class="font-bold text-highlighted mb-4">关注我们</h3>
           <div class="flex gap-4">
             <!-- 公众号二维码 -->
             <div class="text-center">
@@ -93,8 +93,8 @@
       </div>
 
       <!-- 友情链接 -->
-      <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-        <span class="font-medium text-gray-700">友情链接</span>
+      <div class="flex flex-wrap items-center gap-4 text-sm text-toned">
+        <span class="font-medium text-highlighted">友情链接</span>
         <a href="#" class="hover:text-secondary-600 transition-colors">AIDC托管租用</a>
         <a href="#" class="hover:text-secondary-600 transition-colors">成都活动策划</a>
       </div>
