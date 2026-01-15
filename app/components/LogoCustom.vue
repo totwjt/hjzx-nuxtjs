@@ -1,7 +1,7 @@
 <!-- components/Logo.vue -->
 <template>
   <NuxtLink to="/">
-    <div class="logo-lay p-2 dark:bg-primary">
+    <div class="logo-lay p-2">
       <img src="/logo3.png" alt="Logo" class="logo-image" />
     </div>
   </NuxtLink>

@@ -86,7 +86,7 @@ const goToBalance = async () => {
 </script>
 
 <template>
-  <UHeader class="custom-header">
+  <UHeader class="custom-header light:bg-linear-to-br light:from-primary-200 light:to-neutral-50 light:border-primary-100">
 
     <template #left>
       <div class="flex items-center">
@@ -123,7 +123,7 @@ const goToBalance = async () => {
         登录/注册
       </UButton>
 
-      <UColorModeButton></UColorModeButton>
+      <ThemeSwitcher />
 
     </template>
   </UHeader>

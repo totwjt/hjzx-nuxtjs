@@ -16,4 +16,11 @@ const userStore = useUserStore()
 await callOnce(async () => {
   await userStore.ensureUser()
 })
+
+onMounted(() => {
+  const saved = localStorage.getItem('ui-primary')
+  if (saved) {
+    useAppConfig().ui.colors.primary = saved
+  }
+})
 </script>
