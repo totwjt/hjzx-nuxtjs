@@ -118,7 +118,7 @@ onMounted(() => {
 }
 
 .title {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 600;
 }
 

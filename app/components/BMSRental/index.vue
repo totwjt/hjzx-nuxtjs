@@ -16,7 +16,7 @@
             }" v-for="bms in bmsList" :key="bms.id" class="bms-card flex-1 hover:shadow-lg transition-shadow">
                 <div class="flex flex-col justify-between items-center h-full">
                     <div class="text-left mb-4">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ bms.title }}</h3>
+                        <h3 class="text-lg font-bold text-muted mb-2">{{ bms.title }}</h3>
                         <div class="text-sm">{{ bms.subtitle }}</div>
                         <div class="flex flex-wrap gap-1 my-2 justify-start items-center">
                             <UBadge v-for="tag in bms.tags" :key="tag" size="sm" icon="i-lucide-rocket" color="neutral" variant="outline">{{ tag }}</UBadge>

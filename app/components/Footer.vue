@@ -1,6 +1,6 @@
 <!-- Footer 组件 -->
 <template>
-  <footer class="mt-16">
+  <footer class="mt-16 bg-neutral-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
       <!-- 主要内容区：5列网格布局 -->
@@ -29,7 +29,7 @@
             <li>
               <span class="text-gray-500">合作热线：</span>
               <a href="tel:028-65773958" class="hover:text-secondary-600 transition-colors">{{ footer.contact.phone
-                }}</a>
+              }}</a>
             </li>
             <li>
               <span class="text-gray-500">邮箱：</span>
@@ -37,7 +37,7 @@
                 footer.contact.email }}</a>
             </li>
             <li class="text-gray-500">
-              <span class="block mb-1">地址：</span>
+              <span>地址：</span>
               <span class="text-xs leading-relaxed">{{ footer.contact.address }}</span>
             </li>
           </ul>
@@ -93,17 +93,16 @@
       </div>
 
       <!-- 友情链接 -->
-      <div class=" border-gray-200 flex justify-between items-co">
-        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
-          <span class="font-medium text-gray-700">友情链接</span>
-          <a href="#" class="hover:text-secondary-600 transition-colors">AIDC托管租用</a>
-          <a href="#" class="hover:text-secondary-600 transition-colors">成都活动策划</a>
-        </div>
-        <img src="/logo2.png" class="h-40 w-auto" alt="">
+      <div class="flex flex-wrap items-center gap-4 text-sm text-gray-600">
+        <span class="font-medium text-gray-700">友情链接</span>
+        <a href="#" class="hover:text-secondary-600 transition-colors">AIDC托管租用</a>
+        <a href="#" class="hover:text-secondary-600 transition-colors">成都活动策划</a>
       </div>
 
+      <USeparator class="my-4" />
+
       <!-- 版权信息 -->
-      <div class="border-t border-gray-200 pt-6 space-y-2 text-xs text-gray-500">
+      <div class="space-y-2 text-xs text-gray-500">
         <div class="flex flex-wrap items-center gap-4">
           <p>©2025 华璟智璇（北京）科技有限公司 版权所有</p>
           <a href="#" class="hover:text-secondary-600 transition-colors">ICP备案xxxxxxx</a>

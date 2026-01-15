@@ -5,9 +5,9 @@
   }">
     <img class="swiper-slide" :src="item.src" alt="banner">
     <div class=" absolute top-0 z-10 w-full pt-20 banner-text">
-      <UContainer>
-        <div class="title text-4xl font-bold">{{ item.title }}</div>
-        <div class="sub-title text-2xl mt-2">{{ item.subTitle }}</div>
+      <UContainer class="space-y-6">
+        <div class="title text-5xl font-bold">{{ item.title }}</div>
+        <div class="sub-title text-3xl mt-2">{{ item.subTitle }}</div>
         <p v-for="(desc, index) in item.descs" :key="index" class="mt-4 text-lg">
           {{ desc }}
         </p>

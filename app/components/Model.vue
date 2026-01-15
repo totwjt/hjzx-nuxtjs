@@ -4,11 +4,11 @@
 
         <!-- 左侧：大卡片 -->
         <div
-            class="box1 bg-linear-to-bl from-primary-200 to-secondary-200 rounded-3xl p-8 h-100 border border-gray-100">
+            class="box1 bg-linear-to-bl dark:from-primary-700 from-primary-200 to-secondary-200 dark:to-secondary-700 rounded-3xl p-8 h-100">
             <div class="text-xl font-bold">满足企业级AI应用</div>
             <div class="text-xl font-bold">平台支持异构混合部署，突破大模型算力瓶颈</div>
-            <div class="mt-4 text-sm text-gray-500">
-                极智算提供的主流镜像包括基础镜像、应用镜像、自定义镜像等，模型涵盖大语言模型（如DeepSeek、Qwen、Llama）、视觉模型（如Stable Diffusion）和多模态模型等。</div>
+            <div class="mt-4 text-sm text-toned">
+                提供的主流镜像包括基础镜像、应用镜像、自定义镜像等，模型涵盖大语言模型（如DeepSeek、Qwen、Llama）、视觉模型（如Stable Diffusion）和多模态模型等。</div>
         </div>
 
         <!-- 右侧：2x2 网格 -->

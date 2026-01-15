@@ -3,11 +3,11 @@
         <!-- 主要内容区域：四个卡片使用 flex 布局 -->
         <div class="main-content flex gap-6 max-w-[90vw] mx-auto">
             <!-- 第一个卡片：左侧边栏（容器环境和卡型丰富） -->
-            <UCard class="sidebar-card flex-1 text-left">
+            <UCard class="sidebar-card flex-1 text-left bg-linear-to-bl from-secondary-200 to-primary-200 dark:from-secondary-800 dark:to-primary-800">
                 <!-- 容器环境 -->
                 <div class="mb-6">
                     <h3 class="text-lg font-semibold mb-2">容器环境</h3>
-                    <p class="text-sm text-gray-600 mb-4">内置常见模型运行环境一键部署</p>
+                    <p class="text-sm text-muted mb-4">内置常见模型运行环境一键部署</p>
                     <div class="flex flex-wrap gap-2">
                         <UBadge v-for="framework in frameworks" :key="framework" color="primary" variant="soft"
                             size="lg">
@@ -18,8 +18,8 @@
 
                 <!-- 卡型丰富 -->
                 <div>
-                    <h3 class="text-lg font-semibold mb-2">卡型丰富</h3>
-                    <p class="text-sm text-gray-600 mb-4">支持多种异构显卡按小时租用</p>
+                    <div class="text-highlighted text-lg font-semibold mb-2">卡型丰富</div>
+                    <p class="text-sm text-muted mb-4">支持多种异构显卡按小时租用</p>
                     <div
                         class="diagram-placeholder bg-linear-to-br from-blue-50 to-blue-100 rounded-lg p-6 text-center">
                         <div class="text-secondary-600 font-semibold mb-2">JYGPU</div>
@@ -35,17 +35,17 @@
             <!-- 后三个GPU卡片使用 for 循环渲染 -->
             <UCard :ui="{
                 body: ' h-full flex flex-col'
-            }" v-for="gpu in gpuList" :key="gpu.id" class="gpu-card flex-1 hover:shadow-lg transition-shadow">
+            }" v-for="gpu in gpuList" :key="gpu.id" class="gpu-card flex-1 hover:shadow-lg transition-shadow bg-muted">
                 <div class="flex flex-col justify-between content-center h-full">
                     <div class="text-left mb-4">
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">{{ gpu.name }}</h3>
-                        <div class="flex items-center gap-4 text-sm text-gray-600 ">
+                        <div class="highlighted text-lg font-bold mb-2">{{ gpu.name }}</div>
+                        <div class="flex items-center gap-4 text-sm text-toned">
                             <span>显存{{ gpu.vram }}</span>
                             <span>|</span>
                             <span>AI算力 {{ gpu.computePower }} FLOPS</span>
                         </div>
-                        <div class="border-t border-gray-200 mt-4 pt-2">
-                            <div class="text-sm text-gray-400 line-through mb-1">
+                        <div class="border-t border-muted mt-4 pt-2">
+                            <div class="text-sm text-mutedline-through mb-1">
                                 ¥{{ gpu.originalPrice }}/时
                             </div>
                             <div class="">
@@ -172,8 +172,8 @@ const gpuList: GPUItem[] = [
 }
 
 .sidebar-card {
-    height: fit-content;
-    background: linear-gradient(180deg, #e6f1ff, #eeecfe)
+    // height: fit-content;
+    // background: linear-gradient(180deg, #e6f1ff, #eeecfe)
 }
 
 .gpu-card {

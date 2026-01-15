@@ -6,7 +6,7 @@
 
             <!-- GPU服务器容器实例租用 gpu server container instance rental -->
             <div>
-                <h2 class="w-full text-center mt-20 text-2xl  font-medium">GPU服务器容器实例租用</h2>
+                <div class=" w-full text-center mt-20 text-2xl  font-medium ">GPU服务器容器实例租用</div>
                 <div class="w-full text-center desc text-sm font-light mt-4 hidden lg:inline-block">
                     仅需两步，即可拥有一台高性能GPU服务器容器实例云主机，秒级拉取AI镜像，轻松开展智算工作！
                 </div>
