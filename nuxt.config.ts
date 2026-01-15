@@ -64,9 +64,31 @@ export default defineNuxtConfig({
   // fonts: {
   //   processCSSVariables: true
   // },
-  //页面过渡效果 真的所有页面
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' }
+    //页面过渡效果 真的所有页面
+    pageTransition: { name: 'page', mode: 'out-in' },
+    head: {
+      title: '华璟智璇 租赁平台',
+      titleTemplate: '%s - 华璟智璇 GPU 租赁',
+
+      meta: [
+        { name: 'description', content: '华璟智璇 高性能 GPU 租赁平台，按需付费' },
+        { name: 'keywords', content: 'GPU 租赁, AI 训练, CUDA, 云算力' },
+
+        // Open Graph
+        { property: 'og:type', content: 'website' },
+        { property: 'og:title', content: '华璟智璇 GPU 租赁平台' },
+        { property: 'og:description', content: '高性能 GPU 云租赁' },
+        { property: 'og:site_name', content: '华璟智璇' },
+
+        // Twitter
+        { name: 'twitter:card', content: 'summary_large_image' }
+      ],
+
+      link: [
+        // { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+      ]
+    }
   },
   sourcemap: {
     server: false,

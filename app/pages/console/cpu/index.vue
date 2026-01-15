@@ -1,5 +1,4 @@
 <!-- pages/containers/index.vue -->
-
 <template>
     <UCard>
         <UTable v-model:column-pinning="columnPinning" :columns="columns" :data="data || []" :loading="pending">
@@ -62,8 +61,9 @@
                             ssh -p {{ row.original?.sshPort }} {{ row.original?.sshUserName
                             }}@{{ row.original?.sshIpAddress }}
                         </span>
+
                         <UButton class="cursor-pointer" icon="tabler:copy" size="xs" color="primary" variant="ghost"
-                            @click="copySshInfo(row.original?.ssh)" />
+                            @click="copySshInfo(row.original)" />
                     </div>
                     <div class="flex items-center gap-2 text-sm">
                         <span class="text-gray-600">密码: ************</span>
@@ -105,37 +105,28 @@ const columnPinning = ref({
 
 // 复制name
 const handleCopy = (txt: string) => {
-    navigator.clipboard.writeText(txt);
-
-    toast.add({
-        icon: 'tabler:cash-edit',
-        title: '成功',
-        description: '复制到到剪切板',
-        color: 'primary'
-    })
+    _copy(txt);
 };
 
 // 复制SSH信息
-const copySshInfo = (ssh: ContainerInstance['ssh']) => {
-    const sshCommand = `ssh -p ${ssh.port} ${ssh.user}@${ssh.host}`;
-    navigator.clipboard.writeText(sshCommand);
-
-    toast.add({
-        icon: 'tabler:cash-edit',
-        title: '成功',
-        description: '复制到到剪切板',
-        color: 'primary'
-    })
+const copySshInfo = (ssh: SshInfo) => {
+    const sshCommand = `ssh -p ${ssh.sshPort} ${ssh.sshUserName}@${ssh.sshIpAddress}`;
+    _copy(sshCommand);
 };
 
 // 显示密码
 const copyPassword = (password: string) => {
-    navigator.clipboard.writeText(password);
+    if (!password) return
+    _copy(password);
+};
+
+const _copy = (anyText: string) => {
+    useClipboard().copy(anyText);
     toast.add({
         icon: 'tabler:cash-edit',
         title: '成功',
         description: '复制到到剪切板',
         color: 'primary'
     })
-};
+}
 </script>

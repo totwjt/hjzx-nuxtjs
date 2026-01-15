@@ -4,7 +4,7 @@ export const useUiTheme = () => {
   const appConfig = useAppConfig()
 
   const theme = useCookie<ThemeName>('ui-theme', {
-    default: () => 'green'
+    default: () => 'blue'
   })
 
   const applyTheme = (name: ThemeName) => {

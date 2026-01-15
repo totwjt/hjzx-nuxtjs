@@ -11,7 +11,7 @@
             </aside>
 
             <!-- 内容区 -->
-            <main class="flex-1 overflow-y-auto p-6">
+            <main class="flex-1 overflow-y-auto p-6 space-y-3">
                 <!-- manbanner 区域 -->
                 <UBreadcrumb :items="breadcrumbItems">
 
@@ -21,14 +21,15 @@
                 </UBreadcrumb>
 
                 <!-- 标题和描述 -->
-                <div class="text-xl font-semibold text-gray-900 mt-4">
+                <div class="text-xl font-semibold text-gray-900">
                     {{ currentItem.title || currentItem.label }}
                 </div>
-                <div class="text-sm text-gray-600 mt-1">
+                <div class="text-sm text-gray-600">
                     {{ currentItem.description }}
                 </div>
 
-                <USeparator class="py-4" />
+                <USeparator class="py-4" color="neutral" />
+
                 <!-- 路由页面 -->
                 <NuxtPage />
             </main>
