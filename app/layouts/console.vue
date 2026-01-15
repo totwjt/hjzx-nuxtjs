@@ -11,21 +11,27 @@
             </aside>
 
             <!-- 内容区 -->
-            <main class="flex-1 overflow-y-auto p-6 space-y-3">
-                <!-- manbanner 区域 -->
+            <main class="flex-1 overflow-y-auto p-6 ">
                 <UBreadcrumb :items="breadcrumbItems">
 
                     <template #separator>
                         <span class="mx-2 text-muted">/</span>
                     </template>
                 </UBreadcrumb>
+                <div class="flex justify-start items-center">
+                    <LazyAniLottie />
+                    <div class="space-y-3">
+                        <!-- manbanner 区域 -->
 
-                <!-- 标题和描述 -->
-                <div class="text-xl font-semibold text-gray-900">
-                    {{ currentItem.title || currentItem.label }}
-                </div>
-                <div class="text-sm text-gray-600">
-                    {{ currentItem.description }}
+                        <!-- 标题和描述 -->
+                        <div class="text-xl font-semibold text-gray-900">
+                            {{ currentItem.title || currentItem.label }}
+                        </div>
+                        <div class="text-sm text-gray-600">
+                            {{ currentItem.description }}
+                        </div>
+                    </div>
+
                 </div>
 
                 <USeparator class="py-4" color="neutral" />
@@ -39,6 +45,8 @@
 </template>
 
 <script setup lang="ts">
+import { lazy } from 'zod'
+
 const items = ref([
     {
         label: '当前位置',
