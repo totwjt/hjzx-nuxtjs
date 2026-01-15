@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-gray-50 min-h-screen flex flex-col">
+  <div class="bg min-h-screen flex flex-col">
     <Menu />
 
-    <div class="flexw-full dark:bg-gray-800 bg-white shadow-sm py-2">
+    <div class="flexw-full bg-muted">
       <UContainer>
         <Markets-RouterBanner />
       </UContainer>

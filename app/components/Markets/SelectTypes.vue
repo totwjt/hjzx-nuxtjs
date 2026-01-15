@@ -1,6 +1,6 @@
 <template>
-  <div class="p-4 ring-1 ring-gray-50 bg-white rounded-lg mb-4">
-    <div class="text-sm font-bold text-gray-800 mb-4">选择GPU类型 </div>
+  <div class="p-4 ring-1 ring-gray-50 bg-muted rounded-lg mb-4">
+    <div class="text-sm font-bold text-highlighted mb-4">选择GPU类型 </div>
 
     <!-- skeleton -->
     <div class="grid gap-2" v-if="displayedGPUs?.length <= 0">

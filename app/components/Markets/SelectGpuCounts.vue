@@ -1,6 +1,6 @@
 <template>
   <div class="p-4 ring-1 ring-gray-50 bg-white rounded-lg mb-4">
-    <div class="text-sm font-bold text-gray-800 mb-4">单机GPU数量</div>
+    <div class="text-sm font-bold text-highlighted mb-4">单机GPU数量</div>
     <div class="inline-flex items-center gap-3 flex-wrap">
 
       <div v-for="count in idleGpuCount" v-bind:key="count" @click="() => selected.quantity = count"

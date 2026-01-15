@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="p-4 ring-1 ring-gray-50 bg-white rounded-lg">
-      <div class="text-sm font-bold text-gray-800 mb-4">实例配置</div>
+      <div class="text-sm font-bold text-highlighted mb-4">实例配置</div>
 
       <div class="border border-gray-200 rounded-sm p-6">
         <div class="flex justify-start gap-8 items-center">

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="router-banner flex justify-between items-center gap-2 py-4 bg-white ">
+    class="router-banner flex justify-between items-center gap-2 p-4  ">
 
     <UButton v-for="(item, index) in routerItems" :key="index" :to="item.to" color="neutral"  variant="soft"
       active-color="primary" active-variant="solid"

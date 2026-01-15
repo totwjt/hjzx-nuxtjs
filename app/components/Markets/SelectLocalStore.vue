@@ -2,7 +2,7 @@
   <div class="p-4 ring-1 ring-gray-50 bg-white rounded-lg mt-6">
   <!-- <div class="border border-gray-200 rounded-sm p-6 mt-6"> -->
     <div class="flex justify-start gap-8 items-start">
-      <div class="text-sm font-bold text-gray-800 pt-2">本机存储</div>
+      <div class="text-sm font-bold text-highlighted pt-2">本机存储</div>
 
       <!--  -->
       <div class="text-sm font-semibold text-gray-500">
@@ -34,7 +34,7 @@
     </div>
 
     <div class="flex justify-start gap-8 items-center mt-4">
-      <div class="text-sm font-bold text-gray-800">文件存储</div>
+      <div class="text-sm font-bold text-highlighted">文件存储</div>
 
       <div class="flex justify-between items-center text-sm text-gray-400 bg-gray-50 p-3 w-120 rounded-sm">
         <div>
