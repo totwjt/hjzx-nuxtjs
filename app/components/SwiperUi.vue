@@ -42,7 +42,7 @@ const slides = [
   {
     src: '/banner/index-5.png?random=3',
     title: '算力过剩？',
-    subTitle: 'xxx纳管，资源高效变现与收益共享！',
+    subTitle: '资源高效变现与收益共享！',
     descs: [
       '一键接入资产盘活',
       '企业级算力资产化管理',

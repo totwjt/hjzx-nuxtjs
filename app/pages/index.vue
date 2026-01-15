@@ -3,7 +3,6 @@
         <SwiperUi class="relative z-0" />
         <ContentBanner class="relative z-10" />
         <UContainer>
-
             <!-- GPU服务器容器实例租用 gpu server container instance rental -->
             <div>
                 <div class=" w-full text-center mt-20 text-2xl  font-medium ">GPU服务器容器实例租用</div>
@@ -24,11 +23,11 @@
 
                 <h2 class="w-full text-center mt-20 text-2xl  font-medium">丰富的模型与镜像可供选择</h2>
                 <p class="w-full text-center desc text-sm font-light mt-4 hidden lg:inline-block">
-                    xxx平台预设多种热门镜像与AI模型，结合容器的快速拉起特性，用户零门槛可一键部署，在几分钟内启动一个预置的AI环境
+                    平台预设多种热门镜像与AI模型，结合容器的快速拉起特性，用户零门槛可一键部署，在几分钟内启动一个预置的AI环境
                 </p>
                 <Model />
 
-                <h2 class="w-full text-center mt-20 text-2xl  font-medium">xxx平台优势</h2>
+                <h2 class="w-full text-center mt-20 text-2xl  font-medium">平台优势</h2>
                 <p class="w-full text-center desc text-sm font-light mt-4 hidden lg:inline-block">
                     ①种类多：从入门级GPU到专业GPU全覆盖，②价格实惠：同类产品价格最优，③灵活租赁：可按小时、按天、按月等方式租赁
                 </p>

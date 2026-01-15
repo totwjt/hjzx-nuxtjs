@@ -56,7 +56,7 @@
 
         <!-- 第4列：关于 -->
         <div>
-          <h3 class="font-bold text-highlighted mb-4">关于xxx</h3>
+          <h3 class="font-bold text-highlighted mb-4">关于我们</h3>
           <ul class="space-y-3 text-sm">
             <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">算力图</a></li>
             <li><a href="#" class="text-toned hover:text-secondary-600 transition-colors">AI课堂</a></li>
