@@ -15,7 +15,7 @@ export default defineAppConfig({
     brand: {
       logoText: 'HJ',
       name: '华璟智璇',
-      slogan: '找算力 就上极智算',
+      slogan: '找算力 就上xxx',
       description:
         '中小企业算力服务专家，普惠算力引擎。异构并行，秒级调度，即取即用'
     },

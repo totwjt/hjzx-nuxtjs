@@ -52,7 +52,7 @@ onMounted(() => {
         <img class="slide-bg" src="/banner/index-5.png" alt="banner" loading="lazy" decoding="async" />
         <UContainer class="slide-text-content">
           <div class="title">算力过剩？</div>
-          <div class="sub-title">极智算纳管，资源高效变现与收益共享！</div>
+          <div class="sub-title">xxx纳管，资源高效变现与收益共享！</div>
           <p>一键接入资产盘活</p>
           <p>企业级算力资产化管理</p>
           <p>智能平台账单一目了然</p>
