@@ -4,7 +4,7 @@
 
         <!-- 左侧：大卡片 -->
         <div
-            class="box1 bg-linear-to-bl dark:from-primary-700 from-primary-200 to-secondary-200 dark:to-secondary-700 rounded-3xl p-8 h-100">
+            class="box1 bg-linear-to-tl dark:from-primary-700 dark:to-secondary-700 from-primary-400 to-secondary-200 rounded-3xl p-8 h-100">
             <div class="text-xl font-bold">满足企业级AI应用</div>
             <div class="text-xl font-bold">平台支持异构混合部署，突破大模型算力瓶颈</div>
             <div class="mt-4 text-sm text-toned">

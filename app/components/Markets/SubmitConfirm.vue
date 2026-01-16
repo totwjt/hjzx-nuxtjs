@@ -63,6 +63,7 @@
 <script setup lang="ts">
 import { useMyMarketsStore } from '@/stores/markets'
 const { templateType } = storeToRefs(useMyMarketsStore())
+const loading = ref(false)
 
 const marketsStore = useMyMarketsStore()
 const open = ref(false)
@@ -89,6 +90,7 @@ const handleCancel = () => {
 const handleSubmit = async () => {
   const toast = useToast()
   const route = useRoute()
+  loading.value = true
 
   try {
     await useMyMarketsStore().submit()
@@ -100,6 +102,7 @@ const handleSubmit = async () => {
       '/console/cpu',
       '/console/container',
     ]
+    loading.value = false
     await navigateTo(routerTmp[templateType.value])
   } catch (error: any) {
     // 401：未登录
@@ -122,6 +125,8 @@ const handleSubmit = async () => {
 
     // 其它错误，直接抛给全局 errorHandler / error.vue
     throw error
+  } finally {
+    loading.value = false
   }
 }
 </script>

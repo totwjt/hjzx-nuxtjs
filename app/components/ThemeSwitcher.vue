@@ -16,7 +16,7 @@ const items = [
 
 <template>
   <UDropdownMenu arrow :items="items">
-    <UButton color="primary" variant="ghost" icon="tabler:settings" />
+    <UButton color="primary" variant="ghost" icon="tabler:pencil-question" />
 
     <template #c1>
 

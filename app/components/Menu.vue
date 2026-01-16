@@ -46,16 +46,19 @@ const items = computed<NavigationMenuItem[]>(() => [
   {
     label: '模型部署',
     to: '/markets/square',
-    active: false
+    active: false,
+    disabled: true
   },
   {
     label: 'JStack',
-    active: false
+    active: false,
+    disabled: true
     // to: 'https://go.nuxt.com/figma-ui',
   },
   {
     label: '关于我们',
-    active: false
+    active: false,
+    disabled: true
     // to: 'https://github.com/nuxt/ui/releases',
     // target: '_blank'
   }
@@ -64,12 +67,14 @@ const items = computed<NavigationMenuItem[]>(() => [
 const items2 = computed<NavigationMenuItem[]>(() => [
   {
     label: '算力圈',
+    disabled: true
     // to: '/1',
     // active: route.path.startsWith('/1')
   },
   {
     label: '文档中心',
-    // to: '/docs/getting-started',
+    target: '_blank',
+    to: 'http://192.168.66.56:3001/',
     // active: route.path.startsWith('/docs/getting-started')
   },
   {
@@ -86,7 +91,8 @@ const goToBalance = async () => {
 </script>
 
 <template>
-  <UHeader class="custom-header light:bg-linear-to-br light:from-primary-200 light:to-neutral-50 light:border-primary-100">
+  <UHeader
+    class="custom-header light:bg-linear-to-br light:from-primary-200 light:to-neutral-50 light:border-primary-100">
 
     <template #left>
       <div class="flex items-center">
